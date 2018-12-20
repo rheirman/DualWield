@@ -1,0 +1,8 @@
+<Defs>
+  <JobDef>
+    <defName>DW_EquipOffhand</defName>
+    <driverClass>DualWield.Jobs.JobDriver_EquipOffHand</driverClass>
+    <reportString>Equipping</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+ </Defs>
