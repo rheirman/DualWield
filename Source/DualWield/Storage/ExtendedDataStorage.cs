@@ -50,9 +50,40 @@ namespace DualWield.Storage
             return newExtendedData;
         }
 
+        public bool TryGetExtendedDataFor(ThingWithComps twc, out ExtendedThingWithCompsData result)
+        {
+
+            var id = twc.thingIDNumber;
+            if (_store.TryGetValue(id, out IExposable data))
+            {
+                result = (ExtendedThingWithCompsData)data;
+                return true;
+            }
+            result = null;
+            return false;
+        }
+        public ExtendedThingWithCompsData GetExtendedDataFor(ThingWithComps twc)
+        {
+
+            var id = twc.thingIDNumber;
+            if (_store.TryGetValue(id, out IExposable data))
+            {
+                return (ExtendedThingWithCompsData)data;
+            }
+
+            var newExtendedData = new ExtendedThingWithCompsData();
+            _store[id] = newExtendedData;
+            return newExtendedData;
+        }
+
         public void DeleteExtendedDataFor(Pawn pawn)
         {
             _store.Remove(pawn.thingIDNumber);
+        }
+
+        public void DeleteExtendedDataFor(ThingWithComps twc)
+        {
+            _store.Remove(twc.thingIDNumber);
         }
     }
 }

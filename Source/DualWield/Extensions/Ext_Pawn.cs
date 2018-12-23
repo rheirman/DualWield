@@ -30,12 +30,11 @@ namespace DualWield
             Pawn_EquipmentTracker equipment = instance.equipment;
             ThingWithComps offHandEquip = null;
             CompEquippable compEquippable = null;
-            if (equipment != null && equipment.AllEquipmentListForReading.Count > 1)
+            if (equipment != null && equipment.TryGetOffHandEquipment(out ThingWithComps result))
             {
-                offHandEquip = equipment.AllEquipmentListForReading[1];//TODO: replace this temp code.
+                offHandEquip = result;//TODO: replace this temp code.
                 compEquippable = offHandEquip.TryGetComp<CompEquippable>();
             }
-
             if (compEquippable != null && compEquippable.PrimaryVerb.Available() && (!compEquippable.PrimaryVerb.verbProps.onlyManualCast || (instance.CurJob != null && instance.CurJob.def != JobDefOf.Wait_Combat) || allowManualCastWeapons))
             {
                 return compEquippable.PrimaryVerb;

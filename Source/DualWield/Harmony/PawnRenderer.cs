@@ -50,9 +50,9 @@ namespace DualWield.Harmony
             float zOffset = 0;
             float offHandAngle = aimAngle;
             Stance_Busy stance_Busy = pawn.stances.curStance as Stance_Busy;
-            if (pawn.equipment != null && pawn.equipment.AllEquipmentListForReading.Count > 1)
+            if (pawn.equipment != null && pawn.equipment.TryGetOffHandEquipment(out ThingWithComps result))
             {
-                offHandEquip = pawn.equipment.AllEquipmentListForReading[1];//TODO: replace this temp code.
+                offHandEquip = result;//TODO: replace this temp code.
             }
             //When wielding offhand weapon, facing south, and not aiming, draw differently 
             if ((stance_Busy != null && !stance_Busy.neverAimWeapon && stance_Busy.focusTarg.IsValid) || (pawn.Rotation == Rot4.East) || offHandEquip == null)

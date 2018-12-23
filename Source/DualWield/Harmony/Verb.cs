@@ -42,6 +42,10 @@ namespace DualWield.Harmony
             {
                 stanceTracker.pawn.GetStancesOffHand().SetStance(stance);
             }
+            else
+            {
+                stanceTracker.SetStance(stance);
+            }
         }
     }
 }
