@@ -11,7 +11,7 @@ namespace DualWield.Storage
         public bool isOffHand = false;
         public void ExposeData()
         {
-            Scribe_Deep.Look(ref isOffHand, "isOffHand", false);
+            Scribe_Values.Look(ref isOffHand, "isOffHand", false);
         }
     }
 }

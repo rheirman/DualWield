@@ -38,13 +38,13 @@ namespace DualWield.Storage
         public ExtendedPawnData GetExtendedDataFor(Pawn pawn)
         {
 
-            var id = pawn.thingIDNumber;
-            if (_store.TryGetValue(id, out IExposable data))
+            int id = pawn.thingIDNumber;
+            if (_store.TryGetValue(id, out IExposable data) && data is ExtendedPawnData)
             {
                 return (ExtendedPawnData) data;
             }
 
-            var newExtendedData = new ExtendedPawnData();
+            ExtendedPawnData newExtendedData = new ExtendedPawnData();
 
             _store[id] = newExtendedData;
             return newExtendedData;
@@ -53,8 +53,8 @@ namespace DualWield.Storage
         public bool TryGetExtendedDataFor(ThingWithComps twc, out ExtendedThingWithCompsData result)
         {
 
-            var id = twc.thingIDNumber;
-            if (_store.TryGetValue(id, out IExposable data))
+            int id = twc.thingIDNumber;
+            if (_store.TryGetValue(id, out IExposable data) && data is ExtendedThingWithCompsData)
             {
                 result = (ExtendedThingWithCompsData)data;
                 return true;
@@ -65,13 +65,13 @@ namespace DualWield.Storage
         public ExtendedThingWithCompsData GetExtendedDataFor(ThingWithComps twc)
         {
 
-            var id = twc.thingIDNumber;
-            if (_store.TryGetValue(id, out IExposable data))
+            int id = twc.thingIDNumber;
+            if (_store.TryGetValue(id, out IExposable data) && data is ExtendedThingWithCompsData)
             {
                 return (ExtendedThingWithCompsData)data;
             }
 
-            var newExtendedData = new ExtendedThingWithCompsData();
+            ExtendedThingWithCompsData newExtendedData = new ExtendedThingWithCompsData();
             _store[id] = newExtendedData;
             return newExtendedData;
         }

@@ -52,7 +52,7 @@ namespace DualWield.Harmony
             Stance_Busy stance_Busy = pawn.stances.curStance as Stance_Busy;
             if (pawn.equipment != null && pawn.equipment.TryGetOffHandEquipment(out ThingWithComps result))
             {
-                offHandEquip = result;//TODO: replace this temp code.
+                offHandEquip = result;
             }
             //When wielding offhand weapon, facing south, and not aiming, draw differently 
             if ((stance_Busy != null && !stance_Busy.neverAimWeapon && stance_Busy.focusTarg.IsValid) || (pawn.Rotation == Rot4.East) || offHandEquip == null)
