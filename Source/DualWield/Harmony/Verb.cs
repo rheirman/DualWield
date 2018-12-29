@@ -32,7 +32,7 @@ namespace DualWield.Harmony
             ThingWithComps offHandEquip = null;
             CompEquippable compEquippable = null;
 
-            if (stanceTracker.pawn.equipment != null && stanceTracker.pawn.equipment.TryGetOffHandEquipment(out ThingWithComps result))
+            if (stanceTracker.pawn.equipment != null && stanceTracker.pawn.equipment.TryGetOffHandEquipment(out ThingWithComps result) && result != stanceTracker.pawn.equipment.Primary)
             {
                 offHandEquip = result;
                 compEquippable = offHandEquip.TryGetComp<CompEquippable>();

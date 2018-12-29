@@ -1,5 +1,6 @@
 ﻿using DualWield.Storage;
 using Harmony;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,17 +27,29 @@ namespace DualWield
             {
                 if(store.TryGetExtendedDataFor(twc, out ExtendedThingWithCompsData ext) && ext.isOffHand){
                     result = twc;
-                    if (twc != instance.Primary)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
+                    return true;
                 }
             }
             return false;
+        }
+        public static void MakeRoomForOffHand(this Pawn_EquipmentTracker instance, ThingWithComps eq)
+        {
+            instance.TryGetOffHandEquipment(out ThingWithComps currentOffHand);
+            if (currentOffHand != null)
+            {
+                ThingWithComps thingWithComps;
+                if (instance.TryDropEquipment(currentOffHand, out thingWithComps, instance.pawn.Position, true))
+                {
+                    if (thingWithComps != null)
+                    {
+                        thingWithComps.SetForbidden(false, true);
+                    }
+                }
+                else
+                {
+                    Log.Error(instance.pawn + " couldn't make room for equipment " + eq, false);
+                }
+            }
         }
     }
 }

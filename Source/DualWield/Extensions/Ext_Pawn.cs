@@ -30,7 +30,7 @@ namespace DualWield
             Pawn_EquipmentTracker equipment = instance.equipment;
             ThingWithComps offHandEquip = null;
             CompEquippable compEquippable = null;
-            if (equipment != null && equipment.TryGetOffHandEquipment(out ThingWithComps result))
+            if (equipment != null && equipment.TryGetOffHandEquipment(out ThingWithComps result) && result != equipment.Primary)
             {
                 offHandEquip = result;//TODO: replace this temp code.
                 compEquippable = offHandEquip.TryGetComp<CompEquippable>();

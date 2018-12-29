@@ -44,11 +44,26 @@ namespace DualWield.Harmony
         {
             ThingWithComps result = null;
             //When there's no offhand weapon equipped, use vanilla behaviour and throw the error when needed. Otherwise, make sure the error is never thrown. 
-            if (instance.TryGetOffHandEquipment(out ThingWithComps r) && r == null)
+            if (!instance.TryGetOffHandEquipment(out ThingWithComps r))
             {
                 return instance.Primary;
             }
             return result;
+        }
+    }
+    [HarmonyPatch(typeof(Pawn_EquipmentTracker) ,"MakeRoomFor")]
+    class Pawn_EquipmentTracker_MakeRoomFor
+    {
+        static bool Prefix(Pawn_EquipmentTracker __instance)
+        {
+            if(__instance.TryGetOffHandEquipment(out ThingWithComps offHand) && offHand == __instance.Primary)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 

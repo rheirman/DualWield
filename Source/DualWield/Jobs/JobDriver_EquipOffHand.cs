@@ -37,6 +37,7 @@ namespace DualWield.Jobs
                         thingWithComps2 = thingWithComps;
                         thingWithComps2.DeSpawn(DestroyMode.Vanish);
                     }
+                    this.pawn.equipment.MakeRoomForOffHand(thingWithComps2);
                     this.pawn.equipment.AddOffHandEquipment(thingWithComps2);
                     if (thingWithComps.def.soundInteract != null)
                     {
