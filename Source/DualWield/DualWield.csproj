@@ -62,9 +62,9 @@
     <Compile Include="Harmony\Pawn.cs" />
     <Compile Include="Harmony\PawnComponentsUtility.cs" />
     <Compile Include="Harmony\PawnRenderer.cs" />
-    <Compile Include="Harmony\Pawn_EquipmentTracker.cs" />
-    <Compile Include="Harmony\Pawn_TryStartAttack.cs" />
     <Compile Include="Harmony\FloatMenuMakerMap.cs" />
+    <Compile Include="Harmony\Pawn_MeleeVerbs.cs" />
+    <Compile Include="Harmony\ThingOwner.cs" />
     <Compile Include="Harmony\Verb.cs" />
     <Compile Include="Jobs\JobDriver_EquipOffHand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
