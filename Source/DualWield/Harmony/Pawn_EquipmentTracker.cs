@@ -1,4 +1,5 @@
-﻿using Harmony;
+﻿using DualWield.Storage;
+using Harmony;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace DualWield.Harmony
             var instructionsList = new List<CodeInstruction>(instructions);
             foreach (CodeInstruction instruction in instructionsList)
             {
-                if(instruction.operand == typeof(Pawn_EquipmentTracker).GetMethod("get_Primary"))
+                if (instruction.operand == typeof(Pawn_EquipmentTracker).GetMethod("get_Primary"))
                 {
                     yield return new CodeInstruction(OpCodes.Call, typeof(Pawn_EquipmentTracker_AddEquipment).GetMethod("PrimaryNoOffHand"));
                 }
@@ -27,15 +28,28 @@ namespace DualWield.Harmony
                 }
             }
         }
+        //Make sure offhand weapons are never stored first in the list. 
+        static void Postfix(Pawn_EquipmentTracker __instance, ThingWithComps newEq)
+        {
+            ExtendedDataStorage store = Base.Instance.GetExtendedDataStorage();
+            ThingWithComps primary = __instance.Primary;
+            if (store.TryGetExtendedDataFor(primary, out ExtendedThingWithCompsData twcData) && twcData.isOffHand)
+            {
+                ThingOwner<ThingWithComps> equipment = Traverse.Create(__instance).Field("equipment").GetValue<ThingOwner<ThingWithComps>>();
+                equipment.Remove(primary);
+                __instance.AddOffHandEquipment(primary);
+            }
+        }
         public static ThingWithComps PrimaryNoOffHand(Pawn_EquipmentTracker instance)
         {
             ThingWithComps result = null;
             //When there's no offhand weapon equipped, use vanilla behaviour and throw the error when needed. Otherwise, make sure the error is never thrown. 
-            if(instance.TryGetOffHandEquipment(out ThingWithComps r) && r == null)
+            if (instance.TryGetOffHandEquipment(out ThingWithComps r) && r == null)
             {
                 return instance.Primary;
             }
             return result;
         }
     }
+
 }

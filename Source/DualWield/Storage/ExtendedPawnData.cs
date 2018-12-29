@@ -11,7 +11,11 @@ namespace DualWield.Storage
         public Pawn_StanceTracker stancesOffhand = null;
         public void ExposeData()
         {
-            Scribe_Deep.Look(ref stancesOffhand, "stancesOffhand", false);
+            if(stancesOffhand != null)
+            {
+                object[] ctorArgs = { stancesOffhand.pawn };
+                Scribe_Deep.Look(ref stancesOffhand, "stancesOffhand", false, ctorArgs);
+            }
         }
     }
 }
