@@ -65,6 +65,7 @@
     <Compile Include="Harmony\FloatMenuMakerMap.cs" />
     <Compile Include="Harmony\Pawn_EquipmentTracker.cs" />
     <Compile Include="Harmony\Pawn_MeleeVerbs.cs" />
+    <Compile Include="Harmony\Projectile.cs" />
     <Compile Include="Harmony\ThingOwner.cs" />
     <Compile Include="Harmony\Verb.cs" />
     <Compile Include="Jobs\JobDriver_EquipOffHand.cs" />
