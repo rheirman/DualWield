@@ -63,6 +63,7 @@
     <Compile Include="Harmony\PawnComponentsUtility.cs" />
     <Compile Include="Harmony\PawnRenderer.cs" />
     <Compile Include="Harmony\FloatMenuMakerMap.cs" />
+    <Compile Include="Harmony\PawnWeaponGenerator.cs" />
     <Compile Include="Harmony\Pawn_EquipmentTracker.cs" />
     <Compile Include="Harmony\Pawn_MeleeVerbs.cs" />
     <Compile Include="Harmony\Pawn_RotationTracker.cs" />
