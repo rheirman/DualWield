@@ -55,6 +55,7 @@ namespace DualWield.Harmony
         {
             string labelShort = equipment.LabelShort;
             FloatMenuOption menuItem;
+
             if (equipment.def.IsWeapon && pawn.story.WorkTagIsDisabled(WorkTags.Violent))
             {
                 menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " (" + "IsIncapableOfViolenceLower".Translate(pawn.LabelShort, pawn) + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
@@ -71,6 +72,11 @@ namespace DualWield.Harmony
             {
                 menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " (" + "BurningLower".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
+            else if (HasMissingHand(pawn))
+            {
+                menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " (pawn needs two hands)", null, MenuOptionPriority.Default, null, null, 0f, null, null);//TODO: translation
+            }
+
             //Add check for only 1 arm.
             else
             {
@@ -89,6 +95,19 @@ namespace DualWield.Harmony
             }
 
             return menuItem;
+        }
+
+        private static bool HasMissingHand(Pawn pawn)
+        {
+            bool hasMissingHand = false;
+            foreach (Hediff_MissingPart missingPart in pawn.health.hediffSet.GetMissingPartsCommonAncestors())
+            {
+                if (missingPart.Part.def == BodyPartDefOf.Hand)
+                {
+                    hasMissingHand = true;
+                }
+            }
+            return hasMissingHand;
         }
     }
 }
