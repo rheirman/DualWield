@@ -20,10 +20,20 @@ namespace DualWield.Harmony
             {
                 return;
             }
+            float zOffset = 0.0f;
+            if(launcher.Rotation == Rot4.East)
+            {
+                zOffset = 0.1f;
+            }
+            else if(launcher.Rotation == Rot4.West)
+            {
+                zOffset = -0.1f;
+            }
+
             ExtendedThingWithCompsData twcData = Base.Instance.GetExtendedDataStorage().GetExtendedDataFor(twc);
             if (twcData.isOffHand)
             {
-                origin += new Vector3(0, 0, 0.25f);
+                origin += new Vector3(0, 0, zOffset);
             }
             
         }

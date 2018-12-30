@@ -56,6 +56,12 @@ namespace DualWield.Harmony
             float mainHandAngle = aimAngle;
             float offHandAngle = aimAngle;
             Stance_Busy mainStance = pawn.stances.curStance as Stance_Busy;
+            Stance_Busy offHandStance = null;
+            if (pawn.GetStancesOffHand() != null)
+            {
+                offHandStance = pawn.GetStancesOffHand().curStance as Stance_Busy;
+            }
+
             if (pawn.equipment == null)
             {
                 return;
@@ -64,30 +70,15 @@ namespace DualWield.Harmony
             {
                 offHandEquip = result;
             }
-            
+            bool mainHandAiming = CurrentlyAiming(mainStance);
+            bool offHandAiming = CurrentlyAiming(offHandStance);
 
+            //bool currentlyAiming = (mainStance != null && !mainStance.neverAimWeapon && mainStance.focusTarg.IsValid) || stancesOffHand.curStance is Stance_Busy ohs && !ohs.neverAimWeapon && ohs.focusTarg.IsValid;
             //When wielding offhand weapon, facing south, and not aiming, draw differently 
-            if ((mainStance != null && !mainStance.neverAimWeapon && mainStance.focusTarg.IsValid) || (pawn.Rotation == Rot4.East) || offHandEquip == null)
+
+            if(offHandEquip != null)
             {
-                yOffsetOffHand = -1f;
-                zOffsetOffHand = 0.25f;
-            }
-            else if (pawn.Rotation == Rot4.West)
-            {
-                yOffsetMain = -1f;
-                zOffsetMain = 0.25f;
-            }
-            else if (pawn.Rotation == Rot4.North)
-            {
-                xOffsetMain = 0.5f;
-                offHandAngle = 360 - aimAngle;
-                xOffsetOffHand = -0.5f;
-            }
-            else
-            {
-                xOffsetMain = -0.5f;
-                mainHandAngle = 360 - aimAngle;
-                xOffsetOffHand = 0.5f;
+                SetAnglesAndOffsets(aimAngle, pawn, ref xOffsetMain, ref yOffsetMain, ref xOffsetOffHand, ref yOffsetOffHand, ref zOffsetOffHand, ref mainHandAngle, ref offHandAngle, mainHandAiming, offHandAiming);
             }
             if (offHandEquip != pawn.equipment.Primary)
             {
@@ -96,19 +87,56 @@ namespace DualWield.Harmony
 
             if (offHandEquip != null)
             {
-                Pawn_StanceTracker stancesOffHand = pawn.GetStancesOffHand();
-
-                if (stancesOffHand.curStance is Stance_Busy offHandStance && offHandStance.focusTarg.IsValid)
+                if (offHandAiming)
                 {
                     offHandAngle = GetAimingRotation(pawn, offHandStance);
-                    instance.DrawEquipmentAiming(offHandEquip, pawn.DrawPos + new Vector3(0f, 0f + yOffsetOffHand, 0.4f + zOffsetOffHand).RotatedBy(offHandAngle), offHandAngle);
+                    Vector3 adjustedDrawPos = pawn.DrawPos + new Vector3(0f, 0f, 0.4f).RotatedBy(offHandAngle) + new Vector3(0f, yOffsetOffHand + 0.1f, zOffsetOffHand);
+                    instance.DrawEquipmentAiming(offHandEquip, adjustedDrawPos, offHandAngle);
                 }
                 else
                 {
                     instance.DrawEquipmentAiming(offHandEquip, drawLoc + new Vector3(xOffsetOffHand, yOffsetOffHand, zOffsetOffHand), offHandAngle);
                 }
             }
+        }
 
+        private static void SetAnglesAndOffsets(float aimAngle, Pawn pawn, ref float xOffsetMain, ref float yOffsetMain, ref float xOffsetOffHand, ref float yOffsetOffHand, ref float zOffsetOffHand, ref float mainHandAngle, ref float offHandAngle, bool mainHandAiming, bool offHandAiming)
+        {
+            if (pawn.Rotation == Rot4.East)
+            {
+                yOffsetOffHand = -1f;
+                zOffsetOffHand = 0.1f;
+            }
+            else if (pawn.Rotation == Rot4.West)
+            {
+                yOffsetMain = -1f;
+                //zOffsetMain = 0.25f;
+                zOffsetOffHand = -0.1f;
+            }
+            else if (pawn.Rotation == Rot4.North)
+            {
+                if (!mainHandAiming)
+                {
+                    xOffsetMain = 0.5f;
+                }
+                if (!offHandAiming)
+                {
+                    offHandAngle = 360 - aimAngle;
+                    xOffsetOffHand = -0.5f;
+                }
+            }
+            else
+            {
+                if (!mainHandAiming)
+                {
+                    xOffsetMain = -0.5f;
+                    mainHandAngle = 360 - aimAngle;
+                }
+                if (!offHandAiming)
+                {
+                    xOffsetOffHand = 0.5f;
+                }
+            }
         }
 
         private static float GetAimingRotation(Pawn pawn, Stance_Busy stance_Busy)
@@ -130,6 +158,9 @@ namespace DualWield.Harmony
 
             return num;
         }
+        private static bool CurrentlyAiming(Stance_Busy stance)
+        {
+            return (stance != null && !stance.neverAimWeapon && stance.focusTarg.IsValid);
+        }
     }
-
 }

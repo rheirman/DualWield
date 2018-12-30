@@ -26,7 +26,6 @@ namespace DualWield.Stances
         {
             if (Find.Selector.IsSelected(this.stanceTracker.pawn))
             {
-                //GenDraw.DrawAimPie(this.stanceTracker.pawn, this.focusTarg, (int)((float)this.ticksLeft * this.pieSizeFactor), 0.2f);
                 Pawn shooter = this.stanceTracker.pawn;
                 LocalTargetInfo target = this.focusTarg;
                 float facing = 0f;
@@ -41,7 +40,16 @@ namespace DualWield.Stances
                         facing = (target.Cell - shooter.Position).AngleFlat;
                     }
                 }
-                GenDraw.DrawAimPieRaw(shooter.DrawPos + new Vector3(0, 0.2f, 0.25f), facing, (int)((float)this.ticksLeft * this.pieSizeFactor));
+                float zOffSet = 0f;
+                if(shooter.Rotation == Rot4.East)
+                {
+                    zOffSet = 0.1f;
+                }
+                else if(shooter.Rotation == Rot4.West)
+                {
+                    zOffSet = -0.1f;
+                }
+                GenDraw.DrawAimPieRaw(shooter.DrawPos + new Vector3(0, 0.2f, zOffSet), facing, (int)((float)this.ticksLeft * this.pieSizeFactor));
             }
         }
         public override void StanceTick()
