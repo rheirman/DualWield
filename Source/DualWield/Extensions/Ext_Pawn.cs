@@ -41,6 +41,18 @@ namespace DualWield
             }
             return instance.meleeVerbs.TryGetMeleeVerb(target);
         }
+        public static bool HasMissingArmOrHand(this Pawn instance)
+        {
+            bool hasMissingHand = false;
+            foreach (Hediff_MissingPart missingPart in instance.health.hediffSet.GetMissingPartsCommonAncestors())
+            {
+                if (missingPart.Part.def == BodyPartDefOf.Hand || missingPart.Part.def == BodyPartDefOf.Arm)
+                {
+                    hasMissingHand = true;
+                }
+            }
+            return hasMissingHand;
+        }
 
     }
 }

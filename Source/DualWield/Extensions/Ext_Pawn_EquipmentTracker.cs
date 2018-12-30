@@ -22,6 +22,10 @@ namespace DualWield
         public static bool TryGetOffHandEquipment(this Pawn_EquipmentTracker instance, out ThingWithComps result)
         {
             result = null;
+            if (instance.pawn.HasMissingArmOrHand())
+            {
+                return false;
+            }
             ExtendedDataStorage store = Base.Instance.GetExtendedDataStorage();
             foreach (ThingWithComps twc in instance.AllEquipmentListForReading)
             {
