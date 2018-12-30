@@ -13,7 +13,7 @@ namespace DualWield.Stances
         {
             get
             {
-                return Pawn.stances.curStance.StanceBusy;
+                return true;
             }
         }
         public Stance_Cooldown_DW()

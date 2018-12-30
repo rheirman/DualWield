@@ -13,7 +13,7 @@ namespace DualWield.Stances
         {
             get
             {
-                return Pawn.stances.curStance.StanceBusy;
+                return false;
             }
         }
         public Stance_Warmup_DW()
@@ -42,6 +42,14 @@ namespace DualWield.Stances
                     }
                 }
                 GenDraw.DrawAimPieRaw(shooter.DrawPos + new Vector3(0, 0.2f, 0.25f), facing, (int)((float)this.ticksLeft * this.pieSizeFactor));
+            }
+        }
+        public override void StanceTick()
+        {
+            base.StanceTick();
+            if (Pawn.pather.MovingNow)
+            {
+                this.stanceTracker.pawn.GetStancesOffHand().SetStance(new Stance_Mobile());
             }
         }
         protected override void Expire()
