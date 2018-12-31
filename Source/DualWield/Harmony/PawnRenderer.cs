@@ -72,18 +72,44 @@ namespace DualWield.Harmony
             }
             bool mainHandAiming = CurrentlyAiming(mainStance);
             bool offHandAiming = CurrentlyAiming(offHandStance);
-
+            bool offHandIsMelee = IsMeleeWeapon(offHandEquip);
+            bool mainHandIsMelee = IsMeleeWeapon(pawn.equipment.Primary);
             //bool currentlyAiming = (mainStance != null && !mainStance.neverAimWeapon && mainStance.focusTarg.IsValid) || stancesOffHand.curStance is Stance_Busy ohs && !ohs.neverAimWeapon && ohs.focusTarg.IsValid;
             //When wielding offhand weapon, facing south, and not aiming, draw differently 
 
             if(offHandEquip != null)
             {
                 SetAnglesAndOffsets(aimAngle, pawn, ref xOffsetMain, ref yOffsetMain, ref xOffsetOffHand, ref yOffsetOffHand, ref zOffsetOffHand, ref mainHandAngle, ref offHandAngle, mainHandAiming, offHandAiming);
+                if (!offHandAiming)
+                {
+                    if (pawn.Rotation == Rot4.South)
+                    {
+                        offHandAngle = offHandIsMelee ? 110 : 150;
+                    }
+                    if (pawn.Rotation == Rot4.North)
+                    {
+                        offHandAngle = offHandIsMelee ? 250 : 210;
+                    }
+                }
+                if (!mainHandAiming)
+                {
+                    if (pawn.Rotation == Rot4.South)
+                    {
+                        mainHandAngle = mainHandIsMelee ? 250 : 210;
+                    }
+                    if (pawn.Rotation == Rot4.North)
+                    {
+                        mainHandAngle = mainHandIsMelee ? 110 : 150;
+                    }
+                }
             }
+           
+
             if (offHandEquip != pawn.equipment.Primary)
             {
                 instance.DrawEquipmentAiming(eq, drawLoc + new Vector3(xOffsetMain, yOffsetMain, zOffsetMain), mainHandAngle);
             }
+
 
             if (offHandEquip != null)
             {
@@ -161,6 +187,21 @@ namespace DualWield.Harmony
         private static bool CurrentlyAiming(Stance_Busy stance)
         {
             return (stance != null && !stance.neverAimWeapon && stance.focusTarg.IsValid);
+        }
+        private static bool IsMeleeWeapon(ThingWithComps eq)
+        {
+            if(eq == null)
+            {
+                return false;
+            }
+            if(eq.TryGetComp<CompEquippable>() is CompEquippable ceq)
+            {
+                if (ceq.PrimaryVerb.IsMeleeAttack)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
