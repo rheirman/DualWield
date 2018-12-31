@@ -15,8 +15,13 @@ namespace DualWield
         public static void AddOffHandEquipment(this Pawn_EquipmentTracker instance, ThingWithComps newEq)
         {
             ThingOwner<ThingWithComps> equipment = Traverse.Create(instance).Field("equipment").GetValue<ThingOwner<ThingWithComps>>();
-            Base.Instance.GetExtendedDataStorage().GetExtendedDataFor(newEq).isOffHand = true;
-            equipment.TryAdd(newEq, true);
+            ExtendedDataStorage store = Base.Instance.GetExtendedDataStorage();
+            if(store != null)
+            {
+                store.GetExtendedDataFor(newEq).isOffHand = true;
+                equipment.TryAdd(newEq, true);
+            }
+
         }
         //Only returns true when offhand weapon is used alongside a mainhand weapon. 
         public static bool TryGetOffHandEquipment(this Pawn_EquipmentTracker instance, out ThingWithComps result)

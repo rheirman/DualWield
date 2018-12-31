@@ -7,7 +7,7 @@ using Verse;
 
 namespace DualWield.Harmony
 {
-
+    /*
     [HarmonyPatch(typeof(PawnTweener), "MovedPercent")]
     class PawnTweener_MovedPercent
     {
@@ -31,5 +31,6 @@ namespace DualWield.Harmony
             }
         }
     }
+    */
     
 }

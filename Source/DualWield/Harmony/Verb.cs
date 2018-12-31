@@ -1,4 +1,5 @@
 ﻿using DualWield.Stances;
+using DualWield.Storage;
 using Harmony;
 using System;
 using System.Collections.Generic;
@@ -31,13 +32,17 @@ namespace DualWield.Harmony
         {
             ThingWithComps offHandEquip = null;
             CompEquippable compEquippable = null;
-            if (stanceTracker.pawn.equipment != null && stanceTracker.pawn.equipment.TryGetOffHandEquipment(out ThingWithComps result) && result != stanceTracker.pawn.equipment.Primary)
+            if(stance.verb.EquipmentSource == null)
             {
-                offHandEquip = result;
+                Log.Message("EquipmentSource is null");
+            }
+            if (stance.verb.EquipmentSource != null && Base.Instance.GetExtendedDataStorage().TryGetExtendedDataFor(stance.verb.EquipmentSource, out ExtendedThingWithCompsData twcdata) && twcdata.isOffHand)
+            {
+                offHandEquip = stance.verb.EquipmentSource;
                 compEquippable = offHandEquip.TryGetComp<CompEquippable>();
             }
             //Check if verb is one from a offhand weapon. 
-            if(compEquippable != null && stance.verb == compEquippable.PrimaryVerb && stanceTracker.pawn.GetStancesOffHand().curStance is Stance_Warmup_DW)
+            if(compEquippable != null && stance.verb == compEquippable.PrimaryVerb && offHandEquip != stanceTracker.pawn.equipment.Primary) //TODO: check this code 
             {
                 stanceTracker.pawn.GetStancesOffHand().SetStance(stance);
             }

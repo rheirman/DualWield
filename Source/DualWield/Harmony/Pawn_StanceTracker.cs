@@ -7,7 +7,6 @@ using Verse;
 
 namespace DualWield.Harmony
 {
-
     /*
     [HarmonyPatch(typeof(Pawn_StanceTracker), "get_FullBodyBusy")]
     class Pawn_StanceTracker_get_FullBodyBusy
@@ -18,7 +17,15 @@ namespace DualWield.Harmony
             {
                 if (stancesOffHand != __instance && stancesOffHand.curStance.StanceBusy)
                 {
-                    __result = true;
+                    bool runAndGunEnabled = false;
+                    if (__instance.pawn.AllComps.First((ThingComp tc) => tc.GetType().Name == "CompRunAndGun") is ThingComp comp)
+                    {
+                        runAndGunEnabled = Traverse.Create(comp).Field("isEnabled").GetValue<bool>();
+                    }
+                    if (!runAndGunEnabled)
+                    {
+                        __result = true;
+                    }
                 }
             }
         }

@@ -39,7 +39,7 @@ namespace DualWield
             {
                 return compEquippable.PrimaryVerb;
             }
-            return instance.meleeVerbs.TryGetMeleeVerb(target);
+            return null;
         }
         public static bool HasMissingArmOrHand(this Pawn instance)
         {

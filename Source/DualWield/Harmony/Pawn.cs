@@ -41,9 +41,13 @@ namespace DualWield.Harmony
             }
             bool allowManualCastWeapons = !__instance.IsColonist;
             Verb verb = __instance.TryGetOffhandAttackVerb(targ.Thing, true);
-            bool success = verb.OffhandTryStartCastOn(targ);
-            Log.Message("OffhandTryStartCastOn successful: " + success);
-            __result = __result || (verb != null && success);
+            if(verb != null)
+            {
+                bool success = verb.OffhandTryStartCastOn(targ);
+                Log.Message("OffhandTryStartCastOn successful: " + success);
+                __result = __result || (verb != null && success);
+            }
+
         }
     }
 }

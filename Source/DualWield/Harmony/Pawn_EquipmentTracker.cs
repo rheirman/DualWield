@@ -33,11 +33,14 @@ namespace DualWield.Harmony
         {
             ExtendedDataStorage store = Base.Instance.GetExtendedDataStorage();
             ThingWithComps primary = __instance.Primary;
-            if (store.TryGetExtendedDataFor(primary, out ExtendedThingWithCompsData twcData) && twcData.isOffHand)
+            if (primary != null && store != null &&  store.TryGetExtendedDataFor(primary, out ExtendedThingWithCompsData twcData) && twcData.isOffHand)
             {
                 ThingOwner<ThingWithComps> equipment = Traverse.Create(__instance).Field("equipment").GetValue<ThingOwner<ThingWithComps>>();
-                equipment.Remove(primary);
-                __instance.AddOffHandEquipment(primary);
+                if(equipment != null)
+                {
+                    equipment.Remove(primary);
+                    __instance.AddOffHandEquipment(primary);
+                }
             }
         }
         public static ThingWithComps PrimaryNoOffHand(Pawn_EquipmentTracker instance)

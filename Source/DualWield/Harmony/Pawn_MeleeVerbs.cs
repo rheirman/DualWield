@@ -23,13 +23,18 @@ namespace DualWield.Harmony
             {
                 return;
             }
+
+            Log.Message("pawn.GetStancesOffHand().curStance: " + pawn.GetStancesOffHand().curStance);
             Verb verb = __instance.Pawn.TryGetOffhandAttackVerb(target);
-            bool success = verb.OffhandTryStartCastOn(target);
-            if (success)
+            if(verb != null)
             {
-                Log.Message("offhand TryMeleeAttack successful");
+                bool success = verb.OffhandTryStartCastOn(target);
+                if (success)
+                {
+                    Log.Message("offhand TryMeleeAttack successful");
+                }
+                __result = __result || (verb != null && success);
             }
-            __result = __result || (verb != null && success);
         }
     }
 }

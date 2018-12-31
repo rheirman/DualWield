@@ -59,13 +59,13 @@ namespace DualWield.Stances
             //if (Pawn.pather.MovingNow)
             //Using reflection here for Run and Gun Compatibility. 
             bool runAndGunEnabled = false;
-            if(Pawn.AllComps.First((ThingComp tc) => tc.GetType().Name == "CompRunAndGun") is ThingComp comp)
+            if(Pawn.AllComps.FirstOrDefault((ThingComp tc) => tc.GetType().Name == "CompRunAndGun") is ThingComp comp)
             {
                 runAndGunEnabled = Traverse.Create(comp).Field("isEnabled").GetValue<bool>();
             }
             if(!runAndGunEnabled && Pawn.pather.MovingNow)
             {
-                    this.stanceTracker.pawn.GetStancesOffHand().SetStance(new Stance_Mobile());
+                this.stanceTracker.pawn.GetStancesOffHand().SetStance(new Stance_Mobile());
             }
         }
         protected override void Expire()
