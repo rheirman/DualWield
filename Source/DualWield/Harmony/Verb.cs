@@ -31,19 +31,17 @@ namespace DualWield.Harmony
         {
             ThingWithComps offHandEquip = null;
             CompEquippable compEquippable = null;
-
             if (stanceTracker.pawn.equipment != null && stanceTracker.pawn.equipment.TryGetOffHandEquipment(out ThingWithComps result) && result != stanceTracker.pawn.equipment.Primary)
             {
                 offHandEquip = result;
                 compEquippable = offHandEquip.TryGetComp<CompEquippable>();
             }
             //Check if verb is one from a offhand weapon. 
-            if(compEquippable != null && stance.verb == compEquippable.PrimaryVerb)
+            if(compEquippable != null && stance.verb == compEquippable.PrimaryVerb && stanceTracker.pawn.GetStancesOffHand().curStance is Stance_Warmup_DW)
             {
-                Log.Message("found offhand verb!, setting offhand stance"); 
                 stanceTracker.pawn.GetStancesOffHand().SetStance(stance);
             }
-            else
+            else if (!(stanceTracker.curStance is Stance_Cooldown))
             {
                 stanceTracker.SetStance(stance);
             }

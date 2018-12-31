@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Harmony;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -55,9 +56,16 @@ namespace DualWield.Stances
         public override void StanceTick()
         {
             base.StanceTick();
-            if (Pawn.pather.MovingNow)
+            //if (Pawn.pather.MovingNow)
+            //Using reflection here for Run and Gun Compatibility. 
+            bool runAndGunEnabled = false;
+            if(Pawn.AllComps.First((ThingComp tc) => tc.GetType().Name == "CompRunAndGun") is ThingComp comp)
             {
-                this.stanceTracker.pawn.GetStancesOffHand().SetStance(new Stance_Mobile());
+                runAndGunEnabled = Traverse.Create(comp).Field("isEnabled").GetValue<bool>();
+            }
+            if(!runAndGunEnabled && Pawn.pather.MovingNow)
+            {
+                    this.stanceTracker.pawn.GetStancesOffHand().SetStance(new Stance_Mobile());
             }
         }
         protected override void Expire()

@@ -59,6 +59,7 @@
     <Compile Include="Extensions\Ext_Pawn.cs" />
     <Compile Include="Extensions\Ext_Pawn_EquipmentTracker.cs" />
     <Compile Include="Extensions\Ext_Verb.cs" />
+    <Compile Include="Harmony\PawnTweener.cs" />
     <Compile Include="Harmony\Pawn.cs" />
     <Compile Include="Harmony\PawnComponentsUtility.cs" />
     <Compile Include="Harmony\PawnRenderer.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Harmony\Pawn_RotationTracker.cs" />
     <Compile Include="Harmony\Pawn_StanceTracker.cs" />
     <Compile Include="Harmony\Projectile.cs" />
+    <Compile Include="Harmony\RunAndGun.cs" />
     <Compile Include="Harmony\ThingOwner.cs" />
     <Compile Include="Harmony\Verb.cs" />
     <Compile Include="Jobs\JobDriver_EquipOffHand.cs" />

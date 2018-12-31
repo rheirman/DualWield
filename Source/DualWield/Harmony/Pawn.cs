@@ -27,6 +27,10 @@ namespace DualWield.Harmony
     {
         static void Postfix(Pawn __instance, LocalTargetInfo targ, ref bool __result)
         {
+            if (__result)
+            {
+                Log.Message("TryStartAttack successful for main hand");
+            }
             if(__instance.GetStancesOffHand().curStance is Stance_Warmup_DW || __instance.GetStancesOffHand().curStance is Stance_Cooldown)
             {
                 return; 
@@ -38,6 +42,7 @@ namespace DualWield.Harmony
             bool allowManualCastWeapons = !__instance.IsColonist;
             Verb verb = __instance.TryGetOffhandAttackVerb(targ.Thing, true);
             bool success = verb.OffhandTryStartCastOn(targ);
+            Log.Message("OffhandTryStartCastOn successful: " + success);
             __result = __result || (verb != null && success);
         }
     }
