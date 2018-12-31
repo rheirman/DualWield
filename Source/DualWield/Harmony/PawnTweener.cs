@@ -7,7 +7,7 @@ using Verse;
 
 namespace DualWield.Harmony
 {
-    /*
+
     [HarmonyPatch(typeof(PawnTweener), "MovedPercent")]
     class PawnTweener_MovedPercent
     {
@@ -18,10 +18,18 @@ namespace DualWield.Harmony
             {
                 if (stancesOffHand.curStance.StanceBusy)
                 {
-                    __result = 0f;
+                    bool runAndGunEnabled = false;
+                    if (pawn.AllComps.FirstOrDefault((ThingComp tc) => tc.GetType().Name == "CompRunAndGun") is ThingComp comp)
+                    {
+                        runAndGunEnabled = Traverse.Create(comp).Field("isEnabled").GetValue<bool>();
+                    }
+                    if (!runAndGunEnabled)
+                    {
+                        __result = 0f;
+                    }
                 }
             }
         }
     }
-    */
+    
 }

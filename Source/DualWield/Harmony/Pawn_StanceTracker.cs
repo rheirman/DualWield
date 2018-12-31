@@ -7,6 +7,7 @@ using Verse;
 
 namespace DualWield.Harmony
 {
+
     /*
     [HarmonyPatch(typeof(Pawn_StanceTracker), "get_FullBodyBusy")]
     class Pawn_StanceTracker_get_FullBodyBusy
@@ -23,4 +24,5 @@ namespace DualWield.Harmony
         }
     }
     */
+    
 }
