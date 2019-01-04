@@ -34,6 +34,7 @@ namespace DualWield.Harmony
         }
         static void Postfix(Pawn_StanceTracker stanceTracker, Stance_Cooldown stance)
         {
+            Log.Message("postfixed RunAndGun Verb_TryCastNextBurstShot");
             //Make sure this is called when run and gun patches the same line of code as we do in the harmony Patch Verb_TryCastNextBurstShot. 
             //SetStanceOffHand(stanceTracker, stance);
             Verb_TryCastNextBurstShot.SetStanceOffHand(stanceTracker, stance);

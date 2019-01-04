@@ -13,6 +13,7 @@ namespace DualWield.Harmony
     [HarmonyPatch(typeof(Verb), "TryCastNextBurstShot")]
     public class Verb_TryCastNextBurstShot
     {
+        [HarmonyPriority(Priority.Low)]
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             var instructionsList = new List<CodeInstruction>(instructions);
@@ -20,6 +21,7 @@ namespace DualWield.Harmony
             {
                 if(instruction.operand == typeof(Pawn_StanceTracker).GetMethod("SetStance"))
                 {
+                    Log.Message("patching TryCastNextBurstShot (DualWield)");
                     yield return new CodeInstruction(OpCodes.Call, typeof(Verb_TryCastNextBurstShot).GetMethod("SetStanceOffHand"));
                 }
                 else
@@ -32,10 +34,8 @@ namespace DualWield.Harmony
         {
             ThingWithComps offHandEquip = null;
             CompEquippable compEquippable = null;
-            if(stance.verb.EquipmentSource == null)
-            {
-                Log.Message("EquipmentSource is null");
-            }
+
+
             if (stance.verb.EquipmentSource != null && Base.Instance.GetExtendedDataStorage().TryGetExtendedDataFor(stance.verb.EquipmentSource, out ExtendedThingWithCompsData twcdata) && twcdata.isOffHand)
             {
                 offHandEquip = stance.verb.EquipmentSource;
@@ -46,8 +46,9 @@ namespace DualWield.Harmony
             {
                 stanceTracker.pawn.GetStancesOffHand().SetStance(stance);
             }
-            else if (!(stanceTracker.curStance is Stance_Cooldown))
+            else if (!(stanceTracker.curStance is Stance_Cooldown) && stanceTracker.curStance.GetType().Name != "Stance_RunAndGun_Cooldown")
             {
+                Log.Message("setting stance cooldown");
                 stanceTracker.SetStance(stance);
             }
         }
