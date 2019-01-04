@@ -14,7 +14,7 @@ namespace DualWield.Harmony
         {
             Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
             Stance_Busy stance_Busy = pawn.GetStancesOffHand().curStance as Stance_Busy;
-            if (stance_Busy != null && stance_Busy.focusTarg.IsValid)
+            if (stance_Busy != null && stance_Busy.focusTarg.IsValid && !pawn.pather.Moving)
             {
                 if (stance_Busy.focusTarg.HasThing)
                 {

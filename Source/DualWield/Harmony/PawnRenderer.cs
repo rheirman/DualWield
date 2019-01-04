@@ -125,7 +125,7 @@ namespace DualWield.Harmony
                 if ((offHandAiming || mainHandAiming) && focusTarg != null)
                 {
                     offHandAngle = GetAimingRotation(pawn, focusTarg);
-                    Vector3 adjustedDrawPos = pawn.DrawPos + new Vector3(0f, 0f, 0.4f).RotatedBy(offHandAngle) + new Vector3(0f, yOffsetOffHand + 0.1f, zOffsetOffHand);
+                    Vector3 adjustedDrawPos = pawn.DrawPos + new Vector3(0f, 0f, 0.4f).RotatedBy(offHandAngle) + new Vector3(xOffsetOffHand, yOffsetOffHand + 0.1f, zOffsetOffHand);
                     instance.DrawEquipmentAiming(offHandEquip, adjustedDrawPos, offHandAngle);
                 }
                 else
@@ -150,27 +150,29 @@ namespace DualWield.Harmony
                 zOffsetOffHand = -0.1f;
             }
             else if (pawn.Rotation == Rot4.North)
-            {
-                if (!mainHandAiming)
+            {   
+                if (!mainHandAiming && !offHandAiming)
                 {
                     xOffsetMain = 0.5f;
-                }
-                if (!offHandAiming)
-                {
                     offHandAngle = 360 - aimAngle;
                     xOffsetOffHand = -0.5f;
+                }
+                else
+                {
+                    xOffsetOffHand = -0.1f;
                 }
             }
             else
             {
-                if (!mainHandAiming)
+                if (!mainHandAiming && !offHandAiming)
                 {
                     xOffsetMain = -0.5f;
                     mainHandAngle = 360 - aimAngle;
-                }
-                if (!offHandAiming)
-                {
                     xOffsetOffHand = 0.5f;
+                }
+                else
+                {
+                    xOffsetOffHand = 0.1f;
                 }
             }
         }

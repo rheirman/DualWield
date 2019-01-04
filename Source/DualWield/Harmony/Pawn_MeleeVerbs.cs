@@ -19,7 +19,7 @@ namespace DualWield.Harmony
                 Log.Message("normal TryMeleeAttack successful");
             }
             Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
-            if (pawn.GetStancesOffHand().curStance is Stance_Warmup_DW || pawn.GetStancesOffHand().curStance is Stance_Cooldown)
+            if (pawn.GetStancesOffHand() == null || pawn.GetStancesOffHand().curStance is Stance_Warmup_DW || pawn.GetStancesOffHand().curStance is Stance_Cooldown)
             {
                 return;
             }
@@ -28,6 +28,7 @@ namespace DualWield.Harmony
             Verb verb = __instance.Pawn.TryGetOffhandAttackVerb(target);
             if(verb != null)
             {
+                Log.Message("trystartcaston called!");
                 bool success = verb.OffhandTryStartCastOn(target);
                 if (success)
                 {

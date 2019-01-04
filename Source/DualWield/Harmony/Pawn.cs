@@ -44,7 +44,6 @@ namespace DualWield.Harmony
             if(verb != null)
             {
                 bool success = verb.OffhandTryStartCastOn(targ);
-                Log.Message("OffhandTryStartCastOn successful: " + success);
                 __result = __result || (verb != null && success);
             }
 

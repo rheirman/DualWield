@@ -42,6 +42,7 @@ namespace DualWield.Stances
                     }
                 }
                 float zOffSet = 0f;
+                float xOffset = 0f;
                 if(shooter.Rotation == Rot4.East)
                 {
                     zOffSet = 0.1f;
@@ -50,7 +51,15 @@ namespace DualWield.Stances
                 {
                     zOffSet = -0.1f;
                 }
-                GenDraw.DrawAimPieRaw(shooter.DrawPos + new Vector3(0, 0.2f, zOffSet), facing, (int)((float)this.ticksLeft * this.pieSizeFactor));
+                else if (shooter.Rotation == Rot4.South)
+                {
+                    xOffset = 0.1f;
+                }
+                else
+                {
+                    xOffset = -0.1f;
+                }
+                GenDraw.DrawAimPieRaw(shooter.DrawPos + new Vector3(xOffset, 0.2f, zOffSet), facing, (int)((float)this.ticksLeft * this.pieSizeFactor));
             }
         }
         public override void StanceTick()

@@ -21,7 +21,6 @@ namespace DualWield.Harmony
             {
                 if(instruction.operand == typeof(Pawn_StanceTracker).GetMethod("SetStance"))
                 {
-                    Log.Message("patching TryCastNextBurstShot (DualWield)");
                     yield return new CodeInstruction(OpCodes.Call, typeof(Verb_TryCastNextBurstShot).GetMethod("SetStanceOffHand"));
                 }
                 else
@@ -48,7 +47,6 @@ namespace DualWield.Harmony
             }
             else if (!(stanceTracker.curStance is Stance_Cooldown) && stanceTracker.curStance.GetType().Name != "Stance_RunAndGun_Cooldown")
             {
-                Log.Message("setting stance cooldown");
                 stanceTracker.SetStance(stance);
             }
         }

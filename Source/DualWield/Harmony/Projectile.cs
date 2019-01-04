@@ -21,6 +21,7 @@ namespace DualWield.Harmony
                 return;
             }
             float zOffset = 0.0f;
+            float xOffset = 0.0f;
             if(launcher.Rotation == Rot4.East)
             {
                 zOffset = 0.1f;
@@ -29,11 +30,19 @@ namespace DualWield.Harmony
             {
                 zOffset = -0.1f;
             }
+            else if(launcher.Rotation == Rot4.South)
+            {
+                xOffset = 0.1f;
+            }
+            else
+            {
+                xOffset = -0.1f;
+            }
 
             ExtendedThingWithCompsData twcData = Base.Instance.GetExtendedDataStorage().GetExtendedDataFor(twc);
             if (twcData.isOffHand)
             {
-                origin += new Vector3(0, 0, zOffset);
+                origin += new Vector3(xOffset, 0, zOffset);
             }
             
         }
