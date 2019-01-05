@@ -18,7 +18,11 @@ namespace DualWield.Harmony
                 float randomInRange = pawn.kindDef.weaponMoney.RandomInRange;
                 List<ThingStuffPair> allWeaponPairs = Traverse.Create(typeof(PawnWeaponGenerator)).Field("allWeaponPairs").GetValue<List<ThingStuffPair>>();
                 List<ThingStuffPair> workingWeapons = Traverse.Create(typeof(PawnWeaponGenerator)).Field("workingWeapons").GetValue<List<ThingStuffPair>>();
-
+                if (pawn.equipment != null && pawn.equipment.Primary != null && pawn.equipment.Primary.def.IsTwoHand())
+                {
+                    Log.Message("pawn: " + pawn.Name + " already wearing two handed weapon");
+                    return;
+                }
                 for (int i = 0; i < allWeaponPairs.Count; i++)
                 {
                     ThingStuffPair w = allWeaponPairs[i];
@@ -38,7 +42,11 @@ namespace DualWield.Harmony
                     return;
                 }
                 ThingStuffPair thingStuffPair;
-                if (workingWeapons.TryRandomElementByWeight((ThingStuffPair w) => w.Commonality * w.Price, out thingStuffPair))
+                if(workingWeapons.Where((ThingStuffPair tsp) => tsp.thing.CanBeOffHand() && !tsp.thing.IsTwoHand()).Count() == 0)
+                {
+                    Log.Message("no working weapons for " + pawn.Name);
+                }
+                if (workingWeapons.Where((ThingStuffPair tsp) => tsp.thing.CanBeOffHand() && !tsp.thing.IsTwoHand()).TryRandomElementByWeight((ThingStuffPair w) => w.Commonality * w.Price, out thingStuffPair))
                 {
                     ThingWithComps thingWithComps = (ThingWithComps)ThingMaker.MakeThing(thingStuffPair.thing, thingStuffPair.stuff);
                     PawnGenerator.PostProcessGeneratedGear(thingWithComps, pawn);

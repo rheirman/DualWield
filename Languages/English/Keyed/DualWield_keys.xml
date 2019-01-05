@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	<DW_Setting_DualWield_OK>Can be offhand</DW_Setting_DualWield_OK>
+	<DW_Setting_DualWield_NOK>Can't be offhand</DW_Setting_DualWield_NOK>
+	<DW_Setting_TwoHanded_OK>Two-handed</DW_Setting_TwoHanded_OK>
+	<DW_Setting_TwoHanded_NOK>Not two-handed</DW_Setting_TwoHanded_NOK>
+	<DW_SettingsGroup_DualWieldSelection_Title>Configure dual wield weapons</DW_SettingsGroup_DualWieldSelection_Title>
+	<DW_SettingsGroup_DualWieldSelection_Description>Configure which weapons can be used alongside another weapon. Dual wield weapons cannot be used alongside two handed weapons, but they can be used with normal (non-dual wield/non-two handed) weapons or other dual wield weapons.</DW_SettingsGroup_DualWieldSelection_Description>
+	<DW_SettingsGroup_TwoHandSelection_Title>Configure two-handed weapons</DW_SettingsGroup_TwoHandSelection_Title>
+	<DW_SettingsGroup_TwoHandSelection_Description>Configure which weapons require both hands to be used. Dual wield weapons cannot be used alongside two handed weapons.</DW_SettingsGroup_TwoHandSelection_Description>
+	<DW_Expand>Expand</DW_Expand>
+	<DW_Collapse>Collapse</DW_Collapse>
+</LanguageData>

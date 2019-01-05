@@ -58,6 +58,7 @@
     <Compile Include="DW_DefOff.cs" />
     <Compile Include="Extensions\Ext_Pawn.cs" />
     <Compile Include="Extensions\Ext_Pawn_EquipmentTracker.cs" />
+    <Compile Include="Extensions\Ext_ThingDef.cs" />
     <Compile Include="Extensions\Ext_Verb.cs" />
     <Compile Include="Settings\DictRecordHandler.cs" />
     <Compile Include="Settings\GUIDrawUtility.cs" />

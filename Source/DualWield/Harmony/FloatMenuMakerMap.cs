@@ -76,6 +76,18 @@ namespace DualWield.Harmony
             {
                 menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " (pawn needs two hands)", null, MenuOptionPriority.Default, null, null, 0f, null, null);//TODO: translation
             }
+            else if (pawn.equipment != null && pawn.equipment.Primary != null && pawn.equipment.Primary.def.IsTwoHand())
+            {
+                menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " (pawn wielding two-handed weapon)", null, MenuOptionPriority.Default, null, null, 0f, null, null);//TODO: translation
+            }
+            else if (equipment.def.IsTwoHand())
+            {
+                menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " (cannot wear two-handed weapon in offhand)", null, MenuOptionPriority.Default, null, null, 0f, null, null);//TODO: translation
+            }
+            else if (!equipment.def.CanBeOffHand())
+            {
+                menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " (not allowed in mod-options)", null, MenuOptionPriority.Default, null, null, 0f, null, null);//TODO: translation
+            }
 
             //Add check for only 1 arm.
             else
