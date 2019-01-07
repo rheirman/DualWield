@@ -15,7 +15,6 @@ namespace DualWield.Harmony
         {
             if (!(pawn.GetStancesOffHand() is Pawn_StanceTracker stancesOffHand))
             {
-                Log.Message("AddComponentsForSpawn called");
                 pawn.SetStancesOffHand(new Pawn_StanceTracker(pawn));
             }
         }

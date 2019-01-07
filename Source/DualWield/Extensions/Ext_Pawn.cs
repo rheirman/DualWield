@@ -39,7 +39,10 @@ namespace DualWield
             {
                 return compEquippable.PrimaryVerb;
             }
-            return null;
+            else
+            {
+                return instance.TryGetMeleeVerbOffHand(target);
+            }
         }
         public static bool HasMissingArmOrHand(this Pawn instance)
         {
@@ -52,6 +55,36 @@ namespace DualWield
                 }
             }
             return hasMissingHand;
+        }
+        public static Verb TryGetMeleeVerbOffHand(this Pawn instance, Thing target)
+        {
+
+            List<VerbEntry> usableVerbs = new List<VerbEntry>();
+            if (instance.equipment != null && instance.equipment.TryGetOffHandEquipment(out ThingWithComps offHandEquip))
+            {
+                
+                CompEquippable comp = offHandEquip.GetComp<CompEquippable>();
+                //if(comp.AllVerbs.First((Verb verb) => verb.bu
+                if (comp != null)
+                {
+                    List<Verb> allVerbs = comp.AllVerbs;
+                    if (allVerbs != null)
+                    {
+                        for (int k = 0; k < allVerbs.Count; k++)
+                        {
+                            if (allVerbs[k].IsStillUsableBy(instance))
+                            {
+                                usableVerbs.Add(new VerbEntry(allVerbs[k], instance));
+                            }
+                        }
+                    }
+                }           
+            }
+            if(usableVerbs.TryRandomElementByWeight((VerbEntry ve) => ve.GetSelectionWeight(target), out VerbEntry result))
+            {
+                return result.verb;
+            }
+            return null;       
         }
 
     }

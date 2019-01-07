@@ -27,19 +27,16 @@ namespace DualWield
                 return false;
             }
             Traverse.Create(instance).Field("currentTarget").SetValue(castTarg);
-            Log.Message("initial checks ok");
             if (instance.CasterIsPawn && instance.verbProps.warmupTime > 0f)
             {
                 ShootLine newShootLine;
                 if (!instance.TryFindShootLineFromTo(instance.caster.Position, castTarg, out newShootLine))
                 {
-                    Log.Message("couldn't find shooting line");
                     return false;
                 }
                 instance.CasterPawn.Drawer.Notify_WarmingCastAlongLine(newShootLine, instance.caster.Position);
                 float statValue = instance.CasterPawn.GetStatValue(StatDefOf.AimingDelayFactor, true);
                 int ticks = (instance.verbProps.warmupTime * statValue).SecondsToTicks();
-                Log.Message("setting stance Stance_Warmup_DW");
                 instance.CasterPawn.GetStancesOffHand().SetStance(new Stance_Warmup_DW(ticks, castTarg, instance));
             }
             else

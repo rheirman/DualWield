@@ -9,31 +9,42 @@ using Verse;
 
 namespace DualWield.Harmony
 {
+    [HarmonyPatch(typeof(Pawn_MeleeVerbs), "GetUpdatedAvailableVerbsList")]
+    class Pawn_MeleeVerbs_GetUpdatedAvailableVerbsList
+    {
+        static void Postfix(ref List<VerbEntry> __result)
+        {
+            //remove all offhand verbs so they're not used by for mainhand melee attacks.
+            List<VerbEntry> shouldRemove = new List<VerbEntry>();
+            foreach (VerbEntry ve in __result)
+            {
+                if (ve.verb.EquipmentSource != null && ve.verb.EquipmentSource.IsOffHand())
+                {
+                    shouldRemove.Add(ve);
+                }
+            }
+            foreach (VerbEntry ve in shouldRemove)
+            {
+                __result.Remove(ve);
+            }
+        }
+    }
+
     [HarmonyPatch(typeof(Pawn_MeleeVerbs),"TryMeleeAttack")]
     class Pawn_MeleeVerbs_TryMeleeAttack
     {
         static void Postfix(Pawn_MeleeVerbs __instance, Thing target, Verb verbToUse, bool surpriseAttack, ref bool __result)
         {
-            if (__result)
-            {
-                Log.Message("normal TryMeleeAttack successful");
-            }
             Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
             if (pawn.GetStancesOffHand() == null || pawn.GetStancesOffHand().curStance is Stance_Warmup_DW || pawn.GetStancesOffHand().curStance is Stance_Cooldown)
             {
                 return;
             }
 
-            Log.Message("pawn.GetStancesOffHand().curStance: " + pawn.GetStancesOffHand().curStance);
-            Verb verb = __instance.Pawn.TryGetOffhandAttackVerb(target);
+            Verb verb = __instance.Pawn.TryGetMeleeVerbOffHand(target);
             if(verb != null)
             {
-                Log.Message("trystartcaston called!");
                 bool success = verb.OffhandTryStartCastOn(target);
-                if (success)
-                {
-                    Log.Message("offhand TryMeleeAttack successful");
-                }
                 __result = __result || (verb != null && success);
             }
         }
