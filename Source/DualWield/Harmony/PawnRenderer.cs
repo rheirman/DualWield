@@ -89,36 +89,13 @@ namespace DualWield.Harmony
             if (offHandEquip != null)
             {
                 SetAnglesAndOffsets(aimAngle, pawn, ref xOffsetMain, ref yOffsetMain, ref xOffsetOffHand, ref yOffsetOffHand, ref zOffsetOffHand, ref mainHandAngle, ref offHandAngle, mainHandAiming, offHandAiming);
-                if (!offHandAiming)
-                {
-                    if (pawn.Rotation == Rot4.South)
-                    {
-                        offHandAngle = offHandIsMelee ? 110 : 150;
-                    }
-                    if (pawn.Rotation == Rot4.North)
-                    {
-                        offHandAngle = offHandIsMelee ? 250 : 210;
-                    }
-                }
-                if (!mainHandAiming)
-                {
-                    if (pawn.Rotation == Rot4.South)
-                    {
-                        mainHandAngle = mainHandIsMelee ? 250 : 210;
-                    }
-                    if (pawn.Rotation == Rot4.North)
-                    {
-                        mainHandAngle = mainHandIsMelee ? 110 : 150;
-                    }
-                }
+                AdjustNorthSouthAngles(eq, offHandEquip, pawn, ref mainHandAngle, ref offHandAngle, mainHandAiming, offHandAiming, offHandIsMelee, mainHandIsMelee);
             }
-
 
             if (offHandEquip != pawn.equipment.Primary)
             {
                 instance.DrawEquipmentAiming(eq, drawLoc + new Vector3(xOffsetMain, yOffsetMain, zOffsetMain), mainHandAngle);
             }
-
 
             if (offHandEquip != null)
             {
@@ -134,6 +111,48 @@ namespace DualWield.Harmony
                 }
             }
 
+        }
+
+        private static void AdjustNorthSouthAngles(Thing eq, ThingWithComps offHandEquip, Pawn pawn, ref float mainHandAngle, ref float offHandAngle, bool mainHandAiming, bool offHandAiming, bool offHandIsMelee, bool mainHandIsMelee)
+        {
+            if (!offHandAiming)
+            {
+                if (pawn.Rotation == Rot4.South)
+                {
+                    offHandAngle = offHandIsMelee ? Base.meleeAngle : Base.rangedAngle;
+                    if (offHandEquip.def.equippedAngleOffset != 0)
+                    {
+                        offHandAngle -= offHandEquip.def.equippedAngleOffset + 65f;
+                    }
+                }
+                if (pawn.Rotation == Rot4.North)
+                {
+                    offHandAngle = offHandIsMelee ? 360 - Base.meleeAngle : 360 - Base.rangedAngle;
+                    if (offHandEquip.def.equippedAngleOffset != 0)
+                    {
+                        offHandAngle += offHandEquip.def.equippedAngleOffset + 65f;
+                    }
+                }
+            }
+            if (!mainHandAiming)
+            {
+                if (pawn.Rotation == Rot4.South)
+                {
+                    mainHandAngle = mainHandIsMelee ? 360 - Base.meleeAngle : 360 - Base.rangedAngle;
+                    if (eq.def.equippedAngleOffset != 0)
+                    {
+                        mainHandAngle += eq.def.equippedAngleOffset + 65f;
+                    }
+                }
+                if (pawn.Rotation == Rot4.North)
+                {
+                    mainHandAngle = mainHandIsMelee ? Base.meleeAngle : Base.rangedAngle;
+                    if (eq.def.equippedAngleOffset != 0)
+                    {
+                        mainHandAngle -= eq.def.equippedAngleOffset + 65f;
+                    }
+                }
+            }
         }
 
         private static void SetAnglesAndOffsets(float aimAngle, Pawn pawn, ref float xOffsetMain, ref float yOffsetMain, ref float xOffsetOffHand, ref float yOffsetOffHand, ref float zOffsetOffHand, ref float mainHandAngle, ref float offHandAngle, bool mainHandAiming, bool offHandAiming)

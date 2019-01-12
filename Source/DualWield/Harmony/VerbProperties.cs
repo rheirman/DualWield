@@ -35,7 +35,7 @@ namespace DualWield.Harmony
         private static float CalcCooldownPenalty(float __result, SkillRecord skillRecord, float staticPenalty)
         {
             //TODO: make mod settings
-            float perLevelPenalty = Base.dynamicCooldownP;
+            float perLevelPenalty = Base.dynamicCooldownP/100f;
             int levelsShort = 20 - skillRecord.levelInt;
             float dynamicPenalty = perLevelPenalty * levelsShort;
             __result *= 1.0f + staticPenalty + dynamicPenalty;
@@ -72,7 +72,7 @@ namespace DualWield.Harmony
         private static float CalcAccuracyPenalty(float __result, SkillRecord skillRecord, float staticPenalty)
         {
             //TODO: make mod settings
-            float perLevelPenalty = Base.dynamicAccP;
+            float perLevelPenalty = Base.dynamicAccP/100f;
             int levelsShort = 20 - skillRecord.levelInt;
             float dynamicPenalty = perLevelPenalty * levelsShort;
             __result *= 1.0f - staticPenalty - dynamicPenalty;

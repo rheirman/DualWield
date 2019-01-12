@@ -9,6 +9,7 @@ namespace DualWield.Settings
     {
         public bool isSelected = false;
         public String label = "";
+        public int extraRotation = 0;
         public Record()
         {
 

@@ -7,6 +7,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 using HugsLib.Settings;
+using Harmony;
 
 namespace DualWield.Settings
 {
@@ -102,9 +103,9 @@ namespace DualWield.Settings
             {
                 resolvedIcon = new Texture();
             }
-
             GUI.color = color;
             GUI.DrawTexture(iconRect, resolvedIcon);
+
             GUI.color = Color.white;
 
             if (Widgets.ButtonInvisible(iconRect, true))
@@ -115,6 +116,38 @@ namespace DualWield.Settings
             else
                 return false;
 
+        }
+
+        private static Color GetPixel(Texture2D tex, float x, float y)
+        {
+            Color pix;
+            int x1 = (int)Mathf.Floor(x);
+            int y1 = (int)Mathf.Floor(y);
+
+            if (x1 > tex.width || x1 < 0 ||
+               y1 > tex.height || y1 < 0)
+            {
+                pix = Color.clear;
+            }
+            else
+            {
+                pix = tex.GetPixel(x1, y1);
+            }
+
+            return pix;
+        }
+
+        private static float Rot_x(float angle, float x, float y)
+        {
+            float cos = Mathf.Cos(angle / 180.0f * Mathf.PI);
+            float sin = Mathf.Sin(angle / 180.0f * Mathf.PI);
+            return (x * cos + y * (-sin));
+        }
+        private static float Rot_y(float angle, float x, float y)
+        {
+            float cos = Mathf.Cos(angle / 180.0f * Mathf.PI);
+            float sin = Mathf.Sin(angle / 180.0f * Mathf.PI);
+            return (x * sin + y * cos);
         }
 
 
@@ -309,6 +342,68 @@ namespace DualWield.Settings
             return change;
         }
 
+        /*
+        public static bool CustomDrawer_MatchingThingDefs_dialog(Rect wholeRect, SettingHandle<DictRecordHandler> setting, Dictionary<string, Record> defaults, List<ThingDef> allThingDefs, string yesText = "")
+        {
+            //TODO: refactor this mess, remove redundant and quircky things.
+
+            float rowHeight = 20f;
+            if (setting.Value == null)
+            {
+                setting.Value = new DictRecordHandler();
+                foreach (KeyValuePair<string, Record> kv in defaults)
+                {
+                    setting.Value.InnerList.Add(kv.Key, kv.Value);
+                }
+                //setting.Value = Base.GetDefaultForFactionRestrictions(new Dict2DRecordHandler(), allPawns, allFactionNames);
+            }
+            //CustomDrawer_Tabs(new Rect(wholeRect.x, wholeRect.y, (float)wholeRect.width, buttonHeight), filter, allFactionNames.ToArray(), true, (int)-wholeRect.width, 0);
+            DrawBackground(wholeRect, background);
+
+
+            GUI.color = Color.white;
+
+            Rect rect = new Rect(wholeRect);
+            rect.width = rect.width;
+            rect.height = wholeRect.height - TextMargin + BottomMargin;
+            rect.position = new Vector2(rect.position.x, rect.position.y);
+
+            DrawLabel(yesText, rect, TextMargin);
+
+            rect.position = new Vector2(rect.position.x, rect.position.y + TextMargin);
+            int iconsPerRow = (int)(rect.width / (IconGap + IconSize));
+
+            bool change = false;
+            //bool factionFound = setting.Value.InnerList.TryGetValue(filter.Value, out Dictionary<string, Record> selection);
+            //FilterSelection(ref selection, allPawns, filter.Value);
+            int index = 0;
+            foreach (KeyValuePair<String, Record> item in setting.Value.InnerList)
+            {
+
+                //float tileHeight = item.Value.label.Count() > 16 ? 2 * rowHeight : rowHeight;
+                rect.height = IconSize;
+                int column = index % iconsPerRow;
+                int row = index / iconsPerRow;
+                ThingDef thingDef = allThingDefs.FirstOrDefault((ThingDef td) => td.defName == item.Key);
+                bool interacted = DrawTileForThingDef(thingDef, item, rect, new Vector2(IconSize * column + column * IconGap, IconSize * row + row * IconGap), index);
+                if (interacted)
+                {
+                    change = true;
+                    Func<int, string> textGetter = ((int x) => "DW_Setting_SetRotation".Translate(x));
+                    Dialog_Slider window = new Dialog_Slider(textGetter, 0, 360, delegate (int value)
+                    {
+                        item.Value.extraRotation = value;
+                    }, item.Value.extraRotation);
+                    Find.WindowStack.Add(window);
+                }
+                index++;
+            }
+            int rows = index/iconsPerRow + 1;
+            setting.CustomDrawerHeight = (rows * IconSize) + (rows * IconGap) + TextMargin;
+            //setting.CustomDrawerHeight = Math.Max(leftHeight, rightHeight) + TextMargin;
+            return change;
+        }
+        */
 
     }
 }

@@ -25,12 +25,18 @@ namespace DualWield
 
         internal static SettingHandle<DictRecordHandler> dualWieldSelection;
         internal static SettingHandle<DictRecordHandler> twoHandSelection;
+        //internal static SettingHandle<DictRecordHandler> rotations;
+
         internal static SettingHandle<float> staticCooldownPOffHand;
         internal static SettingHandle<float> staticCooldownPMainHand;
         internal static SettingHandle<float> staticAccPOffHand;
         internal static SettingHandle<float> staticAccPMainHand;
         internal static SettingHandle<float> dynamicCooldownP;
         internal static SettingHandle<float> dynamicAccP;
+
+        internal static SettingHandle<float> meleeAngle;
+        internal static SettingHandle<float> rangedAngle;
+
 
 
         public Base()
@@ -41,6 +47,9 @@ namespace DualWield
         {
             base.DefsLoaded();
             List<ThingDef> allWeapons = GetAllWeapons();
+
+            //rotations = Settings.GetHandle<DictRecordHandler>("rotations", "", "", null);
+            //rotations.CustomDrawer = rect => { return GUIDrawUtility.CustomDrawer_MatchingThingDefs_dialog(rect, rotations, GetRotationDefaults(allWeapons), allWeapons, "DW_Setting_DualWield_OK".Translate(), "DW_Setting_DualWield_NOK".Translate()); };
 
             //settingsGroup_DualWield
             settingsGroup_DualWield = Settings.GetHandle<bool>("settingsGroup_DualWieldSelection", "DW_SettingsGroup_DualWieldSelection_Title".Translate(), "DW_SettingsGroup_DualWieldSelection_Description".Translate(), false);
@@ -92,6 +101,9 @@ namespace DualWield
             dynamicAccP = Settings.GetHandle<float>("dynamicAccP", "DW_Setting_DynamicAccP_Title".Translate(), "DW_Setting_DynamicAccP_Description".Translate(), 0.5f, Validators.FloatRangeValidator(0, 10f));
             dynamicAccP.VisibilityPredicate = delegate { return settingsGroup_Penalties; };
 
+            meleeAngle = Settings.GetHandle<float>("meleeAngle", "DW_Setting_MeleeAngle_Title".Translate(), "DW_Setting_MeleeAngle_Description".Translate(), 110f, Validators.FloatRangeValidator(0, 360f));
+            rangedAngle = Settings.GetHandle<float>("rangedAngle", "DW_Setting_RangedAngle_Title".Translate(), "DW_Setting_RangedAngle_Description".Translate(), 150f, Validators.FloatRangeValidator(0, 360f));
+
         }
 
         private static void RemoveDepricatedRecords(List<ThingDef> allWeapons, Dictionary<string, Record> dict)
@@ -121,6 +133,29 @@ namespace DualWield
                 SetTwoHandDefault(twoHandSelection.Value.inner, weapon);
             }
         }
+        /*
+        private static Dictionary<string, Record> GetRotationDefaults(List<ThingDef> allWeapons)
+        {
+            Dictionary<string, Record> dict = new Dictionary<string, Record>();
+            foreach (ThingDef td in allWeapons)
+            {
+                SetDualWieldDefault(dict, td);
+            }
+            return dict;
+        }
+        private static void SetRotationDefault(Dictionary<string, Record> dict, ThingDef td)
+        {
+            if (td.IsMeleeWeapon)
+            {
+                dict.Add(td.defName, new Record(false, td.label));
+            }
+            else
+            {
+                dict.Add(td.defName, new Record(true, td.label));
+            }
+        }
+        */
+
         private static Dictionary<string, Record> GetDualWieldDefaults(List<ThingDef> allWeapons)
         {
             Dictionary<string, Record> dict = new Dictionary<string, Record>();

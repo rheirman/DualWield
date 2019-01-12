@@ -25,4 +25,5 @@
 	<DW_Setting_DynamicCooldownP_Description>Extra penalty to cooldown for each level a pawn is below the maximum shooting/melee level when dual wielding. This penalty applies to both weapons.</DW_Setting_DynamicCooldownP_Description>
 	<DW_Setting_DynamicAccP_Title>Extra per level accuracy penalty (%)</DW_Setting_DynamicAccP_Title>
 	<DW_Setting_DynamicAccP_Description>Extra penalty to accuracy for each level a pawn is below the maximum shooting/melee level when dual wielding. This penalty applies to both weapons.</DW_Setting_DynamicAccP_Description>
+	<DW_Setting_SetRotation>Extra rotation: {0} degrees.</DW_Setting_SetRotation>
 </LanguageData>
