@@ -10,4 +10,19 @@
 	<DW_SettingsGroup_TwoHandSelection_Description>Configure which weapons require both hands to be used. Dual wield weapons cannot be used alongside two handed weapons.</DW_SettingsGroup_TwoHandSelection_Description>
 	<DW_Expand>Expand</DW_Expand>
 	<DW_Collapse>Collapse</DW_Collapse>
+	
+	<DW_SettingsGroup_Penalties_Title>Dual wielding penalties</DW_SettingsGroup_Penalties_Title>
+	<DW_SettingsGroup_Penalties_Description>Configure how severe penalties for dualwielding are.</DW_SettingsGroup_Penalties_Description>
+	<DW_Setting_StaticCooldownPenOffHand_Title>Off hand cooldown penalty (%)</DW_Setting_StaticCooldownPenOffHand_Title>
+	<DW_Setting_StaticCooldownPenOffHand_Description>Penalty to off hand weapon cooldown when dual wielding.</DW_Setting_StaticCooldownPenOffHand_Description>
+	<DW_Setting_StaticCooldownPMainHand_Title>Main hand cooldown penalty (%)</DW_Setting_StaticCooldownPMainHand_Title>
+	<DW_Setting_StaticCooldownPMainHand_Description>Penalty to main hand weapon cooldown when dual wielding.</DW_Setting_StaticCooldownPMainHand_Description>
+	<DW_Setting_StaticAccPOffHand_Title>Off hand accuracy penalty (%)</DW_Setting_StaticAccPOffHand_Title>
+	<DW_Setting_StaticAccPOffHand_Description>Penalty to off hand weapon accuracy when dual wielding.</DW_Setting_StaticAccPOffHand_Description>
+	<DW_Setting_StaticAccPMainHand_Title>Main hand accuracy penalty (%)</DW_Setting_StaticAccPMainHand_Title>
+	<DW_Setting_StaticAccPMainHand_Description>Penalty to main hand weapon accuracy when dual wielding.</DW_Setting_StaticAccPMainHand_Description>
+	<DW_Setting_DynamicCooldownP_Title>Extra per level cooldown penalty (%)</DW_Setting_DynamicCooldownP_Title>
+	<DW_Setting_DynamicCooldownP_Description>Extra penalty to cooldown for each level a pawn is below the maximum shooting/melee level when dual wielding. This penalty applies to both weapons.</DW_Setting_DynamicCooldownP_Description>
+	<DW_Setting_DynamicAccP_Title>Extra per level accuracy penalty (%)</DW_Setting_DynamicAccP_Title>
+	<DW_Setting_DynamicAccP_Description>Extra penalty to accuracy for each level a pawn is below the maximum shooting/melee level when dual wielding. This penalty applies to both weapons.</DW_Setting_DynamicAccP_Description>
 </LanguageData>

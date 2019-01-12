@@ -20,7 +20,7 @@ namespace DualWield
 
         internal static SettingHandle<bool> settingsGroup_DualWield;
         internal static SettingHandle<bool> settingsGroup_TwoHand;
-        internal static SettingHandle<bool> settingsGroup_Balancing;
+        internal static SettingHandle<bool> settingsGroup_Penalties;
 
 
         internal static SettingHandle<DictRecordHandler> dualWieldSelection;
@@ -42,6 +42,7 @@ namespace DualWield
             base.DefsLoaded();
             List<ThingDef> allWeapons = GetAllWeapons();
 
+            //settingsGroup_DualWield
             settingsGroup_DualWield = Settings.GetHandle<bool>("settingsGroup_DualWieldSelection", "DW_SettingsGroup_DualWieldSelection_Title".Translate(), "DW_SettingsGroup_DualWieldSelection_Description".Translate(), false);
             settingsGroup_DualWield.CustomDrawer = rect => { return GUIDrawUtility.CustomDrawer_Button(rect, settingsGroup_DualWield, "DW_Expand".Translate() + "..", "DW_Collapse".Translate()); };
             dualWieldSelection = Settings.GetHandle<DictRecordHandler>("dualWieldSelection", "", "", null);
@@ -57,6 +58,7 @@ namespace DualWield
             dualWieldSelection.CustomDrawer = rect => { return GUIDrawUtility.CustomDrawer_MatchingThingDefs_active(rect, dualWieldSelection, GetDualWieldDefaults(allWeapons), allWeapons, "DW_Setting_DualWield_OK".Translate(), "DW_Setting_DualWield_NOK".Translate()); };
             dualWieldSelection.VisibilityPredicate = delegate { return settingsGroup_DualWield; };
 
+            //settingsGroup_TwoHand
             settingsGroup_TwoHand = Settings.GetHandle<bool>("settingsGroup_TwoHandSelection", "DW_SettingsGroup_TwoHandSelection_Title".Translate(), "DW_SettingsGroup_TwoHandSelection_Description".Translate(), false);
             settingsGroup_TwoHand.CustomDrawer = rect => { return GUIDrawUtility.CustomDrawer_Button(rect, settingsGroup_TwoHand, "DW_Expand".Translate() + "..", "DW_Collapse".Translate()); };
             twoHandSelection = Settings.GetHandle<DictRecordHandler>("twoHandSelection", "", "", null);
@@ -74,15 +76,22 @@ namespace DualWield
             twoHandSelection.CustomDrawer = rect => { return GUIDrawUtility.CustomDrawer_MatchingThingDefs_active(rect, twoHandSelection, GetTwoHandDefaults(allWeapons), allWeapons, "DW_Setting_TwoHanded_OK".Translate(), "DW_Setting_TwoHanded_NOK".Translate()); };
             twoHandSelection.VisibilityPredicate = delegate { return settingsGroup_TwoHand; };
 
-            //TODO TRANSLATIONS!!!
-            settingsGroup_Balancing = Settings.GetHandle<bool>("settingsGroup_Balancing", "DW_SettingsGroup_Balancing_Title".Translate(), "DW_SettingsGroup_Balancing_Description".Translate(), false);
-            settingsGroup_Balancing.CustomDrawer = rect => { return GUIDrawUtility.CustomDrawer_Button(rect, settingsGroup_Balancing, "DW_Expand".Translate() + "..", "DW_Collapse".Translate()); };
-            staticCooldownPOffHand = Settings.GetHandle<float>("staticCooldownPenOffHand", "DW_Setting_StaticCooldownPenOffHand_Title".Translate(), "DW_Setting_StaticCooldownPenOffHand_Description".Translate(), 0.2f, Validators.IntRangeValidator(0, 5));
-            staticCooldownPMainHand = Settings.GetHandle<float>("staticCooldownPMainHand", "DW_Setting_StaticCooldownPMainHand_Title".Translate(), "DW_Setting_StaticCooldownPMainHand_Description".Translate(), 0.1f, Validators.IntRangeValidator(0, 5));
-            staticAccPOffHand = Settings.GetHandle<float>("staticAccPOffHand", "DW_Setting_StaticAccPOffHand_Title".Translate(), "DW_Setting_StaticAccPOffHand_Description".Translate(), 0.1f, Validators.IntRangeValidator(0, 5));
-            staticAccPMainHand = Settings.GetHandle<float>("staticAccPMainHand", "DW_Setting_StaticAccPMainHand_Title".Translate(), "DW_Setting_StaticAccPMainHand_Description".Translate(), 0.1f, Validators.IntRangeValidator(0, 5));
-            dynamicCooldownP = Settings.GetHandle<float>("dynamicCooldownP", "DW_Setting_DynamicCooldownP_Title".Translate(), "DW_Setting_DynamicCooldownP_Description".Translate(), 0.05f, Validators.IntRangeValidator(0, 1));
-            dynamicAccP = Settings.GetHandle<float>("dynamicAccP", "DW_Setting_DynamicAccP_Title".Translate(), "DW_Setting_DynamicAccP_Description".Translate(), 0.005f, Validators.IntRangeValidator(0, 1));
+            //settingsGroup_Penalties
+            settingsGroup_Penalties = Settings.GetHandle<bool>("settingsGroup_Penalties", "DW_SettingsGroup_Penalties_Title".Translate(), "DW_SettingsGroup_Penalties_Description".Translate(), false);
+            settingsGroup_Penalties.CustomDrawer = rect => { return GUIDrawUtility.CustomDrawer_Button(rect, settingsGroup_Penalties, "DW_Expand".Translate() + "..", "DW_Collapse".Translate()); };
+            staticCooldownPOffHand = Settings.GetHandle<float>("staticCooldownPenOffHand", "DW_Setting_StaticCooldownPenOffHand_Title".Translate(), "DW_Setting_StaticCooldownPenOffHand_Description".Translate(), 20f, Validators.FloatRangeValidator(0, 500f));
+            staticCooldownPOffHand.VisibilityPredicate = delegate { return settingsGroup_Penalties; };
+            staticCooldownPMainHand = Settings.GetHandle<float>("staticCooldownPMainHand", "DW_Setting_StaticCooldownPMainHand_Title".Translate(), "DW_Setting_StaticCooldownPMainHand_Description".Translate(), 10f, Validators.FloatRangeValidator(0, 500f));
+            staticCooldownPMainHand.VisibilityPredicate = delegate { return settingsGroup_Penalties; };
+            staticAccPOffHand = Settings.GetHandle<float>("staticAccPOffHand", "DW_Setting_StaticAccPOffHand_Title".Translate(), "DW_Setting_StaticAccPOffHand_Description".Translate(), 10f, Validators.FloatRangeValidator(0, 500f));
+            staticAccPOffHand.VisibilityPredicate = delegate { return settingsGroup_Penalties; };
+            staticAccPMainHand = Settings.GetHandle<float>("staticAccPMainHand", "DW_Setting_StaticAccPMainHand_Title".Translate(), "DW_Setting_StaticAccPMainHand_Description".Translate(), 10f, Validators.FloatRangeValidator(0, 500f));
+            staticAccPMainHand.VisibilityPredicate = delegate { return settingsGroup_Penalties; };
+            dynamicCooldownP = Settings.GetHandle<float>("dynamicCooldownP", "DW_Setting_DynamicCooldownP_Title".Translate(), "DW_Setting_DynamicCooldownP_Description".Translate(), 5f, Validators.FloatRangeValidator(0, 100f));
+            dynamicCooldownP.VisibilityPredicate = delegate { return settingsGroup_Penalties; };
+            dynamicAccP = Settings.GetHandle<float>("dynamicAccP", "DW_Setting_DynamicAccP_Title".Translate(), "DW_Setting_DynamicAccP_Description".Translate(), 0.5f, Validators.FloatRangeValidator(0, 10f));
+            dynamicAccP.VisibilityPredicate = delegate { return settingsGroup_Penalties; };
+
         }
 
         private static void RemoveDepricatedRecords(List<ThingDef> allWeapons, Dictionary<string, Record> dict)

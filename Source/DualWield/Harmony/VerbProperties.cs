@@ -12,27 +12,30 @@ namespace DualWield.Harmony
     [HarmonyPatch(new Type[]{typeof(Tool), typeof(Pawn), typeof(Thing)})]
     class VerbProperties_AdjustedCooldown
     {
-        static void Postfix(Thing equipment, Pawn attacker, ref float __result)
+        static void Postfix(VerbProperties __instance, Thing equipment, Pawn attacker, ref float __result)
         {
-            
-            SkillRecord skillRecord = attacker.skills.GetSkill(SkillDefOf.Shooting);
+            Log.Message("AdjustedCooldown before: " + __result);
+            if (attacker.skills != null)
+            {
+                SkillRecord skillRecord = __instance.IsMeleeAttack ? attacker.skills.GetSkill(SkillDefOf.Melee) : attacker.skills.GetSkill(SkillDefOf.Shooting);
+                if (equipment != null && equipment is ThingWithComps twc && twc.IsOffHand())
+                {
+                    __result = CalcCooldownPenalty(__result, skillRecord, Base.staticCooldownPOffHand/100f);
+                }
+                else if (attacker.equipment != null && attacker.equipment.TryGetOffHandEquipment(out ThingWithComps offHandEq))
+                {
+                    __result = CalcCooldownPenalty(__result, skillRecord, Base.staticCooldownPMainHand/100f);
+                }
+            }
+            Log.Message("AdjustedCooldown after: " + __result);
 
-            if (equipment != null && equipment is ThingWithComps twc && twc.IsOffHand())
-            {
-                float staticPenalty = 0.1f;
-                __result = CalcCooldownPenalty(__result, skillRecord, staticPenalty);
-            }
-            else if (attacker.equipment != null && attacker.equipment.TryGetOffHandEquipment(out ThingWithComps offHandEq))
-            {
-                float staticPenalty = 0.2f;
-                __result = CalcCooldownPenalty(__result, skillRecord, staticPenalty);
-            }
+
         }
 
         private static float CalcCooldownPenalty(float __result, SkillRecord skillRecord, float staticPenalty)
         {
             //TODO: make mod settings
-            float perLevelPenalty = 0.05f;
+            float perLevelPenalty = Base.dynamicCooldownP;
             int levelsShort = 20 - skillRecord.levelInt;
             float dynamicPenalty = perLevelPenalty * levelsShort;
             __result *= 1.0f + staticPenalty + dynamicPenalty;
@@ -42,31 +45,34 @@ namespace DualWield.Harmony
     [HarmonyPatch(typeof(VerbProperties), "AdjustedAccuracy")]
     class VerbProperties_AdjustedAccuracy
     {
-        static void Postfix(Thing equipment, ref float __result)
+        static void Postfix(VerbProperties __instance, Thing equipment, ref float __result)
         {
-            if(equipment.ParentHolder is Pawn_EquipmentTracker pet)
-            {
-                Pawn pawn = pet.pawn;
-                SkillRecord skillRecord = pawn.skills.GetSkill(SkillDefOf.Shooting);
+            Log.Message("AdjustedAccuracy before: " + __result);
 
-                if (equipment != null && equipment is ThingWithComps twc && twc.IsOffHand())
+            if (equipment.ParentHolder is Pawn_EquipmentTracker peqt && equipment != null)
+            {
+                Pawn pawn = peqt.pawn;
+                if(pawn.skills == null)
                 {
-                    __result = CalcAccuracyPenalty(__result, skillRecord);
-                    //Todo: replace magic numbers. 
+                    return;
                 }
-                else if (pawn.equipment != null && pawn.equipment.TryGetOffHandEquipment(out ThingWithComps offHandEq))
+                SkillRecord skillRecord = __instance.IsMeleeAttack ? pawn.skills.GetSkill(SkillDefOf.Melee) : pawn.skills.GetSkill(SkillDefOf.Shooting);
+                if (equipment is ThingWithComps twc && twc.IsOffHand())
                 {
-                    __result = CalcAccuracyPenalty(__result, skillRecord);
-                    //Todo: replace magic numbers. 
+                    __result = CalcAccuracyPenalty(__result, skillRecord, Base.staticAccPOffHand/100f);
+                }
+                else if (pawn.equipment.TryGetOffHandEquipment(out ThingWithComps offHandEq))
+                {
+                    __result = CalcAccuracyPenalty(__result, skillRecord, Base.staticAccPMainHand/100f);
                 }
             }
+            Log.Message("AdjustedAccuracy after: " + __result);
         }
 
-        private static float CalcAccuracyPenalty(float __result, SkillRecord skillRecord)
+        private static float CalcAccuracyPenalty(float __result, SkillRecord skillRecord, float staticPenalty)
         {
             //TODO: make mod settings
-            float staticPenalty = 0.1f;
-            float perLevelPenalty = 0.005f;
+            float perLevelPenalty = Base.dynamicAccP;
             int levelsShort = 20 - skillRecord.levelInt;
             float dynamicPenalty = perLevelPenalty * levelsShort;
             __result *= 1.0f - staticPenalty - dynamicPenalty;
