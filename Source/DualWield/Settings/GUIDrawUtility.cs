@@ -342,7 +342,6 @@ namespace DualWield.Settings
             return change;
         }
 
-        /*
         public static bool CustomDrawer_MatchingThingDefs_dialog(Rect wholeRect, SettingHandle<DictRecordHandler> setting, Dictionary<string, Record> defaults, List<ThingDef> allThingDefs, string yesText = "")
         {
             //TODO: refactor this mess, remove redundant and quircky things.
@@ -357,7 +356,6 @@ namespace DualWield.Settings
                 }
                 //setting.Value = Base.GetDefaultForFactionRestrictions(new Dict2DRecordHandler(), allPawns, allFactionNames);
             }
-            //CustomDrawer_Tabs(new Rect(wholeRect.x, wholeRect.y, (float)wholeRect.width, buttonHeight), filter, allFactionNames.ToArray(), true, (int)-wholeRect.width, 0);
             DrawBackground(wholeRect, background);
 
 
@@ -403,7 +401,7 @@ namespace DualWield.Settings
             //setting.CustomDrawerHeight = Math.Max(leftHeight, rightHeight) + TextMargin;
             return change;
         }
-        */
+        
 
     }
 }
