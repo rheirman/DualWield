@@ -13,7 +13,7 @@ namespace DualWield.Harmony
     {
         static void Postfix(Pawn pawn)
         {
-            if (pawn.RaceProps.Humanlike && Rand.Chance(Base.NPCDualWieldChance))
+            if (pawn.RaceProps.Humanlike && Rand.Chance(((float)Base.NPCDualWieldChance)/100f))
             {
                 float randomInRange = pawn.kindDef.weaponMoney.RandomInRange;
                 List<ThingStuffPair> allWeaponPairs = Traverse.Create(typeof(PawnWeaponGenerator)).Field("allWeaponPairs").GetValue<List<ThingStuffPair>>();
