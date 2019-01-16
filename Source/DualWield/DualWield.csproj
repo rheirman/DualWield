@@ -54,6 +54,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alerts\Altert_SkillLow.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="ModExtension\DefModextension_CustomRotation.cs" />
     <Compile Include="Settings\Dialog_Weapon_Rotation.cs" />

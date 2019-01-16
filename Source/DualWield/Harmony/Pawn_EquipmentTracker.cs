@@ -1,5 +1,6 @@
 ﻿using DualWield.Storage;
 using Harmony;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,14 +58,21 @@ namespace DualWield.Harmony
     [HarmonyPatch(typeof(Pawn_EquipmentTracker) ,"MakeRoomFor")]
     class Pawn_EquipmentTracker_MakeRoomFor
     {
-        static bool Prefix(Pawn_EquipmentTracker __instance)
+        static bool Prefix(Pawn_EquipmentTracker __instance, ThingWithComps eq)
         {
-            if(__instance.TryGetOffHandEquipment(out ThingWithComps offHand) && offHand == __instance.Primary)
+            bool offHandEquipped = __instance.TryGetOffHandEquipment(out ThingWithComps offHand);
+            if (offHandEquipped && offHand == __instance.Primary && !eq.def.IsTwoHand())
             {
                 return false;
             }
             else
             {
+                if (eq.def.IsTwoHand() && offHandEquipped)
+                {
+                    Log.Message("Should show message now!");
+                    string herHis = __instance.pawn.story.bodyType == BodyTypeDefOf.Male ? "DW_HerHis_Male".Translate() : "DW_HerHis_Female".Translate();
+                    Messages.Message("DW_Message_UnequippedOffHand".Translate(new object[] { __instance.pawn.Name.ToStringShort, herHis }), new LookTargets(__instance.pawn), MessageTypeDefOf.CautionInput);
+                }
                 return true;
             }
         }
