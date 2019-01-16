@@ -18,6 +18,7 @@ namespace DualWield
         ExtendedDataStorage _extendedDataStorage;
         public override string ModIdentifier => "DualWield";
 
+        internal static SettingHandle<bool> settingsGroup_Drawing;
         internal static SettingHandle<bool> settingsGroup_DualWield;
         internal static SettingHandle<bool> settingsGroup_TwoHand;
         internal static SettingHandle<bool> settingsGroup_Penalties;
@@ -25,7 +26,7 @@ namespace DualWield
 
         internal static SettingHandle<DictRecordHandler> dualWieldSelection;
         internal static SettingHandle<DictRecordHandler> twoHandSelection;
-        internal static SettingHandle<DictRecordHandler> rotations;
+        internal static SettingHandle<DictRecordHandler> customRotations;
 
         internal static SettingHandle<float> staticCooldownPOffHand;
         internal static SettingHandle<float> staticCooldownPMainHand;
@@ -39,6 +40,7 @@ namespace DualWield
         internal static SettingHandle<float> meleeXOffset;
         internal static SettingHandle<float> rangedXOffset;
 
+        internal static SettingHandle<string> note;
 
 
         public Base()
@@ -50,12 +52,29 @@ namespace DualWield
             base.DefsLoaded();
             List<ThingDef> allWeapons = GetAllWeapons();
 
-            rotations = Settings.GetHandle<DictRecordHandler>("rotations", "", "", null);
-            meleeAngle = Settings.GetHandle<float>("meleeAngle", "DW_Setting_MeleeAngle_Title".Translate(), "DW_Setting_MeleeAngle_Description".Translate(), 40f, Validators.FloatRangeValidator(0, 360f));
+            settingsGroup_Drawing = Settings.GetHandle<bool>("settingsGroup_Drawing", "DW_SettingsGroup_Drawing_Title".Translate(), "DW_SettingsGroup_Drawing_Description".Translate(), false);
+            settingsGroup_Drawing.CustomDrawer = rect => { return GUIDrawUtility.CustomDrawer_Button(rect, settingsGroup_Drawing, "DW_Expand".Translate() + "..", "DW_Collapse".Translate()); };
+
+            note = Settings.GetHandle<string>("note", null, null, "DW_Setting_Note_Drawing".Translate());
+            note.CustomDrawer = rect => { return GUIDrawUtility.CustomDrawer_Note(rect, note); };
+            note.VisibilityPredicate = delegate { return settingsGroup_Drawing; };
+
+            meleeAngle = Settings.GetHandle<float>("meleeAngle", "DW_Setting_MeleeAngle_Title".Translate(), "DW_Setting_MeleeAngle_Description".Translate(), 270f, Validators.FloatRangeValidator(0, 360f));
+            meleeAngle.VisibilityPredicate = delegate { return settingsGroup_Drawing; };
+
             rangedAngle = Settings.GetHandle<float>("rangedAngle", "DW_Setting_RangedAngle_Title".Translate(), "DW_Setting_RangedAngle_Description".Translate(), 135f, Validators.FloatRangeValidator(0, 360f));
-            meleeXOffset = Settings.GetHandle<float>("meleeXOffset", "DW_Setting_MeleeXOffset_Title".Translate(), "DW_Setting_MeleeXOffset_Description".Translate(), 0.45f, Validators.FloatRangeValidator(0, 2f));
+            rangedAngle.VisibilityPredicate = delegate { return settingsGroup_Drawing; };
+
+            meleeXOffset = Settings.GetHandle<float>("meleeXOffset", "DW_Setting_MeleeXOffset_Title".Translate(), "DW_Setting_MeleeXOffset_Description".Translate(), 0.4f, Validators.FloatRangeValidator(0, 2f));
+            meleeXOffset.VisibilityPredicate = delegate { return settingsGroup_Drawing; };
+
             rangedXOffset = Settings.GetHandle<float>("rangedXOffset", "DW_Setting_RangedXOffset_Title".Translate(), "DW_Setting_RangedXOffset_Description".Translate(), 0.1f, Validators.FloatRangeValidator(0, 2f));
-            rotations.CustomDrawer = rect => { return GUIDrawUtility.CustomDrawer_MatchingThingDefs_dialog(rect, rotations, GetRotationDefaults(allWeapons), allWeapons, "DW_Setting_DualWield_OK".Translate()); };
+            rangedXOffset.VisibilityPredicate = delegate { return settingsGroup_Drawing; };
+
+            customRotations = Settings.GetHandle<DictRecordHandler>("customRotations", "DW_Setting_CustomRotations_Title".Translate(), "", null);
+            customRotations.CustomDrawer = rect => { return GUIDrawUtility.CustomDrawer_MatchingThingDefs_dialog(rect, customRotations, GetRotationDefaults(allWeapons), allWeapons, "DW_Setting_CustomRotations_Header".Translate()); };
+            customRotations.VisibilityPredicate = delegate { return settingsGroup_Drawing; };
+
 
 
             //settingsGroup_DualWield
@@ -71,7 +90,7 @@ namespace DualWield
                     RemoveDepricatedRecords(allWeapons, dualWieldSelection.Value.inner);
                 }
             }
-            dualWieldSelection.CustomDrawer = rect => { return GUIDrawUtility.CustomDrawer_MatchingThingDefs_active(rect, dualWieldSelection, GetDualWieldDefaults(allWeapons), allWeapons, "DW_Setting_DualWield_OK".Translate(), "DW_Setting_DualWield_NOK".Translate()); };
+            dualWieldSelection.CustomDrawer = rect => { return GUIDrawUtility.CustomDrawer_MatchingThingDefs_active(rect, dualWieldSelection, GetDualWieldDefaults(allWeapons), allWeapons, "DW_Setting_DualWield_OK".Translate(), "DW_Setting_DualWield_NOK".Translate(), twoHandSelection.Value != null ? twoHandSelection.Value.inner : null, "DW_Setting_DualWield_DisabledReason".Translate()); };
             dualWieldSelection.VisibilityPredicate = delegate { return settingsGroup_DualWield; };
 
             //settingsGroup_TwoHand
@@ -89,7 +108,7 @@ namespace DualWield
                     RemoveDepricatedRecords(allWeapons, twoHandSelection.Value.inner);
                 }
             }
-            twoHandSelection.CustomDrawer = rect => { return GUIDrawUtility.CustomDrawer_MatchingThingDefs_active(rect, twoHandSelection, GetTwoHandDefaults(allWeapons), allWeapons, "DW_Setting_TwoHanded_OK".Translate(), "DW_Setting_TwoHanded_NOK".Translate()); };
+            twoHandSelection.CustomDrawer = rect => { return GUIDrawUtility.CustomDrawer_MatchingThingDefs_active(rect, twoHandSelection, GetTwoHandDefaults(allWeapons), allWeapons, "DW_Setting_TwoHanded_OK".Translate(), "DW_Setting_TwoHanded_NOK".Translate(), dualWieldSelection.Value != null ? dualWieldSelection.Value.inner : null, "DW_Setting_TwoHand_DisabledReason".Translate()); };
             twoHandSelection.VisibilityPredicate = delegate { return settingsGroup_TwoHand; };
 
             //settingsGroup_Penalties
@@ -108,6 +127,21 @@ namespace DualWield
             dynamicAccP = Settings.GetHandle<float>("dynamicAccP", "DW_Setting_DynamicAccP_Title".Translate(), "DW_Setting_DynamicAccP_Description".Translate(), 0.5f, Validators.FloatRangeValidator(0, 10f));
             dynamicAccP.VisibilityPredicate = delegate { return settingsGroup_Penalties; };
 
+            if(customRotations.Value == null)
+            {
+                customRotations.Value = new DictRecordHandler();
+                customRotations.Value.inner = GetRotationDefaults(allWeapons);
+            }
+            if(twoHandSelection.Value == null)
+            {
+                twoHandSelection.Value = new DictRecordHandler();
+                twoHandSelection.Value.inner = GetTwoHandDefaults(allWeapons);
+            }
+            if(dualWieldSelection.Value == null)
+            {
+                dualWieldSelection.Value = new DictRecordHandler();
+                dualWieldSelection.Value.inner = GetDualWieldDefaults(allWeapons);
+            }
         }
 
         private static void RemoveDepricatedRecords(List<ThingDef> allWeapons, Dictionary<string, Record> dict)
@@ -143,7 +177,13 @@ namespace DualWield
             Dictionary<string, Record> dict = new Dictionary<string, Record>();
             foreach (ThingDef td in allWeapons)
             {
-                dict.Add(td.defName, new Record(false, td.label));
+                Record record = new Record(false, td.label);
+                if (td.GetModExtension<DefModextension_CustomRotation>() is DefModextension_CustomRotation modExt)
+                {
+                    record.extraRotation = modExt.extraRotation;
+                    record.isSelected = true;
+                }
+                dict.Add(td.defName, record);
             }
             return dict;
         }

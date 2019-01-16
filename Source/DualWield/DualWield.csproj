@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base.cs" />
+    <Compile Include="ModExtension\DefModextension_CustomRotation.cs" />
     <Compile Include="Settings\Dialog_Weapon_Rotation.cs" />
     <Compile Include="DW_DefOff.cs" />
     <Compile Include="Extensions\Ext_Pawn.cs" />

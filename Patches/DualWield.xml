@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class ="PatchOperationAddModExtension">
+		<xpath>*/ThingDef[equippedAngleOffset = -25]</xpath>
+		<value>
+			<li Class="DualWield.DefModExtension_CustomRotation">
+				<extraRotation>45</extraRotation>
+			</li>
+		</value>
+	</Operation>
+</Patch>

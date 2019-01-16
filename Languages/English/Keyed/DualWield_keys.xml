@@ -25,5 +25,21 @@
 	<DW_Setting_DynamicCooldownP_Description>Extra penalty to cooldown for each level a pawn is below the maximum shooting/melee level when dual wielding. This penalty applies to both weapons.</DW_Setting_DynamicCooldownP_Description>
 	<DW_Setting_DynamicAccP_Title>Extra per level accuracy penalty (%)</DW_Setting_DynamicAccP_Title>
 	<DW_Setting_DynamicAccP_Description>Extra penalty to accuracy for each level a pawn is below the maximum shooting/melee level when dual wielding. This penalty applies to both weapons.</DW_Setting_DynamicAccP_Description>
-	<DW_Setting_SetRotation>Extra rotation: {0} degrees.</DW_Setting_SetRotation>
+	
+	<DW_SettingsGroup_Drawing_Title>Drawing offsets/rotations</DW_SettingsGroup_Drawing_Title>
+	<DW_SettingsGroup_Drawing_Description>Alter how dual wielded weapons are drawn for the south and north view of non-aiming pawns. East/west/aiming drawing should be ok by default, so no extra configuration options are present for those views. The unit of measurement for angles is degrees, and the angles are relative to the default angles in the unmodded game.</DW_SettingsGroup_Drawing_Description>
+	<DW_Setting_Note_Drawing>Hint: A good way to see the effect of any of these settings is to equip a pawn with a weapon affected by the setting, make sure it's still visible while having the settings window open, change the setting, and press enter. You'll immediately see the change!</DW_Setting_Note_Drawing>
+	<DW_Setting_MeleeAngle_Title>Melee weapon extra angle</DW_Setting_MeleeAngle_Title>
+	<DW_Setting_MeleeAngle_Description>The angle relative to the vanilla angle at which pawns hold their melee weapon in north/south view while dual wielding.</DW_Setting_MeleeAngle_Description>
+	<DW_Setting_RangedAngle_Title>Ranged weapon extra angle</DW_Setting_RangedAngle_Title>
+	<DW_Setting_RangedAngle_Description>The angle relative to the vanilla angle at which pawns hold their ranged weapon in north/south view while dual wielding.</DW_Setting_RangedAngle_Description>
+	<DW_Setting_MeleeXOffset_Title>Melee weapon horizontal offset</DW_Setting_MeleeXOffset_Title>
+	<DW_Setting_MeleeXOffset_Description>The horizontal offset relative to the center of the pawn at which the pawn holds his melee weapons while dual wielding.</DW_Setting_MeleeXOffset_Description>
+	<DW_Setting_RangedXOffset_Title>Ranged weapon horizontal offset</DW_Setting_RangedXOffset_Title>
+	<DW_Setting_RangedXOffset_Description>The horizontal offset relative to the center of the pawn at which the pawn holds his ranged weapons while dual wielding.</DW_Setting_RangedXOffset_Description>
+	<DW_Setting_CustomRotations_Title>Click a weapon to set its custom rotation.</DW_Setting_CustomRotations_Title>
+	<DW_Setting_CustomRotations_Header>Custom rotations</DW_Setting_CustomRotations_Header>
+	<DW_Setting_CustomRotations_SetRotation>Extra rotation: {0} degrees.</DW_Setting_CustomRotations_SetRotation>
+	<DW_Setting_DualWield_DisabledReason>This weapon is configured as two-handed weapon as well. Two-handed weapons cannot be dual wielded, and therefore this configuration has no effect.</DW_Setting_DualWield_DisabledReason>
+	<DW_Setting_TwoHand_DisabledReason>This weapon is configured as a dual wield weapon as well. Two-handed weapons cannot be dual wielded, and therefore this setting overrides the dual-wield configuration.</DW_Setting_TwoHand_DisabledReason>
 </LanguageData>

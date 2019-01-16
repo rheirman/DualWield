@@ -21,15 +21,17 @@ namespace DualWield.Settings
         private const float buttonHeight = 28f;
         private static readonly Color iconBaseColor = new Color(0.5f, 0.5f, 0.5f, 1f);
         private static readonly Color iconMouseOverColor = new Color(0.6f, 0.6f, 0.4f, 1f);
+        private static readonly Color constGrey = new Color(0.8f, 0.8f, 0.8f, 0.5f);
+        private static readonly Color disabledColor = new Color(0.7f,0.7f,0.7f,0.2f);
+        private static readonly Color SelectedColor = new Color(0.5f, 1f, 0.5f, 1f);
+        private static readonly Color notSelectedColor = new Color(0.5f, 0, 0, 0.1f);
 
-        private static readonly Color SelectedOptionColor = new Color(0.5f, 1f, 0.5f, 1f);
-        private static readonly Color constGrey = new Color(0.8f, 0.8f, 0.8f, 1f);
 
         private static Color background = new Color(0.5f, 0, 0, 0.1f);
         private static Color selectedBackground = new Color(0f, 0.5f, 0, 0.1f);
-        private static Color notSelectedBackground = new Color(0.5f, 0, 0, 0.1f);
         private const float IconSize = 32f;
         private const float IconGap = 1f;
+        private static Texture2D disabledTex = ContentFinder<Texture2D>.Get("UI/ExclamationMark", true);
 
 
         private static void DrawBackground(Rect rect, Color background)
@@ -60,15 +62,18 @@ namespace DualWield.Settings
             return Color.white;
         }
 
-        private static bool DrawTileForThingDef(ThingDef thingDef, KeyValuePair<String, Record> kv, Rect contentRect, Vector2 iconOffset, int buttonID)
+        private static bool DrawTileForThingDef(ThingDef thingDef, KeyValuePair<String, Record> kv, Rect contentRect, Vector2 iconOffset, int buttonID, bool disabled, string disabledReason = "")
         {
             var iconRect = new Rect(contentRect.x + iconOffset.x, contentRect.y + iconOffset.y, IconSize, IconSize);
             MouseoverSounds.DoRegion(iconRect, SoundDefOf.Mouseover_Command);
             Color save = GUI.color;
-
             if (Mouse.IsOver(iconRect))
             {
                 GUI.color = iconMouseOverColor;
+            }
+            else if (disabled)
+            {
+                GUI.color = disabledColor;
             }
             else if (kv.Value.isSelected == true)
             {
@@ -76,12 +81,12 @@ namespace DualWield.Settings
             }
             else
             {
-                GUI.color = notSelectedBackground;
+                GUI.color = notSelectedColor;
             }
             GUI.DrawTexture(iconRect, TexUI.FastFillTex);
             GUI.color = save;
 
-            TooltipHandler.TipRegion(iconRect, thingDef.label);
+            TooltipHandler.TipRegion(iconRect, disabled ? disabledReason : thingDef.label);
 
             Graphic g2 = null;
             Color color = GetColor(thingDef);
@@ -105,7 +110,10 @@ namespace DualWield.Settings
             }
             GUI.color = color;
             GUI.DrawTexture(iconRect, resolvedIcon);
-
+            if (disabled)
+            {
+                GUI.DrawTexture(iconRect, disabledTex);
+            }
             GUI.color = Color.white;
 
             if (Widgets.ButtonInvisible(iconRect, true))
@@ -150,6 +158,17 @@ namespace DualWield.Settings
             return (x * sin + y * cos);
         }
 
+        public static bool CustomDrawer_Note(Rect rect, SettingHandle<string> setting)
+        {
+            Rect textRect = new Rect(rect);
+            float neededHeight = (Mathf.Floor((float) setting.Value.Count() / 85f) + 1) * 14f;
+            textRect.x -= textRect.width;
+            textRect.width *= 2;
+            textRect.height = neededHeight;
+            Widgets.TextArea(textRect, setting.Value, true);
+            setting.CustomDrawerHeight = neededHeight;
+            return false;
+        }
 
         public static bool CustomDrawer_Button(Rect rect, SettingHandle<bool> setting, String activateText, String deactivateText, int xOffset = 0, int yOffset = 0)
         {
@@ -165,7 +184,7 @@ namespace DualWield.Settings
             String text = setting ? deactivateText : activateText;
 
             if (isSelected)
-                GUI.color = SelectedOptionColor;
+                GUI.color = SelectedColor;
             bool clicked = Widgets.ButtonText(buttonRect, text);
             if (isSelected)
                 GUI.color = activeColor;
@@ -196,7 +215,7 @@ namespace DualWield.Settings
                 Color activeColor = GUI.color;
                 bool isSelected = tab == setting.Value;
                 if (isSelected)
-                    GUI.color = SelectedOptionColor;
+                    GUI.color = SelectedColor;
                 bool clicked = Widgets.ButtonText(buttonRect, tab);
                 if (isSelected)
                     GUI.color = activeColor;
@@ -263,11 +282,9 @@ namespace DualWield.Settings
         }
 
 
-        public static bool CustomDrawer_MatchingThingDefs_active(Rect wholeRect, SettingHandle<DictRecordHandler> setting, Dictionary<string, Record> defaults, List<ThingDef> allThingDefs, string yesText = "", string noText = "")
+        public static bool CustomDrawer_MatchingThingDefs_active(Rect wholeRect, SettingHandle<DictRecordHandler> setting, Dictionary<string, Record> defaults, List<ThingDef> allThingDefs, string yesText = "", string noText = "", Dictionary<string, Record> disabledThingDefs = null,string disabledReason = "")
         {
             //TODO: refactor this mess, remove redundant and quircky things.
-
-            float rowHeight = 20f;
             if (setting.Value == null)
             {
                 setting.Value = new DictRecordHandler();
@@ -323,7 +340,13 @@ namespace DualWield.Settings
                 int column = index % iconsPerRow;
                 int row = index / iconsPerRow;
                 ThingDef thingDef = allThingDefs.FirstOrDefault((ThingDef td) => td.defName == item.Key);
-                bool interacted = DrawTileForThingDef(thingDef, item, rect, new Vector2(IconSize * column + column * IconGap, IconSize * row + row * IconGap), index);
+                bool disabled = false;
+                if(disabledThingDefs != null)
+                {
+                    disabled = disabledThingDefs.TryGetValue(item.Key, out Record value) && value.isSelected && item.Value.isSelected;
+                }
+
+                bool interacted = DrawTileForThingDef(thingDef, item, rect, new Vector2(IconSize * column + column * IconGap, IconSize * row + row * IconGap), index, disabled, disabledReason);
                 if (interacted)
                 {
                     change = true;
@@ -383,14 +406,15 @@ namespace DualWield.Settings
                 int column = index % iconsPerRow;
                 int row = index / iconsPerRow;
                 ThingDef thingDef = allThingDefs.FirstOrDefault((ThingDef td) => td.defName == item.Key);
-                bool interacted = DrawTileForThingDef(thingDef, item, rect, new Vector2(IconSize * column + column * IconGap, IconSize * row + row * IconGap), index);
+                bool interacted = DrawTileForThingDef(thingDef, item, rect, new Vector2(IconSize * column + column * IconGap, IconSize * row + row * IconGap), index, false);
                 if (interacted)
                 {
                     change = true;
-                    Func<int, string> textGetter = ((int x) => "DW_Setting_SetRotation".Translate(x));
+                    Func<int, string> textGetter = ((int x) => "DW_Setting_CustomRotations_SetRotation".Translate(x));
                     Dialog_Slider window = new Dialog_Slider(textGetter, 0, 360, delegate (int value)
                     {
                         item.Value.extraRotation = value;
+                        item.Value.isSelected = item.Value.extraRotation > 0;
                     }, item.Value.extraRotation);
                     Find.WindowStack.Add(window);
                 }
