@@ -58,41 +58,39 @@ namespace DualWield.Harmony
 
             if (equipment.def.IsWeapon && pawn.story.WorkTagIsDisabled(WorkTags.Violent))
             {
-                menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " (" + "IsIncapableOfViolenceLower".Translate(pawn.LabelShort, pawn) + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
+                menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " " + "DW_AsOffHand".Translate() + " (" + "IsIncapableOfViolenceLower".Translate(pawn.LabelShort, pawn) + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
             else if (!pawn.CanReach(equipment, PathEndMode.ClosestTouch, Danger.Deadly, false, TraverseMode.ByPawn))
             {
-                menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " (" + "NoPath".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
+                menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " " + "DW_AsOffHand".Translate() + " (" + "NoPath".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
             else if (!pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
             {
-                menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " (" + "Incapable".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
+                menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " " + "DW_AsOffHand".Translate() + " (" + "Incapable".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
             else if (equipment.IsBurning())
             {
-                menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " (" + "BurningLower".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
+                menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " " + "DW_AsOffHand".Translate() + " (" + "BurningLower".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
             else if (pawn.HasMissingArmOrHand())
             {
-                menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " (pawn needs two hands)", null, MenuOptionPriority.Default, null, null, 0f, null, null);//TODO: translation
+                menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " " + "DW_AsOffHand".Translate() + " ( " +"DW_MissArmOrHand".Translate() + " )", null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
             else if (pawn.equipment != null && pawn.equipment.Primary != null && pawn.equipment.Primary.def.IsTwoHand())
             {
-                menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " (pawn wielding two-handed weapon)", null, MenuOptionPriority.Default, null, null, 0f, null, null);//TODO: translation
+                menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " " + "DW_AsOffHand".Translate() + " ( " + "DW_WieldingTwoHanded".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
             else if (equipment.def.IsTwoHand())
             {
-                menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " (cannot wear two-handed weapon in offhand)", null, MenuOptionPriority.Default, null, null, 0f, null, null);//TODO: translation
+                menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " " + "DW_AsOffHand".Translate() + " ( " + "DW_NoTwoHandedInOffHand".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
             else if (!equipment.def.CanBeOffHand())
             {
-                menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " (not allowed in mod-options)", null, MenuOptionPriority.Default, null, null, 0f, null, null);//TODO: translation
+                menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " " + "DW_AsOffHand".Translate() + " ( " + "DW_CannotBeOffHand".Translate() + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
-
-            //Add check for only 1 arm.
             else
             {
-                string text5 = "Equip in off hand"; //TODO: translation
+                string text5 = "DW_EquipOffHand".Translate(labelShort);
                 if (equipment.def.IsRangedWeapon && pawn.story != null && pawn.story.traits.HasTrait(TraitDefOf.Brawler))
                 {
                     text5 = text5 + " " + "EquipWarningBrawler".Translate();

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
-	<DW_Setting_DualWield_OK>Can be offhand</DW_Setting_DualWield_OK>
-	<DW_Setting_DualWield_NOK>Can't be offhand</DW_Setting_DualWield_NOK>
+	<DW_Setting_DualWield_OK>Can be off-hand</DW_Setting_DualWield_OK>
+	<DW_Setting_DualWield_NOK>Can't be off-hand</DW_Setting_DualWield_NOK>
 	<DW_Setting_TwoHanded_OK>Two-handed</DW_Setting_TwoHanded_OK>
 	<DW_Setting_TwoHanded_NOK>Not two-handed</DW_Setting_TwoHanded_NOK>
 	<DW_SettingsGroup_DualWieldSelection_Title>Configure dual wield weapons</DW_SettingsGroup_DualWieldSelection_Title>
@@ -45,9 +45,14 @@
 	<DW_Setting_NPCDualWieldChance_Title>NPC/enemy dual wield chance (%)</DW_Setting_NPCDualWieldChance_Title>
 	<DW_Setting_NPCDualWieldChance_Description>Chance a given NPC (enemy or friendly) uses dual wielding, provided it did not spawn with a two-handed weapon.</DW_Setting_NPCDualWieldChance_Description>
 	
-	<DW_Message_UnequippedOffHand>{0} dropped {1} offhand weapon to make room for a two-handed weapon.</DW_Message_UnequippedOffHand>
+	<DW_Message_UnequippedOffHand>{0} dropped {1} off-hand weapon to make room for a two-handed weapon.</DW_Message_UnequippedOffHand>
 	<DW_HerHis_Male>his</DW_HerHis_Male>
 	<DW_HerHis_Female>her</DW_HerHis_Female>
-
+	<DW_EquipOffHand>Equip {0} (off-hand)</DW_EquipOffHand>
+	<DW_AsOffHand>as off-hand weapon</DW_AsOffHand>
+	<DW_MissArmOrHand>Missing arm or hand</DW_MissArmOrHand>
+	<DW_WieldingTwoHanded>Wielding two-handed weapon</DW_WieldingTwoHanded>
+	<DW_NoTwoHandedInOffHand>Cannot wear two-handed weapon as off-hand</DW_NoTwoHandedInOffHand>
+	<DW_CannotBeOffHand>Not configured as dual-wieldable weapon in mod options</DW_CannotBeOffHand>
 	
 </LanguageData>

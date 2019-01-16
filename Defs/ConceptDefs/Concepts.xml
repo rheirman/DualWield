@@ -1,0 +1,16 @@
+<Defs>
+ <ConceptDef>
+    <defName>DW_Penalties</defName>
+    <label>Dual wielding penalties</label>
+    <priority>50</priority>
+    <helpText>Dual wielding doesn't come without penalties. Both the cooldown time (time a pawn can't do anything after taking a shot), and the shooting accuracy get a penalty that is configurable in the mod settings. This penalty depends heavily on the skill (melee for melee weapons, and shooting for ranged weapons) of the pawn. Letting you lvl 1 shooting skill pawn dual wield guns might not be such a good idea!</helpText>
+    <needsOpportunity>true</needsOpportunity>
+  </ConceptDef>
+  <ConceptDef>
+    <defName>DW_Settings</defName>
+    <label>Dual Wield mod settings</label>
+    <priority>50</priority>
+    <helpText>Don't forget to check out the mod settings for dual wielding. If there's something you don't like about the mod, you'll likely find a setting there that solves your issue.</helpText>
+    <needsOpportunity>true</needsOpportunity>
+  </ConceptDef>
+</Defs>

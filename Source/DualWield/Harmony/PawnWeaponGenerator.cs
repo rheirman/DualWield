@@ -22,6 +22,10 @@ namespace DualWield.Harmony
                 {
                     return;
                 }
+                if(pawn.equipment == null || pawn.equipment.Primary == null)
+                {
+                    return;
+                }
                 for (int i = 0; i < allWeaponPairs.Count; i++)
                 {
                     ThingStuffPair w = allWeaponPairs[i];
@@ -41,10 +45,11 @@ namespace DualWield.Harmony
                     return;
                 }
                 ThingStuffPair thingStuffPair;
-                if (workingWeapons.Where((ThingStuffPair tsp) => 
-                tsp.thing.CanBeOffHand() && 
+                IEnumerable<ThingStuffPair> matchingWeapons = workingWeapons.Where((ThingStuffPair tsp) =>
+                tsp.thing.CanBeOffHand() &&
                 !tsp.thing.IsTwoHand() &&
-                tsp.thing.IsMeleeWeapon == pawn.equipment.Primary.def.IsMeleeWeapon).TryRandomElementByWeight((ThingStuffPair w) => w.Commonality * w.Price, out thingStuffPair))
+                tsp.thing.IsMeleeWeapon == pawn.equipment.Primary.def.IsMeleeWeapon);
+                if (matchingWeapons != null && matchingWeapons.TryRandomElementByWeight((ThingStuffPair w) => w.Commonality * w.Price, out thingStuffPair))
                 {
                     ThingWithComps thingWithComps = (ThingWithComps)ThingMaker.MakeThing(thingStuffPair.thing, thingStuffPair.stuff);
                     PawnGenerator.PostProcessGeneratedGear(thingWithComps, pawn);

@@ -19,6 +19,8 @@ namespace DualWield
             if(store != null)
             {
                 store.GetExtendedDataFor(newEq).isOffHand = true;
+                LessonAutoActivator.TeachOpportunity(DW_DefOff.DW_Penalties, OpportunityType.GoodToKnow);
+                LessonAutoActivator.TeachOpportunity(DW_DefOff.DW_Settings, OpportunityType.GoodToKnow);
                 equipment.TryAdd(newEq, true);
             }
 
