@@ -42,9 +42,12 @@
 	<DW_Setting_CustomRotations_SetRotation>Extra rotation: {0} degrees.</DW_Setting_CustomRotations_SetRotation>
 	<DW_Setting_DualWield_DisabledReason>This weapon is configured as two-handed weapon as well. Two-handed weapons cannot be dual wielded, and therefore this configuration has no effect.</DW_Setting_DualWield_DisabledReason>
 	<DW_Setting_TwoHand_DisabledReason>This weapon is configured as a dual wield weapon as well. Two-handed weapons cannot be dual wielded, and therefore this setting overrides the dual-wield configuration.</DW_Setting_TwoHand_DisabledReason>
+	<DW_Setting_NPCDualWieldChance_Title>NPC/enemy dual wield chance</DW_Setting_NPCDualWieldChance_Title>
+	<DW_Setting_NPCDualWieldChance_Description>Chance a given NPC (enemy or friendly) uses dual wielding, provided it did not spawn with a two-handed weapon.</DW_Setting_NPCDualWieldChance_Description>
 	
 	<DW_Message_UnequippedOffHand>{0} dropped {1} offhand weapon to make room for a two-handed weapon.</DW_Message_UnequippedOffHand>
 	<DW_HerHis_Male>his</DW_HerHis_Male>
 	<DW_HerHis_Female>her</DW_HerHis_Female>
+
 	
 </LanguageData>

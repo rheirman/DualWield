@@ -42,6 +42,8 @@ namespace DualWield
 
         internal static SettingHandle<string> note;
 
+        internal static SettingHandle<int> NPCDualWieldChance;
+
 
         public Base()
         {
@@ -127,7 +129,10 @@ namespace DualWield
             dynamicAccP = Settings.GetHandle<float>("dynamicAccP", "DW_Setting_DynamicAccP_Title".Translate(), "DW_Setting_DynamicAccP_Description".Translate(), 0.5f, Validators.FloatRangeValidator(0, 10f));
             dynamicAccP.VisibilityPredicate = delegate { return settingsGroup_Penalties; };
 
-            if(customRotations.Value == null)
+            NPCDualWieldChance = Settings.GetHandle<int>("NPCDualWieldChance", "DW_Setting_NPCDualWieldChance_Title".Translate(), "DW_Setting_NPCDualWieldChance_Description".Translate(), 40, Validators.IntRangeValidator(0, 100));
+
+
+            if (customRotations.Value == null)
             {
                 customRotations.Value = new DictRecordHandler();
                 customRotations.Value.inner = GetRotationDefaults(allWeapons);
