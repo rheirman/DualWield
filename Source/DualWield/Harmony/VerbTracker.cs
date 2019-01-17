@@ -10,42 +10,25 @@ using Verse;
 
 namespace DualWield.Harmony
 {
-    [HarmonyPatch]
-    public class VerbTracker_GetVerbsCommands
+    [HarmonyPatch(typeof(VerbTracker), "CreateVerbTargetCommand")]
+    public class VerbTracker_CreateVerbTargetCommand
     {
-        static MethodBase TargetMethod()
-        {
-            var predicateClass = typeof(VerbTracker).GetNestedTypes(AccessTools.all)
-                .FirstOrDefault(t => t.FullName.Contains("c__Iterator0"));
-            return predicateClass.GetMethods(AccessTools.all).FirstOrDefault(m => m.Name.Contains("MoveNext"));
-        }
-        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
-        {
-            var instructionsList = new List<CodeInstruction>(instructions);
-            foreach (CodeInstruction instruction in instructionsList)
+        static bool Prefix(VerbTracker __instance, Thing ownerThing, Verb verb, ref Command_VerbTarget __result) {
+            if (ownerThing is ThingWithComps twc && twc.ParentHolder is Pawn_EquipmentTracker peqt)
             {
-                if (instruction.operand == AccessTools.Method(typeof(VerbTracker), "CreateVerbTargetCommand")){
-                    yield return new CodeInstruction(OpCodes.Call, typeof(VerbTracker_GetVerbsCommands).GetMethod("CreateVerbTargetCommandDW"));
-                }
-                else
+                CompEquippable ce = __instance.directOwner as CompEquippable;
+                if (peqt.pawn.equipment.TryGetOffHandEquipment(out ThingWithComps offHandEquip))
                 {
-                    yield return instruction;
-                }
-            }
-        }
-        public static Command CreateVerbTargetCommandDW(VerbTracker instance, Thing ownerThing, Verb verb)
-        {
-            if(ownerThing is ThingWithComps twc && twc.ParentHolder is Pawn_EquipmentTracker peqt){
-                CompEquippable ce = instance.directOwner as CompEquippable;
-                if(peqt.pawn.equipment.TryGetOffHandEquipment(out ThingWithComps offHandEquip)){
-                    if(offHandEquip != twc)
+                    if (offHandEquip != twc)
                     {
-                        return CreateDualWieldCommand(ownerThing, offHandEquip, verb);
+                        __result = CreateDualWieldCommand(ownerThing, offHandEquip, verb);
+                        return false;
                     }
                 }
             }
-            return Traverse.Create(instance).Method("CreateVerbTargetCommand", new Object[]{ ownerThing, verb}).GetValue<Command_VerbTarget>();
+            return true;
         }
+
         private static Command_VerbTarget CreateDualWieldCommand(Thing ownerThing, Thing offHandThing, Verb verb)
         {
             Command_DualWield command_VerbTarget = new Command_DualWield(offHandThing);
@@ -72,8 +55,6 @@ namespace DualWield.Harmony
             }
             return command_VerbTarget;
         }
-
-
     }
     [HarmonyPatch(typeof(VerbTracker), "GetVerbsCommands")]
     class VerbTracker_GetVerbsCommands_Postfix
