@@ -15,7 +15,7 @@ Translations are always very welcome. Just create a pull request. For other chan
 This mod is shipped with advanced settings that allow you to configure how weapons are drawn when dual wielded. The mod has reasonable defaults, but these defaults may not be perfect for your weapon-adding mod. I therefore added a patching hook so you can set better defaults for your weapon mod. 
 
 The following example patch ensures the spear is drawn with an 45 degree extra angle when viewed in the frontal view. 
-
+```
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 	<Operation Class ="PatchOperationAddModExtension">
@@ -27,5 +27,5 @@ The following example patch ensures the spear is drawn with an 45 degree extra a
 		</value>
 	</Operation>
 </Patch>
-
-**Feel free to request more patching hooks like these. **
+```
+**Feel free to request more patching hooks like these.**
