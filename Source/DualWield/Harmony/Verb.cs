@@ -43,12 +43,10 @@ namespace DualWield.Harmony
             //Check if verb is one from a offhand weapon. 
             if(compEquippable != null && offHandEquip != stanceTracker.pawn.equipment.Primary) //TODO: check this code 
             {
-                //Log.Message("set stance cooldown for offhand: " + stance.verb.EquipmentSource.def.defName);
                 stanceTracker.pawn.GetStancesOffHand().SetStance(stance);
             }
             else if (!(stanceTracker.curStance is Stance_Cooldown) && stanceTracker.curStance.GetType().Name != "Stance_RunAndGun_Cooldown")
             {
-                //Log.Message("set stance cooldown for " + stance.verb.EquipmentSource.def.defName);
                 stanceTracker.SetStance(stance);
             }
         }

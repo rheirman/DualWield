@@ -69,7 +69,6 @@ namespace DualWield.Harmony
             {
                 if (eq.def.IsTwoHand() && offHandEquipped)
                 {
-                    Log.Message("Should show message now!");
                     string herHis = __instance.pawn.story.bodyType == BodyTypeDefOf.Male ? "DW_HerHis_Male".Translate() : "DW_HerHis_Female".Translate();
                     Messages.Message("DW_Message_UnequippedOffHand".Translate(new object[] { __instance.pawn.Name.ToStringShort, herHis }), new LookTargets(__instance.pawn), MessageTypeDefOf.CautionInput);
                 }

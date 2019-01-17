@@ -25,7 +25,6 @@ namespace DualWield.Harmony
             foreach (CodeInstruction instruction in instructionsList)
             {
                 if (instruction.operand == AccessTools.Method(typeof(VerbTracker), "CreateVerbTargetCommand")){
-                    Log.Message("found and replaced method call CreateVerbTargetCommand");
                     yield return new CodeInstruction(OpCodes.Call, typeof(VerbTracker_GetVerbsCommands).GetMethod("CreateVerbTargetCommandDW"));
                 }
                 else
