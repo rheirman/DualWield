@@ -37,7 +37,7 @@ namespace DualWield
             {
                 tex = BaseContent.BadTex;
             }
-            Rect rect = new Rect(topLeft.x, topLeft.y + 5, this.GetWidth(maxWidth), 75f);
+            Rect rect = new Rect(topLeft.x, topLeft.y + 10, this.GetWidth(maxWidth), 75f);
             Widgets.DrawTextureFitted(rect, tex, this.iconDrawScale * 0.85f, this.iconProportions, this.iconTexCoords, this.iconAngle, material);
             GUI.color = Color.white;
             return res;

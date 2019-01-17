@@ -76,4 +76,33 @@ namespace DualWield.Harmony
 
 
     }
+    [HarmonyPatch(typeof(VerbTracker), "GetVerbsCommands")]
+    class VerbTracker_GetVerbsCommands_Postfix
+    {
+        static void Postfix(VerbTracker __instance, ref IEnumerable<Command> __result)
+        {
+            __result = RemoveCommandForOffHand(__result);
+        }
+
+        private static IEnumerable<Command> RemoveCommandForOffHand(IEnumerable<Command> __result)
+        {
+            foreach (Command command in __result)
+            {
+                if (command is Command_VerbTarget cVerbTarget)
+                {
+                    Verb verb = cVerbTarget.verb;
+
+                    if (verb.EquipmentSource is ThingWithComps twc && twc.ParentHolder is Pawn_EquipmentTracker peqt)
+                    {
+                        if (peqt.pawn.equipment.TryGetOffHandEquipment(out ThingWithComps offHandEquip) && offHandEquip == twc)
+                        {
+                            continue;
+                        }
+                    }
+                }
+                yield return command;
+            }
+        }
+    }
+    
 }
