@@ -56,6 +56,8 @@
   <ItemGroup>
     <Compile Include="Alerts\Altert_SkillLow.cs" />
     <Compile Include="Base.cs" />
+    <Compile Include="Command_DualWield.cs" />
+    <Compile Include="Harmony\VerbTracker.cs" />
     <Compile Include="ModExtension\DefModextension_CustomRotation.cs" />
     <Compile Include="Settings\Dialog_Weapon_Rotation.cs" />
     <Compile Include="DW_DefOff.cs" />

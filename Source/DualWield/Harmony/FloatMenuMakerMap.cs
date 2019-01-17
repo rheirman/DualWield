@@ -21,7 +21,7 @@ namespace DualWield.Harmony
             {
                 if (pawn.equipment.TryGetOffHandEquipment(out ThingWithComps eq))
                 {
-                    FloatMenuOption unequipOffHandOption = new FloatMenuOption("Unequip offhand weapon", new Action(delegate {
+                    FloatMenuOption unequipOffHandOption = new FloatMenuOption("DW_DropOffHand".Translate(eq.LabelShort), new Action(delegate {
                         pawn.jobs.TryTakeOrderedJob(new Job(JobDefOf.DropEquipment, eq));
                     })); //TODO translation
                     opts.Add(unequipOffHandOption);

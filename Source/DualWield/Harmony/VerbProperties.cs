@@ -14,7 +14,6 @@ namespace DualWield.Harmony
     {
         static void Postfix(VerbProperties __instance, Thing equipment, Pawn attacker, ref float __result)
         {
-            Log.Message("AdjustedCooldown before: " + __result);
             if (attacker.skills != null)
             {
                 SkillRecord skillRecord = __instance.IsMeleeAttack ? attacker.skills.GetSkill(SkillDefOf.Melee) : attacker.skills.GetSkill(SkillDefOf.Shooting);
@@ -27,7 +26,6 @@ namespace DualWield.Harmony
                     __result = CalcCooldownPenalty(__result, skillRecord, Base.staticCooldownPMainHand/100f);
                 }
             }
-            Log.Message("AdjustedCooldown after: " + __result);
 
 
         }
@@ -47,8 +45,6 @@ namespace DualWield.Harmony
     {
         static void Postfix(VerbProperties __instance, Thing equipment, ref float __result)
         {
-            Log.Message("AdjustedAccuracy before: " + __result);
-
             if (equipment.ParentHolder is Pawn_EquipmentTracker peqt && equipment != null)
             {
                 Pawn pawn = peqt.pawn;
@@ -66,7 +62,6 @@ namespace DualWield.Harmony
                     __result = CalcAccuracyPenalty(__result, skillRecord, Base.staticAccPMainHand/100f);
                 }
             }
-            Log.Message("AdjustedAccuracy after: " + __result);
         }
 
         private static float CalcAccuracyPenalty(float __result, SkillRecord skillRecord, float staticPenalty)
