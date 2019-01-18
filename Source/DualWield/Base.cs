@@ -77,7 +77,15 @@ namespace DualWield
             customRotations.CustomDrawer = rect => { return GUIDrawUtility.CustomDrawer_MatchingThingDefs_dialog(rect, customRotations, GetRotationDefaults(allWeapons), allWeapons, "DW_Setting_CustomRotations_Header".Translate()); };
             customRotations.VisibilityPredicate = delegate { return settingsGroup_Drawing; };
 
-
+            if (customRotations.Value != null)
+            {
+                if (customRotations.Value.inner.Count < allWeapons.Count)
+                    AddMissingWeaponsForRotationSelection(allWeapons);
+                if (customRotations.Value.inner.Count > allWeapons.Count)
+                {
+                    RemoveDepricatedRecords(allWeapons, customRotations.Value.inner);
+                }
+            }
 
             //settingsGroup_DualWield
             settingsGroup_DualWield = Settings.GetHandle<bool>("settingsGroup_DualWieldSelection", "DW_SettingsGroup_DualWieldSelection_Title".Translate(), "DW_SettingsGroup_DualWieldSelection_Description".Translate(), false);
@@ -162,6 +170,13 @@ namespace DualWield
             }
         }
 
+        private static void AddMissingWeaponsForRotationSelection(List<ThingDef> allWeapons)
+        {
+            foreach (ThingDef weapon in from td in allWeapons where !customRotations.Value.inner.ContainsKey(td.defName) select td)
+            {
+                SetRotationDefault(customRotations.Value.inner, weapon);
+            }
+        }
         private static void AddMissingWeaponsForDualWieldSelection(List<ThingDef> allWeapons)
         {
             foreach (ThingDef weapon in from td in allWeapons where !dualWieldSelection.Value.inner.ContainsKey(td.defName) select td)
@@ -169,6 +184,7 @@ namespace DualWield
                 SetDualWieldDefault(dualWieldSelection.Value.inner, weapon);
             }
         }
+
         private static void AddMissingWeaponsForTwoHandSelection(List<ThingDef> allWeapons)
         {
             foreach (ThingDef weapon in from td in allWeapons where !twoHandSelection.Value.inner.ContainsKey(td.defName) select td)
@@ -182,17 +198,21 @@ namespace DualWield
             Dictionary<string, Record> dict = new Dictionary<string, Record>();
             foreach (ThingDef td in allWeapons)
             {
-                Record record = new Record(false, td.label);
-                if (td.GetModExtension<DefModextension_CustomRotation>() is DefModextension_CustomRotation modExt)
-                {
-                    record.extraRotation = modExt.extraRotation;
-                    record.isSelected = true;
-                }
-                dict.Add(td.defName, record);
+                SetRotationDefault(dict, td);
             }
             return dict;
         }
-        
+
+        private static void SetRotationDefault(Dictionary<string, Record> dict, ThingDef td)
+        {
+            Record record = new Record(false, td.label);
+            if (td.GetModExtension<DefModextension_CustomRotation>() is DefModextension_CustomRotation modExt)
+            {
+                record.extraRotation = modExt.extraRotation;
+                record.isSelected = true;
+            }
+            dict.Add(td.defName, record);
+        }
 
         private static Dictionary<string, Record> GetDualWieldDefaults(List<ThingDef> allWeapons)
         {
