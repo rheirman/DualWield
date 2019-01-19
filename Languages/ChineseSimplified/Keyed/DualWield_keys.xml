@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <DW_Setting_DualWield_OK>可以作为副手武器</DW_Setting_DualWield_OK>
+  <DW_Setting_DualWield_NOK>不能作为副手武器</DW_Setting_DualWield_NOK>
+  <DW_Setting_TwoHanded_OK>双手武器</DW_Setting_TwoHanded_OK>
+  <DW_Setting_TwoHanded_NOK>非双手武器</DW_Setting_TwoHanded_NOK>
+  <DW_SettingsGroup_DualWieldSelection_Title>配置双持武器</DW_SettingsGroup_DualWieldSelection_Title>
+  <DW_SettingsGroup_DualWieldSelection_Description>配置哪些武器可以与其他武器一起使用。双持武器不能与双手武器同时使用，但可以与普通(非双持/非双手)武器或其他双持武器一起使用。</DW_SettingsGroup_DualWieldSelection_Description>
+  <DW_SettingsGroup_TwoHandSelection_Title>配置双手武器</DW_SettingsGroup_TwoHandSelection_Title>
+  <DW_SettingsGroup_TwoHandSelection_Description>配置哪些武器需要双手才能使用。双持武器不能与双手武器同时使用。</DW_SettingsGroup_TwoHandSelection_Description>
+  <DW_Expand>展开</DW_Expand>
+  <DW_Collapse>合上</DW_Collapse>
+
+  <DW_SettingsGroup_Penalties_Title>双持惩罚</DW_SettingsGroup_Penalties_Title>
+  <DW_SettingsGroup_Penalties_Description>配置对双持的惩罚有多严重。</DW_SettingsGroup_Penalties_Description>
+  <DW_Setting_StaticCooldownPenOffHand_Title>副手冷却处罚(%)</DW_Setting_StaticCooldownPenOffHand_Title>
+  <DW_Setting_StaticCooldownPenOffHand_Description>双持时取消武器冷却时间的惩罚。</DW_Setting_StaticCooldownPenOffHand_Description>
+  <DW_Setting_StaticCooldownPMainHand_Title>主手武器冷却惩罚(%)</DW_Setting_StaticCooldownPMainHand_Title>
+  <DW_Setting_StaticCooldownPMainHand_Description>双持时对主手武器冷却时间的惩罚。</DW_Setting_StaticCooldownPMainHand_Description>
+  <DW_Setting_StaticAccPOffHand_Title>副手精度处罚(%)</DW_Setting_StaticAccPOffHand_Title>
+  <DW_Setting_StaticAccPOffHand_Description>双持时武器精度下降的惩罚。</DW_Setting_StaticAccPOffHand_Description>
+  <DW_Setting_StaticAccPMainHand_Title>主手精度惩罚(%)</DW_Setting_StaticAccPMainHand_Title>
+  <DW_Setting_StaticAccPMainHand_Description>双持时对主手武器精度的惩罚。</DW_Setting_StaticAccPMainHand_Description>
+  <DW_Setting_DynamicCooldownP_Title>每级额外冷却时间惩罚(%)</DW_Setting_DynamicCooldownP_Title>
+  <DW_Setting_DynamicCooldownP_Description>当双持时，每一级小人的冷却时间低于最高射击/近战等级。这种惩罚适用于这两种武器。</DW_Setting_DynamicCooldownP_Description>
+  <DW_Setting_DynamicAccP_Title>每级额外精度惩罚(%)</DW_Setting_DynamicAccP_Title>
+  <DW_Setting_DynamicAccP_Description>当双持时，每一级小人的射击/近战等级低于最高射击/近战等级。这种惩罚适用于这两种武器。</DW_Setting_DynamicAccP_Description>
+
+  <DW_SettingsGroup_Drawing_Title>绘制偏移/旋转</DW_SettingsGroup_Drawing_Title>
+  <DW_SettingsGroup_Drawing_Description>改变如何为非瞄准小人的南北视图绘制双重武器。无目标的兵。在默认情况下，东/西/瞄准图应该是ok的，所以这些视图没有额外的配置选项。角度的测量单位是度，角度相对于未修改游戏中的默认角度。</DW_SettingsGroup_Drawing_Description>
+  <DW_Setting_Note_Drawing>提示：查看任何这些设置的效果的好方法是给小人装备一个受这些设置影响的武器，确保在打开设置窗口时小人仍然可见，更改设置，然后按Enter键。 你马上就会看到变化！</DW_Setting_Note_Drawing>
+  <DW_Setting_MeleeAngle_Title>近战武器额外角度</DW_Setting_MeleeAngle_Title>
+  <DW_Setting_MeleeAngle_Description>在南北视图中，当小人双持近战武器时相对于普通角度的角度。</DW_Setting_MeleeAngle_Description>
+  <DW_Setting_RangedAngle_Title>远程武器额外角度</DW_Setting_RangedAngle_Title>
+  <DW_Setting_RangedAngle_Description>在北/南视图中，当小人双持远程武器时相对于普通角度的角度。</DW_Setting_RangedAngle_Description>
+  <DW_Setting_MeleeXOffset_Title>近战武器水平偏移</DW_Setting_MeleeXOffset_Title>
+  <DW_Setting_MeleeXOffset_Description>相对于双持近战武器的小人的中心的水平偏移。</DW_Setting_MeleeXOffset_Description>
+  <DW_Setting_RangedXOffset_Title>远程武器水平偏差</DW_Setting_RangedXOffset_Title>
+  <DW_Setting_RangedXOffset_Description>在双持远程武器时，相对于小人的中心的水平偏移。</DW_Setting_RangedXOffset_Description>
+  <DW_Setting_CustomRotations_Title>单击一个武器来设置它的自定义旋转。</DW_Setting_CustomRotations_Title>
+  <DW_Setting_CustomRotations_Header>自定义旋转</DW_Setting_CustomRotations_Header>
+  <DW_Setting_CustomRotations_SetRotation>额外旋转:{0}度。</DW_Setting_CustomRotations_SetRotation>
+  <DW_Setting_DualWield_DisabledReason>这种武器也配置为双手武器。双手武器不能双持，因此这种配置没有效果。</DW_Setting_DualWield_DisabledReason>
+  <DW_Setting_TwoHand_DisabledReason>这种武器也被配置为双持武器。双手武器不能双持，因此此设置将覆盖双持配置。</DW_Setting_TwoHand_DisabledReason>
+  <DW_Setting_NPCDualWieldChance_Title>NPC/敌人使用双持几率(%)</DW_Setting_NPCDualWieldChance_Title>
+  <DW_Setting_NPCDualWieldChance_Description>一个给NPC（敌人或友军）使用双持的机会，只要它没有产生双手武器。</DW_Setting_NPCDualWieldChance_Description>
+
+  <DW_Message_UnequippedOffHand>{0}丢下{1}副手武器为双手武器腾出空间。</DW_Message_UnequippedOffHand>
+  <DW_HerHis_Male>他的</DW_HerHis_Male>
+  <DW_HerHis_Female>她的</DW_HerHis_Female>
+  <DW_EquipOffHand>装备{0}（副手）</DW_EquipOffHand>
+  <DW_DropOffHand>丢下{0}（副手）</DW_DropOffHand>
+  <DW_AsOffHand>as off-hand weapon</DW_AsOffHand>
+  <DW_MissArmOrHand>失去了手臂或手掌</DW_MissArmOrHand>
+  <DW_WieldingTwoHanded>挥舞双手武器</DW_WieldingTwoHanded>
+  <DW_NoTwoHandedInOffHand>副手不能装备双手武器</DW_NoTwoHandedInOffHand>
+  <DW_CannotBeOffHand>未在mod选项中配置为双持武器</DW_CannotBeOffHand>
+
+</LanguageData>
