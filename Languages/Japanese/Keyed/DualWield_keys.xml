@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <DW_Setting_DualWield_OK>逆手で装備可</DW_Setting_DualWield_OK>
+  <DW_Setting_DualWield_NOK>逆手で装備不可</DW_Setting_DualWield_NOK>
+  <DW_Setting_TwoHanded_OK>二刀流可能</DW_Setting_TwoHanded_OK>
+  <DW_Setting_TwoHanded_NOK>二刀流不可</DW_Setting_TwoHanded_NOK>
+  <DW_SettingsGroup_DualWieldSelection_Title>二刀流武器を設定</DW_SettingsGroup_DualWieldSelection_Title>
+  <DW_SettingsGroup_DualWieldSelection_Description>他の武器と一緒に使用できる武器を設定します。二刀流可能な武器は両手持ちの武器と一緒に使用することはできませんが、通常の（非二刀流/両手持ち以外）武器や、他の二刀流可能な武器と一緒に使用することができます。</DW_SettingsGroup_DualWieldSelection_Description>
+  <DW_SettingsGroup_TwoHandSelection_Title>両手持ち武器を設定</DW_SettingsGroup_TwoHandSelection_Title>
+  <DW_SettingsGroup_TwoHandSelection_Description>どの武器が両手を使う必要があるか設定します。二刀流可能な武器は、両手持ち武器と一緒に使用できません。</DW_SettingsGroup_TwoHandSelection_Description>
+  <DW_Expand>開く</DW_Expand>
+  <DW_Collapse>閉じる</DW_Collapse>
+
+  <DW_SettingsGroup_Penalties_Title>二刀流ペナルティ</DW_SettingsGroup_Penalties_Title>
+  <DW_SettingsGroup_Penalties_Description>二刀流によるペナルティの大きさを設定します。</DW_SettingsGroup_Penalties_Description>
+  <DW_Setting_StaticCooldownPenOffHand_Title>逆手クールダウンペナルティ(%)</DW_Setting_StaticCooldownPenOffHand_Title>
+  <DW_Setting_StaticCooldownPenOffHand_Description>二刀流をしている場合の、逆手で持っている武器のクールダウンに対するペナルティです。</DW_Setting_StaticCooldownPenOffHand_Description>
+  <DW_Setting_StaticCooldownPMainHand_Title>利手クールダウンペナルティ(%)</DW_Setting_StaticCooldownPMainHand_Title>
+  <DW_Setting_StaticCooldownPMainHand_Description>二刀流をしている場合の、利手で持っている武器のクールダウンに対するペナルティです。</DW_Setting_StaticCooldownPMainHand_Description>
+  <DW_Setting_StaticAccPOffHand_Title>逆手命中ペナルティ(%)</DW_Setting_StaticAccPOffHand_Title>
+  <DW_Setting_StaticAccPOffHand_Description>二刀流をしている場合の、逆手で持っている武器の命中率に対するペナルティです。</DW_Setting_StaticAccPOffHand_Description>
+  <DW_Setting_StaticAccPMainHand_Title>利手命中ペナルティ(%)</DW_Setting_StaticAccPMainHand_Title>
+  <DW_Setting_StaticAccPMainHand_Description>二刀流をしている場合の、利手で持っている武器の命中率に対するペナルティです。</DW_Setting_StaticAccPMainHand_Description>
+  <DW_Setting_DynamicCooldownP_Title>レベル毎の追加クールダウンペナルティ(%)</DW_Setting_DynamicCooldownP_Title>
+  <DW_Setting_DynamicCooldownP_Description>二刀流の場合、ポーンの各スキルレベルごとのクールダウンに対する追加のペナルティによって、本来の射撃/格闘スキルレベルでの最大値を下回ります。このペナルティは利手と逆手両方に持っている武器に適用されます。</DW_Setting_DynamicCooldownP_Description>
+  <DW_Setting_DynamicAccP_Title>レベル毎の追加命中ペナルティ(%)</DW_Setting_DynamicAccP_Title>
+  <DW_Setting_DynamicAccP_Description>二刀流の場合、ポーンの各スキルレベルごとの命中率に対する追加のペナルティによって、本来の射撃/格闘スキルレベルでの最大値を下回ります。このペナルティは利手と逆手両方に持っている武器に適用されます。</DW_Setting_DynamicAccP_Description>
+
+  <DW_SettingsGroup_Drawing_Title>描画オフセットと角度</DW_SettingsGroup_Drawing_Title>
+  <DW_SettingsGroup_Drawing_Description>狙いを定めていないポーンの南北方向の表示に対して、二刀流装備の武器をどう描画するかを変更します。デフォルトでは東西方向や照準中の描画は問題ないはずです。そのため、これらの表示に特別な設定オプションはありません。角度の測定単位は度(円周360度)で、この角度は変更されていないゲームのデフォルト角度を0度基準にしています。</DW_SettingsGroup_Drawing_Description>
+  <DW_Setting_Note_Drawing>ヒント：これらの設定の効果を確認するには、まず最初に設定の影響を受ける武器をポーンに装着して、設定ウィンドウを開いている間に武器が表示されていることを確認して、設定を変更してからEnterキーを押します。すぐに変化が適用されます。</DW_Setting_Note_Drawing>
+  <DW_Setting_MeleeAngle_Title>近接武器の角度拡張</DW_Setting_MeleeAngle_Title>
+  <DW_Setting_MeleeAngle_Description>二刀流の装備している場合、ポーンが南北方向の表示で近接武器を持つ場合、バニラの角度とずらして表示させる角度です。</DW_Setting_MeleeAngle_Description>
+  <DW_Setting_RangedAngle_Title>遠距離武器の角度拡張</DW_Setting_RangedAngle_Title>
+  <DW_Setting_RangedAngle_Description>二刀流の装備している場合、ポーンが南北方向の表示で遠距離武器を持つ場合、バニラの角度とずらして表示させる角度です。</DW_Setting_RangedAngle_Description>
+  <DW_Setting_MeleeXOffset_Title>近接武器水平オフセット</DW_Setting_MeleeXOffset_Title>
+  <DW_Setting_MeleeXOffset_Description>二刀流時に、ポーンが近接武器を持っている場合、ポーンの中心に対する水平方向のオフセット値です。</DW_Setting_MeleeXOffset_Description>
+  <DW_Setting_RangedXOffset_Title>遠距離武器水平オフセット</DW_Setting_RangedXOffset_Title>
+  <DW_Setting_RangedXOffset_Description>二刀流時に、ポーンが遠隔武器を持っている場合、ポーンの中心に対する水平方向のオフセット値です。</DW_Setting_RangedXOffset_Description>
+  <DW_Setting_CustomRotations_Title>武器をクリックしてカスタム回転を設定します。</DW_Setting_CustomRotations_Title>
+  <DW_Setting_CustomRotations_Header>カスタム回転</DW_Setting_CustomRotations_Header>
+  <DW_Setting_CustomRotations_SetRotation>回転拡張：{0}度.</DW_Setting_CustomRotations_SetRotation>
+  <DW_Setting_DualWield_DisabledReason>この武器は両手持ち武器としても設定されています。両手持ち武器は二刀流には使用できないため、この設定は効果がありません。</DW_Setting_DualWield_DisabledReason>
+  <DW_Setting_TwoHand_DisabledReason>この武器は両手持ち武器としても設定されています。両手持ち武器は二刀流には使用できません。したがって、この設定は二刀流の設定より優先されます。</DW_Setting_TwoHand_DisabledReason>
+  <DW_Setting_NPCDualWieldChance_Title>NPCや敵の二刀流率(%)</DW_Setting_NPCDualWieldChance_Title>
+  <DW_Setting_NPCDualWieldChance_Description>両手持ち武器を装備して出現しなかった場合、二刀流を与えられたNPC（敵または同盟）が二刀流武器を使用する可能性があります。</DW_Setting_NPCDualWieldChance_Description>
+
+  <DW_Message_UnequippedOffHand>{0}は、両手用武器を持つために片手に持っていた{1}を落として両手を空けました。</DW_Message_UnequippedOffHand>
+  <DW_HerHis_Male>彼の</DW_HerHis_Male>
+  <DW_HerHis_Female>彼女の</DW_HerHis_Female>
+  <DW_EquipOffHand>{0}を装備（逆手)</DW_EquipOffHand>
+  <DW_DropOffHand>{0}を外す（逆手)</DW_DropOffHand>
+  <DW_AsOffHand>逆手用武器として</DW_AsOffHand>
+  <DW_MissArmOrHand>腕や手が足りません</DW_MissArmOrHand>
+  <DW_WieldingTwoHanded>両手持ち武器を二刀流する</DW_WieldingTwoHanded>
+  <DW_NoTwoHandedInOffHand>両手持ち武器を逆手に持つことは不可能</DW_NoTwoHandedInOffHand>
+  <DW_CannotBeOffHand>Modオプションで二刀流可能武器として設定されていない</DW_CannotBeOffHand>
+
+</LanguageData>

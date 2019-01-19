@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <DW_Penalties.label>二刀流ペナルティ</DW_Penalties.label>
+  <DW_Penalties.helpText>武器の二刀流はペナルティなしで実行できません。クールダウン時間（ポーンが射撃した後何もできない時間）と攻撃や射撃の命中精度の両方に対して、Mod設定で設定することができる数値のペナルティを受けます。このペナルティは、ポーンのスキル（近接武器による格闘スキル、または遠隔武器による射撃スキル）に大きく依存します。あなたがLv1の射撃スキルしかないポーンに銃を二刀流させるのは、それほど良い考えではないかもしれません！</DW_Penalties.helpText>
+
+  <DW_Settings.label>Dual Wield Mod設定</DW_Settings.label>
+  <DW_Settings.helpText>この二刀流Modの設定を確認するのを忘れないでください。あなたがModについて良く無いと考える何かがあるならば、あなたの問題を解決する設定がそこにあるはずです。</DW_Settings.helpText>
+
+
+</LanguageData>
