@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <DW_Penalties.label>双持武器惩罚</DW_Penalties.label>
+  <DW_Penalties.helpText>双持并非没有惩罚。冷却时间（射击后一个小人不能做任何事情的时间）和射击精度的惩罚都可以在mod设置中配置。这种惩罚在很大程度上取决于小人的技能（近战武器的近战和远程武器的射击）。让你只有一点射击技能的士兵双持枪可能不是一个好主意！</DW_Penalties.helpText>
+
+  <DW_Settings.label>双持武器mod settings</DW_Settings.label>
+  <DW_Settings.helpText>不要忘记检查双持的mod设置。如果您不喜欢mod，那么您可能会在那里找到解决问题的设置。</DW_Settings.helpText>
+
+
+</LanguageData>
