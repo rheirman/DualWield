@@ -14,17 +14,24 @@ namespace DualWield.Harmony
     {
         static void Postfix(VerbProperties __instance, Thing equipment, Pawn attacker, ref float __result)
         {
-            if (attacker.skills != null)
+            if (attacker != null && attacker.skills != null)
             {
+                Log.Message("1");
                 SkillRecord skillRecord = __instance.IsMeleeAttack ? attacker.skills.GetSkill(SkillDefOf.Melee) : attacker.skills.GetSkill(SkillDefOf.Shooting);
+                if(skillRecord == null)
+                Log.Message("skillRecord is null");
+
                 if (equipment != null && equipment is ThingWithComps twc && twc.IsOffHand())
                 {
+                    Log.Message("2");
                     __result = CalcCooldownPenalty(__result, skillRecord, Base.staticCooldownPOffHand/100f);
                 }
                 else if (attacker.equipment != null && attacker.equipment.TryGetOffHandEquipment(out ThingWithComps offHandEq))
                 {
+                    Log.Message("3");
                     __result = CalcCooldownPenalty(__result, skillRecord, Base.staticCooldownPMainHand/100f);
                 }
+                Log.Message("4");
             }
 
 

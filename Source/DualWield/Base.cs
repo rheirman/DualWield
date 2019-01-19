@@ -277,6 +277,15 @@ namespace DualWield
             _extendedDataStorage = UtilityWorldObjectManager.GetUtilityWorldObject<ExtendedDataStorage>();
             base.MapComponentsInitializing(map);
         }
+        public override void WorldLoaded()
+        {
+            //Failsafe if other mods prevent the store from being loaded during MapComponentsInitializing
+            if (_extendedDataStorage == null)
+            {
+                _extendedDataStorage = UtilityWorldObjectManager.GetUtilityWorldObject<ExtendedDataStorage>();
+            }
+            base.WorldLoaded();
+        }
         public ExtendedDataStorage GetExtendedDataStorage()
         {
             return _extendedDataStorage;
