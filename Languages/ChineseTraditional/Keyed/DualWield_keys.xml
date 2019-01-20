@@ -37,6 +37,7 @@
   <DW_Setting_MeleeXOffset_Description>以原系統手持近戰武器的中心水平為基準,依照喜好增減距離來顯示近戰武器.</DW_Setting_MeleeXOffset_Description>
   <DW_Setting_RangedXOffset_Title>遠程武器水平偏移</DW_Setting_RangedXOffset_Title>
   <DW_Setting_RangedXOffset_Description>以原系統手持遠程武器的中心水平為基準,依照喜好增減距離來顯示遠程武器.</DW_Setting_RangedXOffset_Description>
+  
   <DW_Setting_CustomRotations_Title>單擊武器以設置其自定義旋轉.</DW_Setting_CustomRotations_Title>
   <DW_Setting_CustomRotations_Header>自定義旋轉</DW_Setting_CustomRotations_Header>
   <DW_Setting_CustomRotations_SetRotation>旋轉：{0}度.</DW_Setting_CustomRotations_SetRotation>
@@ -44,7 +45,14 @@
   <DW_Setting_TwoHand_DisabledReason>這種武器被配置為雙持武器.雙手武器不能雙持，因此這種設置優先於雙持武器配置.</DW_Setting_TwoHand_DisabledReason>
   <DW_Setting_NPCDualWieldChance_Title>NPC/敵人雙持武器機率 (%)</DW_Setting_NPCDualWieldChance_Title>
   <DW_Setting_NPCDualWieldChance_Description>一定機率下NPC（敵人或友軍）使用雙持，只要它沒有產生雙手武器.</DW_Setting_NPCDualWieldChance_Description>
-
+  <DW_Setting_MeleeZOffset_Title>近戰武器垂直偏移</DW_Setting_MeleeZOffset_Title>
+  <DW_Setting_MeleeZOffset_Description>以原系統手持近戰武器的中心垂直為基準,依照喜好增減距離來顯示近戰武器.</DW_Setting_MeleeZOffset_Description>
+  <DW_Setting_RangedZOffset_Title>遠程武器垂直偏移</DW_Setting_RangedZOffset_Title>
+  <DW_Setting_RangedZOffset_Description>以原系統手持近戰武器的中心垂直為基準,依照喜好增減距離來顯示遠程武器.</DW_Setting_RangedZOffset_Description>
+  <DW_Setting_MeleeMirrored_Title>近戰武器鏡像</DW_Setting_MeleeMirrored_Title>
+  <DW_Setting_MeleeMirrored_Description>如果勾選此項,近戰武器雙持時將繪製鏡像.</DW_Setting_MeleeMirrored_Description>
+  <DW_Setting_RangedMirrored_Title>遠程武器鏡像</DW_Setting_RangedMirrored_Title>
+  <DW_Setting_RangedMirrored_Description>如果勾選此項,遠程武器雙持時將繪製鏡像.</DW_Setting_RangedMirrored_Description>
   <DW_Message_UnequippedOffHand>{0}卸下{1}副手裝備一個雙手武器.</DW_Message_UnequippedOffHand>
   <DW_HerHis_Male>他的</DW_HerHis_Male>
   <DW_HerHis_Female>她的</DW_HerHis_Female>
