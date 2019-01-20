@@ -49,7 +49,7 @@ namespace DualWield.Harmony
     {
         static void Postfix(VerbProperties __instance, Thing equipment, ref float __result)
         {
-            if (equipment.ParentHolder is Pawn_EquipmentTracker peqt && equipment != null)
+            if (equipment != null && equipment.ParentHolder is Pawn_EquipmentTracker peqt)
             {
                 Pawn pawn = peqt.pawn;
                 if(pawn.skills == null)
