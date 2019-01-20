@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <DW_Penalties.label>雙持懲罰</DW_Penalties.label>
+  <DW_Penalties.helpText>雙持武器並非沒有懲罰.兩個冷卻時間（在射擊後不能做任何事情的時間）,並且射擊精度懲罰可在mod設置中設置.這種懲罰在很大程度上取決於棋子的技能（近戰武器的近戰和遠程武器的射擊）. 你讓1等級射擊的棋子雙持槍可能不是一個好主意！</DW_Penalties.helpText>
+
+  <DW_Settings.label>雙持 mod設置</DW_Settings.label>
+  <DW_Settings.helpText>不要忘記檢查雙持的mod設置。如果您不喜歡mod，那麼您可能會在那裡找到解決問題的設置.</DW_Settings.helpText>
+
+
+</LanguageData>
