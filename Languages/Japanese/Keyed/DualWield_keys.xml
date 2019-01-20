@@ -36,7 +36,16 @@
   <DW_Setting_MeleeXOffset_Title>近接武器水平オフセット</DW_Setting_MeleeXOffset_Title>
   <DW_Setting_MeleeXOffset_Description>二刀流時に、ポーンが近接武器を持っている場合、ポーンの中心に対する水平方向のオフセット値です。</DW_Setting_MeleeXOffset_Description>
   <DW_Setting_RangedXOffset_Title>遠距離武器水平オフセット</DW_Setting_RangedXOffset_Title>
-  <DW_Setting_RangedXOffset_Description>二刀流時に、ポーンが遠隔武器を持っている場合、ポーンの中心に対する水平方向のオフセット値です。</DW_Setting_RangedXOffset_Description>
+  <DW_Setting_RangedXOffset_Description>二刀流時に、ポーンが遠距離武器を持っている場合、ポーンの中心に対する水平方向のオフセット値です。</DW_Setting_RangedXOffset_Description>
+  <DW_Setting_MeleeZOffset_Title>近接武器垂直オフセット</DW_Setting_MeleeZOffset_Title>
+  <DW_Setting_MeleeZOffset_Description>二刀流時に、ポーンが近接武器を持っている場合、ポーンの中心に対する垂直方向のオフセット値です。</DW_Setting_MeleeZOffset_Description>
+  <DW_Setting_RangedZOffset_Title>遠距離武器垂直オフセット</DW_Setting_RangedZOffset_Title>
+  <DW_Setting_RangedZOffset_Description>二刀流時に、ポーンが遠距離武器を持っている場合、ポーンの中心に対する垂直方向のオフセット値です。</DW_Setting_RangedZOffset_Description>
+  <DW_Setting_MeleeMirrored_Title>近接武器反転表示</DW_Setting_MeleeMirrored_Title>
+  <DW_Setting_MeleeMirrored_Description>もし、これがチェックされている場合、二刀流装備している近接武器は、お互いが鏡に映ったように描画されます。</DW_Setting_MeleeMirrored_Description>
+  <DW_Setting_RangedMirrored_Title>遠距離武器反転表示</DW_Setting_RangedMirrored_Title>
+  <DW_Setting_RangedMirrored_Description>もし、これがチェックされている場合、二刀流装備している遠距離武器は、お互いが鏡に映ったように描画されます。</DW_Setting_RangedMirrored_Description>
+
   <DW_Setting_CustomRotations_Title>武器をクリックしてカスタム回転を設定します。</DW_Setting_CustomRotations_Title>
   <DW_Setting_CustomRotations_Header>カスタム回転</DW_Setting_CustomRotations_Header>
   <DW_Setting_CustomRotations_SetRotation>回転拡張：{0}度.</DW_Setting_CustomRotations_SetRotation>
