@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <DW_Setting_DualWield_OK>能做副手</DW_Setting_DualWield_OK>
+  <DW_Setting_DualWield_NOK>不能做副手</DW_Setting_DualWield_NOK>
+  <DW_Setting_TwoHanded_OK>雙手</DW_Setting_TwoHanded_OK>
+  <DW_Setting_TwoHanded_NOK>不是雙手</DW_Setting_TwoHanded_NOK>
+  <DW_SettingsGroup_DualWieldSelection_Title>配置雙持武器</DW_SettingsGroup_DualWieldSelection_Title>
+  <DW_SettingsGroup_DualWieldSelection_Description>配置哪些武器可以與另一種武器一起使用.雙持不能與雙手武器一起使用，但它們可以與普通（非雙持/非雙手）武器或其他雙持武器一起使用.</DW_SettingsGroup_DualWieldSelection_Description>
+  <DW_SettingsGroup_TwoHandSelection_Title>配置雙手武器</DW_SettingsGroup_TwoHandSelection_Title>
+  <DW_SettingsGroup_TwoHandSelection_Description>配置哪些武器需要使用雙手.雙持武器不能與雙手武器一起使用.</DW_SettingsGroup_TwoHandSelection_Description>
+  <DW_Expand>展開</DW_Expand>
+  <DW_Collapse>收起</DW_Collapse>
+
+  <DW_SettingsGroup_Penalties_Title>雙持懲罰</DW_SettingsGroup_Penalties_Title>
+  <DW_SettingsGroup_Penalties_Description>配置雙持的嚴厲處罰.</DW_SettingsGroup_Penalties_Description>
+  <DW_Setting_StaticCooldownPenOffHand_Title>副手武器冷卻處罰(%)</DW_Setting_StaticCooldownPenOffHand_Title>
+  <DW_Setting_StaticCooldownPenOffHand_Description>雙持時對副手武器冷卻的懲罰.</DW_Setting_StaticCooldownPenOffHand_Description>
+  <DW_Setting_StaticCooldownPMainHand_Title>主手武器冷卻處罰(%)</DW_Setting_StaticCooldownPMainHand_Title>
+  <DW_Setting_StaticCooldownPMainHand_Description>雙持時對主手武器冷卻的懲罰.</DW_Setting_StaticCooldownPMainHand_Description>
+  <DW_Setting_StaticAccPOffHand_Title>副手武器精度懲罰(%)</DW_Setting_StaticAccPOffHand_Title>
+  <DW_Setting_StaticAccPOffHand_Description>雙持時對副手武器精確度的懲罰.</DW_Setting_StaticAccPOffHand_Description>
+  <DW_Setting_StaticAccPMainHand_Title>主手武器精度懲罰(%)</DW_Setting_StaticAccPMainHand_Title>
+  <DW_Setting_StaticAccPMainHand_Description>雙持時對主手武器精確度的懲罰.</DW_Setting_StaticAccPMainHand_Description>
+  <DW_Setting_DynamicCooldownP_Title>技能冷卻處罰(%)</DW_Setting_DynamicCooldownP_Title>
+  <DW_Setting_DynamicCooldownP_Description>每個等級的額外冷卻懲罰，當雙持使用時，棋子低於最大射擊/近戰等級.這種懲罰適用於兩種武器.</DW_Setting_DynamicCooldownP_Description>
+  <DW_Setting_DynamicAccP_Title>技能精度懲罰(%)</DW_Setting_DynamicAccP_Title>
+  <DW_Setting_DynamicAccP_Description>對於每個級別的額外精確度懲罰，額外懲罰精確度低於雙持時的最大射擊/近戰等級。 這種懲罰適用於兩種武器.</DW_Setting_DynamicAccP_Description>
+
+  <DW_SettingsGroup_Drawing_Title>繪圖偏移/旋轉</DW_SettingsGroup_Drawing_Title>
+  <DW_SettingsGroup_Drawing_Description>修改殖民者徵召時雙持武器的圖像.默認情況下，左/右/瞄準繪圖應該沒問題，因此這些視圖不存在額外的配置選項.度量單位是度，未修改時是系統中的默認角度.</DW_SettingsGroup_Drawing_Description>
+  <DW_Setting_Note_Drawing>提示：設置效果的好方法是讓一個棋子配備受設置影響的武器,打開設置時確保它仍然可見,更改設置,然後按Enter鍵.你馬上就會看到變化！</DW_Setting_Note_Drawing>
+  <DW_Setting_MeleeAngle_Title>近戰武器額外角度</DW_Setting_MeleeAngle_Title>
+  <DW_Setting_MeleeAngle_Description>以原系統手持近戰武器的角度為基準。依照喜好來增減.</DW_Setting_MeleeAngle_Description>
+  <DW_Setting_RangedAngle_Title>遠程武器額外角度</DW_Setting_RangedAngle_Title>
+  <DW_Setting_RangedAngle_Description>以原系統手持遠程武器的角度為基準。依照喜好來增減.</DW_Setting_RangedAngle_Description>
+  <DW_Setting_MeleeXOffset_Title>近戰武器水平偏移</DW_Setting_MeleeXOffset_Title>
+  <DW_Setting_MeleeXOffset_Description>以原系統手持近戰武器的中心水平為基準,依照喜好增減距離來顯示近戰武器.</DW_Setting_MeleeXOffset_Description>
+  <DW_Setting_RangedXOffset_Title>遠程武器水平偏移</DW_Setting_RangedXOffset_Title>
+  <DW_Setting_RangedXOffset_Description>以原系統手持遠程武器的中心水平為基準,依照喜好增減距離來顯示遠程武器.</DW_Setting_RangedXOffset_Description>
+  <DW_Setting_CustomRotations_Title>單擊武器以設置其自定義旋轉.</DW_Setting_CustomRotations_Title>
+  <DW_Setting_CustomRotations_Header>自定義旋轉</DW_Setting_CustomRotations_Header>
+  <DW_Setting_CustomRotations_SetRotation>旋轉：{0}度.</DW_Setting_CustomRotations_SetRotation>
+  <DW_Setting_DualWield_DisabledReason>這種武器被配置為雙手武器.雙手武器不能雙持，因此這種配置沒有效果.</DW_Setting_DualWield_DisabledReason>
+  <DW_Setting_TwoHand_DisabledReason>這種武器被配置為雙持武器.雙手武器不能雙持，因此這種設置優先於雙持武器配置.</DW_Setting_TwoHand_DisabledReason>
+  <DW_Setting_NPCDualWieldChance_Title>NPC/敵人雙持武器機率 (%)</DW_Setting_NPCDualWieldChance_Title>
+  <DW_Setting_NPCDualWieldChance_Description>一定機率下NPC（敵人或友軍）使用雙持，只要它沒有產生雙手武器.</DW_Setting_NPCDualWieldChance_Description>
+
+  <DW_Message_UnequippedOffHand>{0}卸下{1}副手裝備一個雙手武器.</DW_Message_UnequippedOffHand>
+  <DW_HerHis_Male>他的</DW_HerHis_Male>
+  <DW_HerHis_Female>她的</DW_HerHis_Female>
+  <DW_EquipOffHand>裝備{0} (副手)</DW_EquipOffHand>
+  <DW_DropOffHand>卸下{0} (副手)</DW_DropOffHand>
+  <DW_AsOffHand>為副手武器</DW_AsOffHand>
+  <DW_MissArmOrHand>缺少手/手臂</DW_MissArmOrHand>
+  <DW_WieldingTwoHanded>持著雙手武器</DW_WieldingTwoHanded>
+  <DW_NoTwoHandedInOffHand>雙手武器不能當做副手</DW_NoTwoHandedInOffHand>
+  <DW_CannotBeOffHand>未在mod選項中配置為雙手武器</DW_CannotBeOffHand>
+
+</LanguageData>
