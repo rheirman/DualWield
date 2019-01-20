@@ -24,9 +24,10 @@ namespace DualWield.Harmony
         }
 
     }
-    [HarmonyPatch(typeof(PawnRenderer), "DrawEquipment")]
-    public class PawnRenderer_DrawEquipment
+    [HarmonyPatch(typeof(PawnRenderer), "DrawEquipmentAiming")]
+    public class PawnRenderer_DrawEquipmentAiming
     {
+        /*
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             var instructionsList = new List<CodeInstruction>(instructions);
@@ -42,11 +43,23 @@ namespace DualWield.Harmony
                 }
             }
         }
-        public static void DrawEquipmentAimingModified(PawnRenderer instance, Thing eq, Vector3 drawLoc, float aimAngle)
+        */
+        static bool Prefix(PawnRenderer __instance, Thing eq, ref Vector3 drawLoc, ref float aimAngle)
         {
             ThingWithComps offHandEquip = null;
-            Pawn pawn = Traverse.Create(instance).Field("pawn").GetValue<Pawn>();
-
+            Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
+            if (pawn.equipment == null)
+            {
+                return true;
+            }
+            if (pawn.equipment.TryGetOffHandEquipment(out ThingWithComps result))
+            {
+                offHandEquip = result;
+            }
+            if(offHandEquip == null)
+            {
+                return true;
+            }
             float mainHandAngle = aimAngle;
             float offHandAngle = aimAngle;
             Stance_Busy mainStance = pawn.stances.curStance as Stance_Busy;
@@ -64,14 +77,7 @@ namespace DualWield.Harmony
             {
                 focusTarg = offHandStance.focusTarg;
             }
-            if (pawn.equipment == null)
-            {
-                return;
-            }
-            if (pawn.equipment.TryGetOffHandEquipment(out ThingWithComps result))
-            {
-                offHandEquip = result;
-            }
+
             bool mainHandAiming = CurrentlyAiming(mainStance);
             bool offHandAiming = CurrentlyAiming(offHandStance);
 
@@ -80,37 +86,71 @@ namespace DualWield.Harmony
             //bool currentlyAiming = (mainStance != null && !mainStance.neverAimWeapon && mainStance.focusTarg.IsValid) || stancesOffHand.curStance is Stance_Busy ohs && !ohs.neverAimWeapon && ohs.focusTarg.IsValid;
             //When wielding offhand weapon, facing south, and not aiming, draw differently 
 
-            if (offHandEquip != null)
-            {
-                SetAnglesAndOffsets(eq, offHandEquip, aimAngle, pawn, ref offsetMainHand, ref offsetOffHand, ref mainHandAngle, ref offHandAngle, mainHandAiming, offHandAiming);
-            }
+            SetAnglesAndOffsets(eq, offHandEquip, aimAngle, pawn, ref offsetMainHand, ref offsetOffHand, ref mainHandAngle, ref offHandAngle, mainHandAiming, offHandAiming);
 
             if (offHandEquip != pawn.equipment.Primary)
             {
-                instance.DrawEquipmentAiming(eq, drawLoc + offsetMainHand, mainHandAngle);
+                //drawLoc += offsetMainHand;
+                //aimAngle = mainHandAngle;
+                //__instance.DrawEquipmentAiming(eq, drawLoc + offsetMainHand, mainHandAngle);
+                DrawEquipmentAimingOverride(eq, drawLoc + offsetMainHand, mainHandAngle);
             }
-
-            if (offHandEquip != null)
+            if ((offHandAiming || mainHandAiming) && focusTarg != null)
             {
-                if ((offHandAiming || mainHandAiming) && focusTarg != null)
-                {
-                    offHandAngle = GetAimingRotation(pawn, focusTarg);
-                    offsetOffHand.y += 0.1f;
-                    Vector3 adjustedDrawPos = pawn.DrawPos + new Vector3(0f, 0f, 0.4f).RotatedBy(offHandAngle) + offsetOffHand;
-                    instance.DrawEquipmentAiming(offHandEquip, adjustedDrawPos, offHandAngle);
-                }
-                else
-                {
-                    instance.DrawEquipmentAiming(offHandEquip, drawLoc + offsetOffHand, offHandAngle);
-                }
+                offHandAngle = GetAimingRotation(pawn, focusTarg);
+                offsetOffHand.y += 0.1f;
+                Vector3 adjustedDrawPos = pawn.DrawPos + new Vector3(0f, 0f, 0.4f).RotatedBy(offHandAngle) + offsetOffHand;
+                DrawEquipmentAimingOverride(offHandEquip, adjustedDrawPos, offHandAngle);
             }
-
+            else
+            {
+                DrawEquipmentAimingOverride(offHandEquip, drawLoc + offsetOffHand, offHandAngle);
+            }
+            return false;      
         }
-        //Bloated spaghetti function :(. Maybe refactor this at some point. 
+
+        //Copied from vanilla. 
+        public static void DrawEquipmentAimingOverride(Thing eq, Vector3 drawLoc, float aimAngle)
+        {
+            float num = aimAngle - 90f;
+            Mesh mesh;
+            if (aimAngle > 20f && aimAngle < 160f)
+            {
+                mesh = MeshPool.plane10;
+                num += eq.def.equippedAngleOffset;
+            }
+            else if (aimAngle > 200f && aimAngle < 340f)
+            {
+                mesh = MeshPool.plane10Flip;
+                num -= 180f;
+                num -= eq.def.equippedAngleOffset;
+            }
+            else
+            {
+                mesh = MeshPool.plane10;
+                num += eq.def.equippedAngleOffset;
+            }
+            num %= 360f;
+            Graphic_StackCount graphic_StackCount = eq.Graphic as Graphic_StackCount;
+            Material matSingle;
+            if (graphic_StackCount != null)
+            {
+                matSingle = graphic_StackCount.SubGraphicForStackCount(1, eq.def).MatSingle;
+            }
+            else
+            {
+                matSingle = eq.Graphic.MatSingle;
+            }
+            Graphics.DrawMesh(mesh, drawLoc, Quaternion.AngleAxis(num, Vector3.up), matSingle, 0);
+        }
+
         private static void SetAnglesAndOffsets(Thing eq, ThingWithComps offHandEquip, float aimAngle, Pawn pawn, ref Vector3 offsetMainHand, ref Vector3 offsetOffHand, ref float mainHandAngle, ref float offHandAngle, bool mainHandAiming, bool offHandAiming)
         {
             bool offHandIsMelee = IsMeleeWeapon(offHandEquip);
             bool mainHandIsMelee = IsMeleeWeapon(pawn.equipment.Primary);
+            float meleeAngleFlipped = Base.meleeMirrored ? 360 - Base.meleeAngle : Base.meleeAngle;
+            float rangedAngleFlipped = Base.rangedMirrored ? 360 - Base.rangedAngle : Base.rangedAngle;
+
             if (pawn.Rotation == Rot4.East)
             {
                 offsetOffHand.y = -1f;
@@ -128,8 +168,10 @@ namespace DualWield.Harmony
                 {
                     offsetMainHand.x = mainHandIsMelee ? Base.meleeXOffset : Base.rangedXOffset;
                     offsetOffHand.x = offHandIsMelee ? -Base.meleeXOffset : -Base.rangedXOffset;
+                    offsetMainHand.z = mainHandIsMelee ? Base.meleeZOffset : Base.rangedZOffset;
+                    offsetOffHand.z = offHandIsMelee ? -Base.meleeZOffset : -Base.rangedZOffset;
                     offHandAngle = offHandIsMelee ? Base.meleeAngle : Base.rangedAngle;
-                    mainHandAngle = mainHandIsMelee ? 360 - Base.meleeAngle : 360 - Base.rangedAngle;
+                    mainHandAngle = mainHandIsMelee ? meleeAngleFlipped : rangedAngleFlipped;
 
                 }
                 else
@@ -141,9 +183,12 @@ namespace DualWield.Harmony
             {
                 if (!mainHandAiming && !offHandAiming)
                 {
+                    offsetMainHand.y = 1f;
                     offsetMainHand.x = mainHandIsMelee ? -Base.meleeXOffset : -Base.rangedXOffset;
                     offsetOffHand.x = offHandIsMelee ? Base.meleeXOffset : Base.rangedXOffset;
-                    offHandAngle = offHandIsMelee ? 360 - Base.meleeAngle : 360 - Base.rangedAngle;
+                    offsetMainHand.z = mainHandIsMelee ? -Base.meleeZOffset : -Base.rangedZOffset;
+                    offsetOffHand.z = offHandIsMelee ? Base.meleeZOffset : Base.rangedZOffset;
+                    offHandAngle = offHandIsMelee ? meleeAngleFlipped : rangedAngleFlipped;
                     mainHandAngle = mainHandIsMelee ? Base.meleeAngle : Base.rangedAngle;
                 }
                 else

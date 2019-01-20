@@ -37,6 +37,15 @@
 	<DW_Setting_MeleeXOffset_Description>The horizontal offset relative to the center of the pawn at which the pawn holds his melee weapons while dual wielding.</DW_Setting_MeleeXOffset_Description>
 	<DW_Setting_RangedXOffset_Title>Ranged weapon horizontal offset</DW_Setting_RangedXOffset_Title>
 	<DW_Setting_RangedXOffset_Description>The horizontal offset relative to the center of the pawn at which the pawn holds his ranged weapons while dual wielding.</DW_Setting_RangedXOffset_Description>
+	<DW_Setting_MeleeZOffset_Title>Melee weapon vertical offset</DW_Setting_MeleeZOffset_Title>
+	<DW_Setting_MeleeZOffset_Description>The vertical offset relative to the center of the pawn at which the pawn holds his melee weapons while dual wielding.</DW_Setting_MeleeZOffset_Description>
+	<DW_Setting_RangedZOffset_Title>Ranged weapon vertical offset</DW_Setting_RangedZOffset_Title>
+	<DW_Setting_RangedZOffset_Description>The vertical offset relative to the center of the pawn at which the pawn holds his ranged weapons while dual wielding.</DW_Setting_RangedZOffset_Description>
+	<DW_Setting_MeleeMirrored_Title>Melee weapons mirorred</DW_Setting_MeleeMirrored_Title>
+	<DW_Setting_MeleeMirrored_Description>If this is checked, dual wielded melee weapons will be drawn mirrored in regards to each other.</DW_Setting_MeleeMirrored_Description>	
+	<DW_Setting_RangedMirrored_Title>Ranged weapons mirorred</DW_Setting_RangedMirrored_Title>
+	<DW_Setting_RangedMirrored_Description>If this is checked, dual wielded ranged weapons will be drawn mirrored in regards to each other.</DW_Setting_RangedMirrored_Description>
+	
 	<DW_Setting_CustomRotations_Title>Click a weapon to set its custom rotation.</DW_Setting_CustomRotations_Title>
 	<DW_Setting_CustomRotations_Header>Custom rotations</DW_Setting_CustomRotations_Header>
 	<DW_Setting_CustomRotations_SetRotation>Extra rotation: {0} degrees.</DW_Setting_CustomRotations_SetRotation>

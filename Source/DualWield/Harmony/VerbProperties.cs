@@ -23,15 +23,12 @@ namespace DualWield.Harmony
                 }
                 if (equipment != null && equipment is ThingWithComps twc && twc.IsOffHand())
                 {
-                    Log.Message("2");
                     __result = CalcCooldownPenalty(__result, skillRecord, Base.staticCooldownPOffHand/100f);
                 }
                 else if (attacker.equipment != null && attacker.equipment.TryGetOffHandEquipment(out ThingWithComps offHandEq))
                 {
-                    Log.Message("3");
                     __result = CalcCooldownPenalty(__result, skillRecord, Base.staticCooldownPMainHand/100f);
                 }
-                Log.Message("4");
             }
 
 

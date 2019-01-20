@@ -39,6 +39,12 @@ namespace DualWield
         internal static SettingHandle<float> rangedAngle;
         internal static SettingHandle<float> meleeXOffset;
         internal static SettingHandle<float> rangedXOffset;
+        internal static SettingHandle<float> meleeZOffset;
+        internal static SettingHandle<float> rangedZOffset;
+
+        internal static SettingHandle<bool> meleeMirrored;
+        internal static SettingHandle<bool> rangedMirrored;
+
 
         internal static SettingHandle<string> note;
 
@@ -67,11 +73,24 @@ namespace DualWield
             rangedAngle = Settings.GetHandle<float>("rangedAngle", "DW_Setting_RangedAngle_Title".Translate(), "DW_Setting_RangedAngle_Description".Translate(), 135f, Validators.FloatRangeValidator(0, 360f));
             rangedAngle.VisibilityPredicate = delegate { return settingsGroup_Drawing; };
 
-            meleeXOffset = Settings.GetHandle<float>("meleeXOffset", "DW_Setting_MeleeXOffset_Title".Translate(), "DW_Setting_MeleeXOffset_Description".Translate(), 0.4f, Validators.FloatRangeValidator(0, 2f));
+            meleeXOffset = Settings.GetHandle<float>("meleeXOffset", "DW_Setting_MeleeXOffset_Title".Translate(), "DW_Setting_MeleeXOffset_Description".Translate(), 0.4f, Validators.FloatRangeValidator(-2f, 2f));
             meleeXOffset.VisibilityPredicate = delegate { return settingsGroup_Drawing; };
 
-            rangedXOffset = Settings.GetHandle<float>("rangedXOffset", "DW_Setting_RangedXOffset_Title".Translate(), "DW_Setting_RangedXOffset_Description".Translate(), 0.1f, Validators.FloatRangeValidator(0, 2f));
+            rangedXOffset = Settings.GetHandle<float>("rangedXOffset", "DW_Setting_RangedXOffset_Title".Translate(), "DW_Setting_RangedXOffset_Description".Translate(), 0.1f, Validators.FloatRangeValidator(-2f, 2f));
             rangedXOffset.VisibilityPredicate = delegate { return settingsGroup_Drawing; };
+
+            meleeZOffset = Settings.GetHandle<float>("meleeYOffset", "DW_Setting_MeleeZOffset_Title".Translate(), "DW_Setting_MeleeZOffset_Description".Translate(), 0f, Validators.FloatRangeValidator(-2f, 2f));
+            meleeZOffset.VisibilityPredicate = delegate { return settingsGroup_Drawing; };
+
+            rangedZOffset = Settings.GetHandle<float>("rangedYOffset", "DW_Setting_RangedZOffset_Title".Translate(), "DW_Setting_RangedZOffset_Description".Translate(), 0f, Validators.FloatRangeValidator(-2f, 2f));
+            rangedZOffset.VisibilityPredicate = delegate { return settingsGroup_Drawing; };
+
+            meleeMirrored = Settings.GetHandle<bool>("meleeMirrored", "DW_Setting_MeleeMirrored_Title".Translate(), "DW_Setting_MeleeMirrored_Description".Translate(), true);
+            meleeMirrored.VisibilityPredicate = delegate { return settingsGroup_Drawing; };
+
+            rangedMirrored = Settings.GetHandle<bool>("rangedMirrored", "DW_Setting_RangedMirrored_Title".Translate(), "DW_Setting_RangedMirrored_Description".Translate(), true);
+            rangedMirrored.VisibilityPredicate = delegate { return settingsGroup_Drawing; };
+
 
             customRotations = Settings.GetHandle<DictRecordHandler>("customRotations", "DW_Setting_CustomRotations_Title".Translate(), "", null);
             customRotations.CustomDrawer = rect => { return GUIDrawUtility.CustomDrawer_MatchingThingDefs_dialog(rect, customRotations, GetRotationDefaults(allWeapons), allWeapons, "DW_Setting_CustomRotations_Header".Translate()); };
