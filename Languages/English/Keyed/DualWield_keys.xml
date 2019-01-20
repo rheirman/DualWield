@@ -30,7 +30,7 @@
 	<DW_SettingsGroup_Drawing_Description>Alter how dual wielded weapons are drawn for the south and north view of non-aiming pawns. East/west/aiming drawing should be ok by default, so no extra configuration options are present for those views. The unit of measurement for angles is degrees, and the angles are relative to the default angles in the unmodded game.</DW_SettingsGroup_Drawing_Description>
 	<DW_Setting_Note_Drawing>Hint: A good way to see the effect of any of these settings is to equip a pawn with a weapon affected by the setting, make sure it's still visible while having the settings window open, change the setting, and press enter. You'll immediately see the change!</DW_Setting_Note_Drawing>
 	<DW_Setting_MeleeAngle_Title>Melee weapon extra angle</DW_Setting_MeleeAngle_Title>
-	<DW_Setting_MeleeAngle_Description>The angle relative to the vanilla angle at which pawns hold their melee weapon in north/south view while dual wielding.</DW_Setting_MeleeAngle_Description>
+	<DW_Setting_MeleeAngle_Description>The angle relative to the vanilla angle at which pawns hold their melee weapon in north/south view while dual wielding.</DW_Setting_MeleeAngle_Description>
 	<DW_Setting_RangedAngle_Title>Ranged weapon extra angle</DW_Setting_RangedAngle_Title>
 	<DW_Setting_RangedAngle_Description>The angle relative to the vanilla angle at which pawns hold their ranged weapon in north/south view while dual wielding.</DW_Setting_RangedAngle_Description>
 	<DW_Setting_MeleeXOffset_Title>Melee weapon horizontal offset</DW_Setting_MeleeXOffset_Title>
@@ -41,9 +41,9 @@
 	<DW_Setting_MeleeZOffset_Description>The vertical offset relative to the center of the pawn at which the pawn holds his melee weapons while dual wielding.</DW_Setting_MeleeZOffset_Description>
 	<DW_Setting_RangedZOffset_Title>Ranged weapon vertical offset</DW_Setting_RangedZOffset_Title>
 	<DW_Setting_RangedZOffset_Description>The vertical offset relative to the center of the pawn at which the pawn holds his ranged weapons while dual wielding.</DW_Setting_RangedZOffset_Description>
-	<DW_Setting_MeleeMirrored_Title>Melee weapons mirorred</DW_Setting_MeleeMirrored_Title>
+	<DW_Setting_MeleeMirrored_Title>Melee weapons mirrored</DW_Setting_MeleeMirrored_Title>
 	<DW_Setting_MeleeMirrored_Description>If this is checked, dual wielded melee weapons will be drawn mirrored in regards to each other.</DW_Setting_MeleeMirrored_Description>	
-	<DW_Setting_RangedMirrored_Title>Ranged weapons mirorred</DW_Setting_RangedMirrored_Title>
+	<DW_Setting_RangedMirrored_Title>Ranged weapons mirrored</DW_Setting_RangedMirrored_Title>
 	<DW_Setting_RangedMirrored_Description>If this is checked, dual wielded ranged weapons will be drawn mirrored in regards to each other.</DW_Setting_RangedMirrored_Description>
 	
 	<DW_Setting_CustomRotations_Title>Click a weapon to set its custom rotation.</DW_Setting_CustomRotations_Title>
