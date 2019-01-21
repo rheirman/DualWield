@@ -10,6 +10,17 @@ using Verse;
 
 namespace DualWield.Harmony
 {
+    [HarmonyPatch(typeof(Verb),"TryStartCastOn")]
+    public class Verb_TryStartCastOn {
+        static void Postfix(Verb __instance, LocalTargetInfo castTarg, ref bool __result)
+        {
+            if(__instance.caster is Pawn casterPawn)
+            {
+                casterPawn.TryStartOffHandAttack(castTarg, ref __result);
+            }
+        }
+    }
+
     [HarmonyPatch(typeof(Verb), "TryCastNextBurstShot")]
     public class Verb_TryCastNextBurstShot
     {

@@ -14,7 +14,7 @@ namespace DualWield.Stances
         {
             get
             {
-                return false;
+                return true;
             }
         }
         public Stance_Warmup_DW()

@@ -57,6 +57,7 @@
     <Compile Include="Alerts\Altert_SkillLow.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Command_DualWield.cs" />
+    <Compile Include="Harmony\Jobdriver_Wait.cs" />
     <Compile Include="Harmony\VerbTracker.cs" />
     <Compile Include="ModExtension\DefModextension_CustomRotation.cs" />
     <Compile Include="Settings\Dialog_Weapon_Rotation.cs" />
@@ -79,7 +80,6 @@
     <Compile Include="Harmony\Pawn_EquipmentTracker.cs" />
     <Compile Include="Harmony\Pawn_MeleeVerbs.cs" />
     <Compile Include="Harmony\Pawn_RotationTracker.cs" />
-    <Compile Include="Harmony\Pawn_StanceTracker.cs" />
     <Compile Include="Harmony\Projectile.cs" />
     <Compile Include="Harmony\RunAndGun.cs" />
     <Compile Include="Harmony\ThingOwner.cs" />

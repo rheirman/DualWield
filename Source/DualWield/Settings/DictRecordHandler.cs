@@ -34,7 +34,7 @@ namespace DualWield.Settings
                 foreach(XmlNode recordNode in xmlDoc.FirstChild.ChildNodes)
                 {
                     StringReader rdr = new StringReader(recordNode.InnerXml);
-                    dict.Add(recordNode.Name, (Record)serializer.Deserialize(rdr));
+                    dict.Add(XmlConvert.DecodeName(recordNode.Name), (Record)serializer.Deserialize(rdr));
                 }
                 inner = dict;
 
@@ -47,7 +47,16 @@ namespace DualWield.Settings
             XmlNode root = xmlDoc.AppendChild(xmlDoc.CreateElement("DictRecordHandler"));
             foreach (KeyValuePair<String, Record> child in inner)
             {
-                XmlElement childXml = xmlDoc.CreateElement(child.Key);
+                XmlElement childXml = null;
+                try
+                {
+                    childXml = xmlDoc.CreateElement(XmlConvert.VerifyName(child.Key));
+                }
+                catch (XmlException e)
+                {
+                    childXml = xmlDoc.CreateElement(XmlConvert.EncodeName(child.Key));
+                    //Log.Warning("Couldn't create Dual Wield settings for: " + child.Key + ", because this defname isn't suitable for XML storage");
+                }
                 StringWriter writer = new StringWriter();
                 serializer.Serialize(writer, child.Value, ns);
                 childXml.InnerXml = writer.ToString();

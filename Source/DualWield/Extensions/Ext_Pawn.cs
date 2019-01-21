@@ -1,4 +1,5 @@
-﻿using DualWield.Storage;
+﻿using DualWield.Stances;
+using DualWield.Storage;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,28 @@ namespace DualWield
             if (Base.Instance.GetExtendedDataStorage() is ExtendedDataStorage store)
             {
                 store.GetExtendedDataFor(instance).stancesOffhand = stancesOffHand;
+            }
+        }
+        public static void TryStartOffHandAttack(this Pawn __instance, LocalTargetInfo targ, ref bool __result)
+        {
+            if(__instance.equipment == null || !__instance.equipment.TryGetOffHandEquipment(out ThingWithComps offHandEquip))
+            {
+                return;
+            }
+            if (__instance.GetStancesOffHand().curStance is Stance_Warmup_DW || __instance.GetStancesOffHand().curStance is Stance_Cooldown)
+            {
+                return;
+            }
+            if (__instance.story != null && __instance.story.WorkTagIsDisabled(WorkTags.Violent))
+            {
+                return;
+            }
+            bool allowManualCastWeapons = !__instance.IsColonist;
+            Verb verb = __instance.TryGetOffhandAttackVerb(targ.Thing, true);
+            if (verb != null)
+            {
+                bool success = verb.OffhandTryStartCastOn(targ);
+                __result = __result || (verb != null && success);
             }
         }
         public static Verb TryGetOffhandAttackVerb(this Pawn instance, Thing target, bool allowManualCastWeapons = false)

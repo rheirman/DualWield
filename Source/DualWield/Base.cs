@@ -245,7 +245,7 @@ namespace DualWield
 
         private static void SetDualWieldDefault(Dictionary<string, Record> dict, ThingDef td)
         {
-            if (td.defName.Contains("Bow_") || td.GetStatValueAbstract(StatDefOf.Mass) > 3f || (td.IsMeleeWeapon && td.GetStatValueAbstract(StatDefOf.Mass) > 1.5f))
+            if (td.defName.Contains("Bow_") || td.defName.Contains("Blowgun") || td.GetStatValueAbstract(StatDefOf.Mass) > 3f || (td.IsMeleeWeapon && td.GetStatValueAbstract(StatDefOf.Mass) > 1.5f))
             {
                 dict.Add(td.defName, new Record(false, td.label));
             }
