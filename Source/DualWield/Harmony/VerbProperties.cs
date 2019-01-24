@@ -14,7 +14,7 @@ namespace DualWield.Harmony
     {
         static void Postfix(VerbProperties __instance, Thing equipment, Pawn attacker, ref float __result)
         {
-            if (attacker != null && attacker.skills != null)
+            if (attacker != null && attacker.skills != null && __instance.category != VerbCategory.BeatFire)
             {
                 SkillRecord skillRecord = __instance.IsMeleeAttack ? attacker.skills.GetSkill(SkillDefOf.Melee) : attacker.skills.GetSkill(SkillDefOf.Shooting);
                 if(skillRecord == null)

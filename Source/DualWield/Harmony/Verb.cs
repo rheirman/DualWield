@@ -1,6 +1,7 @@
 ﻿using DualWield.Stances;
 using DualWield.Storage;
 using Harmony;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,11 @@ namespace DualWield.Harmony
         {
             if(__instance.caster is Pawn casterPawn)
             {
-                casterPawn.TryStartOffHandAttack(castTarg, ref __result);
+                //Check if it's an enemy that's attacked, and not a fire or an arguing husband
+                if ((!casterPawn.InMentalState && !(castTarg.Thing is Fire)))
+                {
+                    casterPawn.TryStartOffHandAttack(castTarg, ref __result);
+                }
             }
         }
     }

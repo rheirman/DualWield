@@ -30,7 +30,11 @@ namespace DualWield.Harmony
     {
         static void Postfix(Pawn __instance, LocalTargetInfo targ, ref bool __result)
         {
-            __instance.TryStartOffHandAttack(targ, ref __result);
+            //Check if it's an enemy that's attacked, and not a fire or an arguing husband
+            if ((!__instance.InMentalState && !(targ.Thing is Fire)))
+            {
+                __instance.TryStartOffHandAttack(targ, ref __result);
+            }
         }
     }
 
