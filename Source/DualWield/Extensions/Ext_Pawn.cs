@@ -40,8 +40,13 @@ namespace DualWield
             {
                 return;
             }
+            if (__instance.jobs.curDriver.GetType().Name.Contains("Ability"))//Compatbility for Jecstools' abilities.
+            {
+                return;
+            }
             bool allowManualCastWeapons = !__instance.IsColonist;
             Verb verb = __instance.TryGetOffhandAttackVerb(targ.Thing, true);
+            
             if (verb != null)
             {
                 bool success = verb.OffhandTryStartCastOn(targ);
