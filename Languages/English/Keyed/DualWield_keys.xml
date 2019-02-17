@@ -4,10 +4,10 @@
 	<DW_Setting_DualWield_NOK>Can't be off-hand</DW_Setting_DualWield_NOK>
 	<DW_Setting_TwoHanded_OK>Two-handed</DW_Setting_TwoHanded_OK>
 	<DW_Setting_TwoHanded_NOK>Not two-handed</DW_Setting_TwoHanded_NOK>
-	<DW_SettingsGroup_DualWieldSelection_Title>Configure dual wield weapons</DW_SettingsGroup_DualWieldSelection_Title>
-	<DW_SettingsGroup_DualWieldSelection_Description>Configure which weapons can be used alongside another weapon. Dual wield weapons cannot be used alongside two handed weapons, but they can be used with normal (non-dual wield/non-two handed) weapons or other dual wield weapons.</DW_SettingsGroup_DualWieldSelection_Description>
+	<DW_SettingsGroup_DualWieldSelection_Title>Configure secondary weapons</DW_SettingsGroup_DualWieldSelection_Title>
+	<DW_SettingsGroup_DualWieldSelection_Description>Configure which weapons can be used alongside another non-two-handed weapon. Note that you can also use secondary weapons alongside weapons that are not configured as secondary, as long they're not configured as two-handed.</DW_SettingsGroup_DualWieldSelection_Description>
 	<DW_SettingsGroup_TwoHandSelection_Title>Configure two-handed weapons</DW_SettingsGroup_TwoHandSelection_Title>
-	<DW_SettingsGroup_TwoHandSelection_Description>Configure which weapons require both hands to be used. Dual wield weapons cannot be used alongside two handed weapons.</DW_SettingsGroup_TwoHandSelection_Description>
+	<DW_SettingsGroup_TwoHandSelection_Description>Configure which weapons require both hands to be used. No weapons cannot be used alongside two handed weapons.</DW_SettingsGroup_TwoHandSelection_Description>
 	<DW_Expand>Expand</DW_Expand>
 	<DW_Collapse>Collapse</DW_Collapse>
 	
@@ -63,6 +63,6 @@
 	<DW_MissArmOrHand>Missing arm or hand</DW_MissArmOrHand>
 	<DW_WieldingTwoHanded>Wielding two-handed weapon</DW_WieldingTwoHanded>
 	<DW_NoTwoHandedInOffHand>Cannot wear two-handed weapon as off-hand</DW_NoTwoHandedInOffHand>
-	<DW_CannotBeOffHand>Not configured as dual-wieldable weapon in mod options</DW_CannotBeOffHand>
+	<DW_CannotBeOffHand>Not configured as secondary weapon in mod options</DW_CannotBeOffHand>
 	
 </LanguageData>
