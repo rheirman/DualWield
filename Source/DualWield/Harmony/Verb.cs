@@ -57,7 +57,7 @@ namespace DualWield.Harmony
                 compEquippable = offHandEquip.TryGetComp<CompEquippable>();
             }
             //Check if verb is one from a offhand weapon. 
-            if(compEquippable != null && offHandEquip != stanceTracker.pawn.equipment.Primary) //TODO: check this code 
+            if (compEquippable != null && offHandEquip != stanceTracker.pawn.equipment.Primary) //TODO: check this code 
             {
                 stanceTracker.pawn.GetStancesOffHand().SetStance(stance);
             }

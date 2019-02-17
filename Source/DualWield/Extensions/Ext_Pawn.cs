@@ -84,8 +84,7 @@ namespace DualWield
 
             List<VerbEntry> usableVerbs = new List<VerbEntry>();
             if (instance.equipment != null && instance.equipment.TryGetOffHandEquipment(out ThingWithComps offHandEquip))
-            {
-                
+            {              
                 CompEquippable comp = offHandEquip.GetComp<CompEquippable>();
                 //if(comp.AllVerbs.First((Verb verb) => verb.bu
                 if (comp != null)

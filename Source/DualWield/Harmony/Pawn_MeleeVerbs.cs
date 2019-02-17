@@ -40,6 +40,14 @@ namespace DualWield.Harmony
             {
                 return;
             }
+            if (pawn.equipment == null || !pawn.equipment.TryGetOffHandEquipment(out ThingWithComps offHandEquip))
+            {
+                return;
+            }
+            if(offHandEquip == pawn.equipment.Primary)
+            {
+                return;
+            }
 
             Verb verb = __instance.Pawn.TryGetMeleeVerbOffHand(target);
             if(verb != null)
