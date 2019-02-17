@@ -48,6 +48,10 @@ namespace DualWield.Harmony
             {
                 return;
             }
+            if (pawn.InMentalState)
+            {
+                return;
+            }
 
             Verb verb = __instance.Pawn.TryGetMeleeVerbOffHand(target);
             if(verb != null)
