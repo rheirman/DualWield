@@ -61,7 +61,7 @@ namespace DualWield.Harmony
             {
                 stanceTracker.pawn.GetStancesOffHand().SetStance(stance);
             }
-            else if (!(stanceTracker.curStance is Stance_Cooldown) && stanceTracker.curStance.GetType().Name != "Stance_RunAndGun_Cooldown")
+            else if (stanceTracker.curStance.GetType().Name != "Stance_RunAndGun_Cooldown")
             {
                 stanceTracker.SetStance(stance);
             }

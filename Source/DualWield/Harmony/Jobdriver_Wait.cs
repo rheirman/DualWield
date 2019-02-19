@@ -9,6 +9,7 @@ using Verse.AI;
 
 namespace DualWield.Harmony
 {
+    
     [HarmonyPatch(typeof(JobDriver_Wait), "CheckForAutoAttack")]
     public class Jobdriver_Wait_CheckForAutoAttack
     {
@@ -30,12 +31,13 @@ namespace DualWield.Harmony
         }
         public static bool FullBodyAndOffHandBusy(Pawn_StanceTracker instance)
         {
-            if(instance.pawn.GetStancesOffHand() is Pawn_StanceTracker stOffHand)
+            if(instance.pawn.GetStancesOffHand() is Pawn_StanceTracker stOffHand && instance.pawn.equipment != null && instance.pawn.equipment.TryGetOffHandEquipment(out ThingWithComps twc))
             {
                 return stOffHand.FullBodyBusy && instance.FullBodyBusy;
             }
             return instance.FullBodyBusy;
         }
     }
+    
 
 }

@@ -38,28 +38,6 @@ namespace DualWield.Harmony
             //SetStanceOffHand(stanceTracker, stance);
             Verb_TryCastNextBurstShot.SetStanceOffHand(stanceTracker, stance);
         }
-        /*
-        static void SetStanceOffHand(Pawn_StanceTracker stanceTracker, Stance_Cooldown stance)
-        {
-            ThingWithComps offHandEquip = null;
-            CompEquippable compEquippable = null;
-            Log.Message("calling RunAndGun.SetStanceOffHand");
-            if (stanceTracker.pawn.equipment != null && stanceTracker.pawn.equipment.TryGetOffHandEquipment(out ThingWithComps result) && result != stanceTracker.pawn.equipment.Primary)
-            {
-                offHandEquip = result;
-                compEquippable = offHandEquip.TryGetComp<CompEquippable>();
-            }
-            //Check if verb is one from a offhand weapon. 
-            if (compEquippable != null && stance.verb == compEquippable.PrimaryVerb && stanceTracker.pawn.GetStancesOffHand().curStance is Stance_Warmup_DW)
-            {
-                Log.Message("found offhand verb!, setting offhand stance cooldown");
-                Log.Message("Stance.type: " + stance.GetType().Name);
-                Log.Message("Stance.ticks: " + stance.ticksLeft);
-                stanceTracker.pawn.GetStancesOffHand().SetStance(stance);
-            }
-        }
-        */
-
 
         //When Run and Gun or the to be patched method isn't found, patch this stub method so no error is thrown. 
         public static void Stub(Pawn_StanceTracker stanceTracker, Stance_Cooldown stance)
