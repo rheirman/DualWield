@@ -39,14 +39,11 @@ namespace DualWield.Harmony
                         if (thingList[i].TryGetComp<CompEquippable>() != null)
                         {
                             equipment = (ThingWithComps)thingList[i];
-                            break;
+                            FloatMenuOption equipOffHandOption = GetEquipOffHandOption(pawn, equipment);
+                            opts.Add(equipOffHandOption);
                         }
                     }
-                    if (equipment != null)
-                    {
-                        FloatMenuOption equipOffHandOption = GetEquipOffHandOption(pawn, equipment);
-                        opts.Add(equipOffHandOption);
-                    }
+
                 }
             }
         }
