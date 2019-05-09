@@ -12,7 +12,7 @@ Translations are always very welcome. Just create a pull request. For other chan
 ## Patching 
 
 (only relevant if you created a weapon mod)
-This mod is shipped with advanced settings that allow you to configure how weapons are drawn when dual wielded. The mod has reasonable defaults, but these defaults may not be perfect for your weapon-adding mod. I therefore added a patching hook so you can set better defaults for your weapon mod. **Do mind that if users already configured their settings, the defaults won't be used! (otherwise it wouldn't be defaults :))**.  DefModExtensions are used as patching hooks, you can read more about those here: https://rimworldwiki.com/wiki/Modding_Tutorials/DefModExtension. 
+This mod is shipped with advanced settings that allow you to configure how weapons are drawn when dual wielded. The mod has reasonable defaults, but these defaults may not be perfect for your weapon-adding mod. I therefore added a patching hook so you can set better defaults for your weapon mod. **Do mind that if users already configured their settings, the defaults won't be used! (otherwise they wouldn't be defaults :))**.  DefModExtensions are used as patching hooks, you can read more about those here: https://rimworldwiki.com/wiki/Modding_Tutorials/DefModExtension. 
 
 
 # Setting a custom rotation
