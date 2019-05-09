@@ -245,7 +245,11 @@ namespace DualWield
 
         private static void SetDualWieldDefault(Dictionary<string, Record> dict, ThingDef td)
         {
-            if (td.defName.Contains("Bow_") || td.defName.Contains("Blowgun") || td.GetStatValueAbstract(StatDefOf.Mass) > 3f || (td.IsMeleeWeapon && td.GetStatValueAbstract(StatDefOf.Mass) > 1.5f))
+            if (td.GetModExtension<DefModextension_DefaultSettings>() is DefModextension_DefaultSettings modExt)
+            {
+                dict.Add(td.defName, new Record(modExt.dualWield, td.label));
+            }
+            else if (td.defName.Contains("Bow_") || td.defName.Contains("Blowgun") || td.GetStatValueAbstract(StatDefOf.Mass) > 3f || (td.IsMeleeWeapon && td.GetStatValueAbstract(StatDefOf.Mass) > 1.5f))
             {
                 dict.Add(td.defName, new Record(false, td.label));
             }
@@ -267,7 +271,11 @@ namespace DualWield
 
         private static void SetTwoHandDefault(Dictionary<string, Record> dict, ThingDef td)
         {
-            if (td.defName.Contains("Bow") || td.defName.Contains("Shotgun") || td.GetStatValueAbstract(StatDefOf.Mass) > 3f)
+            if (td.GetModExtension<DefModextension_DefaultSettings>() is DefModextension_DefaultSettings modExt)
+            {
+                dict.Add(td.defName, new Record(modExt.twoHand, td.label));
+            }
+            else if (td.defName.Contains("Bow") || td.defName.Contains("Shotgun") || td.GetStatValueAbstract(StatDefOf.Mass) > 3f)
             {
                 dict.Add(td.defName, new Record(true, td.label));
             }
