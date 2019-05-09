@@ -34,6 +34,8 @@ The following example patch ensures the spear is drawn with an 45 degree extra a
 ### Setting defaults for weapons being secondary, or two-handed
 In the following example DefModExtension_DefaultSettings is used to set all weapons to be dual wieldable. 
 ```
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
 	<Operation Class ="PatchOperationAddModExtension">
 		<xpath>/ThingDef[@Name = "BaseWeapon"]</xpath>
 		<value>
@@ -44,5 +46,6 @@ In the following example DefModExtension_DefaultSettings is used to set all weap
 			</li>
 		</value>
 	</Operation>
+</Patch>
 ```
 **Feel free to request more patching hooks like these.**
