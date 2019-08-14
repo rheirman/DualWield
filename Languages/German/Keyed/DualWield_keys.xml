@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<LanguageData>
+ 
+
+<DW_Setting_DualWield_OK>Benutzbare Nebenwaffen</DW_Setting_DualWield_OK>
+
+	
+<DW_Setting_DualWield_NOK>Unbenutzbare Nebenwaffen</DW_Setting_DualWield_NOK>
+	
+
+<DW_Setting_TwoHanded_OK>Zweihändig</DW_Setting_TwoHanded_OK>
+
+
+<DW_Setting_TwoHanded_NOK>Einhändig</DW_Setting_TwoHanded_NOK>
+
+
+<DW_SettingsGroup_DualWieldSelection_Title>Konfiguriere Nebenhandwaffen</DW_SettingsGroup_DualWieldSelection_Title>
+
+
+<DW_SettingsGroup_DualWieldSelection_Description>Entscheide welche Waffen zusammen benutzt werden können. Hinweis: Du kannst ebenso zwei Waffen kombinieren, wovon eine nicht als Nebenhandwaffe konfiguriert ist. Sie darf aber nicht als Zweihändig eingestellt sein.</DW_SettingsGroup_DualWieldSelection_Description>
+
+<DW_SettingsGroup_TwoHandSelection_Title>Konfiguriere Zweihandwaffen</DW_SettingsGroup_TwoHandSelection_Title>
+
+
+<DW_SettingsGroup_TwoHandSelection_Description>Entscheide welche Waffen beide Hände benötigen um benutzt zu werden. Keine andere Waffe kann zusammen mit einer Zweihandwaffe benutzt werden.</DW_SettingsGroup_TwoHandSelection_Description>
+
+
+<DW_Expand>Erweitern</DW_Expand>
+
+	
+<DW_Collapse>Minimieren</DW_Collapse>
+
+	
+	
+<DW_SettingsGroup_Penalties_Title>Zwei-Waffen Strafen</DW_SettingsGroup_Penalties_Title>
+
+<DW_SettingsGroup_Penalties_Description>Konfiguriere wie stark die Strafen für die Benutzung von zwei Waffen sind.</DW_SettingsGroup_Penalties_Description>
+
+
+<DW_Setting_StaticCooldownPenOffHand_Title>Nebenwaffenstrafe Abklingzeit (%)</DW_Setting_StaticCooldownPenOffHand_Title>
+
+
+<DW_Setting_StaticCooldownPenOffHand_Description>Abklingzeitsstrafe für die Nebenwaffe bei Zwei-Waffen benutzung.</DW_Setting_StaticCooldownPenOffHand_Description>
+
+
+<DW_Setting_StaticCooldownPMainHand_Title>Hauptwaffenstrafe Abklingzeit (%)</DW_Setting_StaticCooldownPMainHand_Title>
+
+<DW_Setting_StaticCooldownPMainHand_Description>Abklingzeitsstrafe für die Hauptwaffe bei Zwei-Waffen benutzung.</DW_Setting_StaticCooldownPMainHand_Description>
+
+	
+<DW_Setting_StaticAccPOffHand_Title>Nebenwaffenstrafe Genauigkeit (%)</DW_Setting_StaticAccPOffHand_Title>
+
+
+<DW_Setting_StaticAccPOffHand_Description>Genauigkeitsstrafe für die Nebenwaffe bei Zwei-Waffen benutzung.</DW_Setting_StaticAccPOffHand_Description>
+
+
+<DW_Setting_StaticAccPMainHand_Title>Hauptwaffenstrafe Genauigkeit (%)</DW_Setting_StaticAccPMainHand_Title>
+
+<DW_Setting_StaticAccPMainHand_Description>Genauigkeitsstrafe für die Hauptwaffe bei Zwei-Waffen benutzung.</DW_Setting_StaticAccPMainHand_Description>
+
+	
+<DW_Setting_DynamicCooldownP_Title>Extra pro-Level Abklingzeitsstrafe (%)</DW_Setting_DynamicCooldownP_Title>
+
+<DW_Setting_DynamicCooldownP_Description>Bei Zwei-Waffen benutzung entstehen zusätzliche Strafen für die Abklingzeit. Dies gilt für jedes Level, welches ein Charackter unter dem Fern-/Nahkampflevel Maximum liegt. Diese Strafe gilt für beide Waffen.</DW_Setting_DynamicCooldownP_Description>
+
+
+<DW_Setting_DynamicAccP_Title>Extra pro-Level Genauigkeitsstrafe (%)</DW_Setting_DynamicAccP_Title>
+
+
+<DW_Setting_DynamicAccP_Description>Bei Zwei-Waffen benutzung entstehen zusätzliche Strafen für die Genauigkeit. Dies gilt für jedes Level, welches ein Charackter unter dem Fern-/Nahkampflevel Maximum liegt. Diese Strafe gilt für beide Waffen.</DW_Setting_DynamicAccP_Description>
+
+<DW_SettingsGroup_Drawing_Title>Zeichne Verschiebungen/Rotationen</DW_SettingsGroup_Drawing_Title>
+
+
+<DW_SettingsGroup_Drawing_Description>Ändere die nord/süd Darstellung doppelter Waffen am nicht-zielenden Chrackter. Die ost/west Darstellung sollte standardmäßig ok sein, daher gibt es keine extra konfiguration dafür. Die Maßeinheit für Winkel ist Grad und die Winkel sind relativ gleich zu denen im ungemoddeten Spiel.</DW_SettingsGroup_Drawing_Description>
+
+
+<DW_Setting_Note_Drawing>Hinweis: Um all diese Einstellungen gut sehen zu können, kannst du einen Charackter mit den jeweiligen Waffen ausstatten. Stelle sicher, dass er sichtbar ist, während das Einstellungsfenster offen ist. Ändere nun die Werte und drücke Enter!</DW_Setting_Note_Drawing>
+
+
+<DW_Setting_MeleeAngle_Title>Nahkampfwaffe: Extra-Winkel</DW_Setting_MeleeAngle_Title>
+
+
+<DW_Setting_MeleeAngle_Description>Der Winkel im Gegenteil zum standard Winkel, unter welchem der Charackter seine Nahkampfwaffe in nord/süd Darstellung hält.</DW_Setting_MeleeAngle_Description>
+
+
+<DW_Setting_RangedAngle_Title>Fernkampfwaffe: Extra-Winkel</DW_Setting_RangedAngle_Title>
+
+
+<DW_Setting_RangedAngle_Description>Der Winkel im Gegenteil zum standard Winkel, unter welchem der Charackter seine Fernkampfwaffe in nord/süd Darstellung hält.</DW_Setting_RangedAngle_Description>
+
+<DW_Setting_MeleeXOffset_Title>Nahkampfwaffe: Horizontale Verschiebung</DW_Setting_MeleeXOffset_Title>
+
+
+<DW_Setting_MeleeXOffset_Description>Die horizontale Verschiebung vom Mittelpunkt des Charackters aus, von welchem er seine Nahkampfwaffen benutzt.</DW_Setting_MeleeXOffset_Description>
+
+<DW_Setting_RangedXOffset_Title>Fernkampfwaffe: Horizontale Verschiebung</DW_Setting_RangedXOffset_Title>
+
+
+<DW_Setting_RangedXOffset_Description>Die horizontale Verschiebung vom Mittelpunkt des Charackters aus, von welchem er seine Fernkampfwaffen benutzt.</DW_Setting_RangedXOffset_Description>
+
+
+<DW_Setting_MeleeZOffset_Title>Nahkampfwaffe: Vertikale Verschiebung</DW_Setting_MeleeZOffset_Title>
+
+
+<DW_Setting_MeleeZOffset_Description>Die vertikale Verschiebung vom Mittelpunkt des Charackters aus, von welchem er seine Nahkampfwaffen benutzt.</DW_Setting_MeleeZOffset_Description>
+
+
+<DW_Setting_RangedZOffset_Title>Fernkampfwaffe: Vertikale Verschiebung</DW_Setting_RangedZOffset_Title>
+
+
+<DW_Setting_RangedZOffset_Description>Die vertikale Verschiebung vom Mittelpunkt des Charackters aus, von welchem er seine Fernkampfwaffen benutzt.</DW_Setting_RangedZOffset_Description>
+
+
+<DW_Setting_MeleeMirrored_Title>Nahkampfwaffen: Gespiegelt</DW_Setting_MeleeMirrored_Title>
+	
+
+<DW_Setting_MeleeMirrored_Description>Wenn diese Option aktiviert ist, werden zwei Nahkampfwaffen umgekehrt zueinander gezeichnet.</DW_Setting_MeleeMirrored_Description>
+
+<DW_Setting_RangedMirrored_Title>Fernkampfwaffen: Gespiegelt</DW_Setting_RangedMirrored_Title>
+
+<DW_Setting_RangedMirrored_Description>Wenn diese Option aktiviert ist, werden zwei Fernkampfwaffen umgekehrt zueinander gezeichnet.</DW_Setting_RangedMirrored_Description>
+
+<DW_Setting_CustomRotations_Title>Wähle Waffe für die Rotation</DW_Setting_CustomRotations_Title>
+
+<DW_Setting_CustomRotations_Header>Angepasste Rotationen</DW_Setting_CustomRotations_Header>
+	
+
+<DW_Setting_CustomRotations_SetRotation>Extra Rotation: {0} Grad.</DW_Setting_CustomRotations_SetRotation>
+
+
+<DW_Setting_DualWield_DisabledReason>Diese Waffe ist ebenfalls als Zweihändig konfiguriert. Zweihandwaffen können nicht doppelt benutzt werden, daher tritt diese Einstellung mit den Nebenhandwaffeneinstellungen in Konflikt.</DW_Setting_DualWield_DisabledReason>
+
+<DW_Setting_TwoHand_DisabledReason>Diese Waffe ist ebenfalls als Nebenwaffe konfiguriert. Zweihandwaffen können nicht doppelt benutzt werden, daher tritt diese Einstellung mit den Nebenhandwaffeneinstellungen in Konflikt.</DW_Setting_TwoHand_DisabledReason>
+
+
+<DW_Setting_NPCDualWieldChance_Title>NPC/Gegner Zwei-Waffen Chance (%)</DW_Setting_NPCDualWieldChance_Title>
+
+
+<DW_Setting_NPCDualWieldChance_Description>Die Chance das ein NPC (gegnerisch oder freundlich) Nebenhandwaffen benutzt, vorausgesetzt er erscheint nicht mit einer Zweihandwaffe.</DW_Setting_NPCDualWieldChance_Description>
+
+
+<DW_Message_UnequippedOffHand>{0} lässt {1} Nebenhandwaffe fallen, um Platz für eine Zweihandwaffe zu machen.</DW_Message_UnequippedOffHand>
+
+
+<DW_HerHis_Male>seine</DW_HerHis_Male>
+
+<DW_HerHis_Female>ihre</DW_HerHis_Female>
+
+<DW_EquipOffHand>{0} (Nebenhand) ausrüsten</DW_EquipOffHand>
+
+<DW_DropOffHand>Lass {0} (Nebenhand) fallen</DW_DropOffHand>
+
+<DW_AsOffHand>als Nebenhandwaffe</DW_AsOffHand>
+<DW_MissArmOrHand>Fehlende Hand oder Arm</DW_MissArmOrHand>
+
+<DW_WieldingTwoHanded>Trägt Zweihandwaffe</DW_WieldingTwoHanded>
+	
+<DW_NoTwoHandedInOffHand>Kann keine Zweihandwaffe als Nebenwaffe tragen</DW_NoTwoHandedInOffHand>
+
+<DW_CannotBeOffHand>Nicht als Nebenhandwaffe in der Mod-Option konfiguriert</DW_CannotBeOffHand>
+	
+
+
+</LanguageData>

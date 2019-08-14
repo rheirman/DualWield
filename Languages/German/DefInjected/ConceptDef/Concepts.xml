@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <DW_Settings.label>Dual Wield Mod Einstellung</DW_Settings.label>
+  <DW_Settings.helpText>Vergiss nicht die Einstellungen der Nebenhandwaffen zu kontrollieren. Solltest du etwas an der Mod nicht mögen, findest du dort vielleicht die passende Lösung.</DW_Settings.helpText>
+
+  <DW_Penalties.label>Zwei-Waffen Strafe</DW_Penalties.label>
+  <DW_Penalties.helpText>Bei Benutzung von zwei Waffen gleichzeitig, erfolgt eine Strafe. Diese beeinflusst die Kampfabklingzeit und die Genauigkeit, welche in der Mod-Einstellung festgelegt werden kann. Die Strafhöhe hängt weitgehend von den Fähigkeiten des Charackters ab. Es ist also vielleicht keine gute Idee, zwei Waffen mit Fernkampflevel 1 zu benutzen.</DW_Penalties.helpText>
+
+</LanguageData>
