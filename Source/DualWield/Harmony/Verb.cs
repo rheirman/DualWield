@@ -1,6 +1,6 @@
 ﻿using DualWield.Stances;
 using DualWield.Storage;
-using Harmony;
+using HarmonyLib;
 using RimWorld;
 using System;
 using System.Collections.Generic;

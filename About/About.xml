@@ -4,7 +4,9 @@
 	<author>Roolo</author>
 	<supportedVersions>
 			<li>1.0</li>
+			<li>1.1</li>
 	</supportedVersions>
+   <packageId>Roolo.DualWield</packageId>
 	<description>Pistols are boring? Not when you dual wield them like Lara Croft! This mod allows your colonists to dual wield any weapon you allow in the mod options, including weapons added by other mods. Dual wielding does come with accuracy and firing rate penalties which are affected by the shooting/melee level of the pawns. 
 	
 &lt;color=orange&gt;&lt;b&gt;Dependencies &lt;/b&gt;&lt;/color&gt;

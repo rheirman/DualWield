@@ -1,5 +1,5 @@
 ﻿using DualWield.Settings;
-using Harmony;
+using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using Verse;
 namespace DualWield.Harmony
 {
     [HarmonyPatch(typeof(PawnRenderer), "RenderPawnAt")]
-    [HarmonyPatch(new Type[]{typeof(Vector3), typeof(RotDrawMode), typeof(bool)})]
+    [HarmonyPatch(new Type[]{typeof(Vector3), typeof(RotDrawMode), typeof(bool), typeof(bool) })]
     class PawnRenderer_RenderPawnAt
     {
         static void Postfix(PawnRenderer __instance)

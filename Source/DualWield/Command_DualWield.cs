@@ -56,12 +56,12 @@ namespace DualWield
                 return;
             }
             Targeter targeter = Find.Targeter;
-            if (this.offHandVerb.CasterIsPawn && targeter.targetingVerb != null && targeter.targetingVerb.verbProps == this.offHandVerb.verbProps)
+            if (this.offHandVerb.CasterIsPawn && targeter.targetingSource != null && targeter.targetingSource.GetVerb.verbProps == this.offHandVerb.verbProps)
             {
                 Pawn casterPawn = this.offHandVerb.CasterPawn;
                 if (!targeter.IsPawnTargeting(casterPawn))
                 {
-                    targeter.targetingVerbAdditionalPawns.Add(casterPawn);
+                    targeter.targetingSourceAdditionalPawns.Add(casterPawn);
                 }
             }
             else

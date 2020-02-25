@@ -7,7 +7,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 using HugsLib.Settings;
-using Harmony;
+using HarmonyLib;
 
 namespace DualWield.Settings
 {
@@ -106,7 +106,7 @@ namespace DualWield.Settings
             }
             else
             {
-                resolvedIcon = new Texture();
+                resolvedIcon = new Texture2D(0,0);
             }
             GUI.color = color;
             GUI.DrawTexture(iconRect, resolvedIcon);

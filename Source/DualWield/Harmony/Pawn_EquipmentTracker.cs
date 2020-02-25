@@ -1,9 +1,10 @@
 ﻿using DualWield.Storage;
-using Harmony;
+using HarmonyLib;
 using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using Verse;
@@ -16,10 +17,11 @@ namespace DualWield.Harmony
     {
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
+            
             var instructionsList = new List<CodeInstruction>(instructions);
             foreach (CodeInstruction instruction in instructionsList)
             {
-                if (instruction.operand == typeof(Pawn_EquipmentTracker).GetMethod("get_Primary"))
+                if ((MethodInfo)instruction.operand == typeof(Pawn_EquipmentTracker).GetMethod("get_Primary"))
                 {
                     yield return new CodeInstruction(OpCodes.Call, typeof(Pawn_EquipmentTracker_AddEquipment).GetMethod("PrimaryNoOffHand"));
                 }

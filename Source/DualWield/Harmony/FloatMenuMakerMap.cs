@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -53,7 +53,7 @@ namespace DualWield.Harmony
             string labelShort = equipment.LabelShort;
             FloatMenuOption menuItem;
 
-            if (equipment.def.IsWeapon && pawn.story.WorkTagIsDisabled(WorkTags.Violent))
+            if (equipment.def.IsWeapon && pawn.story.DisabledWorkTagsBackstoryAndTraits.HasFlag(WorkTags.Violent))
             {
                 menuItem = new FloatMenuOption("CannotEquip".Translate(labelShort) + " " + "DW_AsOffHand".Translate() + " (" + "IsIncapableOfViolenceLower".Translate(pawn.LabelShort, pawn) + ")", null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
