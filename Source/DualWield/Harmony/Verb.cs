@@ -11,7 +11,7 @@ using Verse;
 
 namespace DualWield.Harmony
 {
-    [HarmonyPatch(typeof(Verb),"TryStartCastOn")]
+    [HarmonyPatch(typeof(Verb),"TryStartCastOn", new Type[] { typeof(LocalTargetInfo), typeof(LocalTargetInfo), typeof(bool), typeof(bool) })]
     public class Verb_TryStartCastOn {
         static void Postfix(Verb __instance, LocalTargetInfo castTarg, ref bool __result)
         {

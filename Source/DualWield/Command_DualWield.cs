@@ -29,6 +29,7 @@ namespace DualWield
 
         public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth)
         {
+            Log.Message("GizmoOnGUI");
             GizmoResult res = base.GizmoOnGUI(topLeft, maxWidth);
             GUI.color = offHandThing.DrawColor;
             Material material = (!this.disabled) ? null : TexUI.GrayscaleGUI;

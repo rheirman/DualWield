@@ -28,29 +28,20 @@ namespace DualWield
         //Only returns true when offhand weapon is used alongside a mainhand weapon. 
         public static bool TryGetOffHandEquipment(this Pawn_EquipmentTracker instance, out ThingWithComps result)
         {
-            Log.Message("TryGetOffHandEquipment ");
             result = null;
-            Log.Message("TryGetOffHandEquipment 1");
             if (instance.pawn.HasMissingArmOrHand())
             {
-                Log.Message("TryGetOffHandEquipment 1 1");
                 return false;
             }
-            Log.Message("TryGetOffHandEquipment 2");
             ExtendedDataStorage store = Base.Instance.GetExtendedDataStorage();
-            Log.Message("TryGetOffHandEquipment 3");
             foreach (ThingWithComps twc in instance.AllEquipmentListForReading)
             {
-                Log.Message("TryGetOffHandEquipment 3 1");
                 if (store.TryGetExtendedDataFor(twc, out ExtendedThingWithCompsData ext) && ext.isOffHand)
                 {
-                    Log.Message("TryGetOffHandEquipment 3 1 1");
                     result = twc;
                     return true;
                 }
-                Log.Message("TryGetOffHandEquipment 3 2");
             }
-            Log.Message("TryGetOffHandEquipment 4");
             return false;
         }
         public static void MakeRoomForOffHand(this Pawn_EquipmentTracker instance, ThingWithComps eq)
