@@ -1,5 +1,5 @@
 ﻿using DualWield.Storage;
-using HarmonyLib;
+using Harmony;
 using System;
 using System.Collections.Generic;
 using System.Linq;

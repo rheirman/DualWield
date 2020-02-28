@@ -29,7 +29,6 @@ namespace DualWield
 
         public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth)
         {
-            Log.Message("GizmoOnGUI");
             GizmoResult res = base.GizmoOnGUI(topLeft, maxWidth);
             GUI.color = offHandThing.DrawColor;
             Material material = (!this.disabled) ? null : TexUI.GrayscaleGUI;
@@ -57,12 +56,12 @@ namespace DualWield
                 return;
             }
             Targeter targeter = Find.Targeter;
-            if (this.offHandVerb.CasterIsPawn && targeter.targetingSource != null && targeter.targetingSource.GetVerb.verbProps == this.offHandVerb.verbProps)
+            if (this.offHandVerb.CasterIsPawn && targeter.targetingVerb != null && targeter.targetingVerb.verbProps == this.offHandVerb.verbProps)
             {
                 Pawn casterPawn = this.offHandVerb.CasterPawn;
                 if (!targeter.IsPawnTargeting(casterPawn))
                 {
-                    targeter.targetingSourceAdditionalPawns.Add(casterPawn);
+                    targeter.targetingVerbAdditionalPawns.Add(casterPawn);
                 }
             }
             else

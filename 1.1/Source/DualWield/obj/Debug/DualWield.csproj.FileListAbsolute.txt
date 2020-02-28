@@ -1,0 +1,4 @@
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\DualWield\Source\DualWield\obj\Debug\DualWield.csprojResolveAssemblyReference.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\DualWield\Source\DualWield\obj\Debug\DualWield.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\DualWield\1.1\Assemblies\DualWield.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\DualWield\Source\DualWield\obj\Debug\DualWield.dll

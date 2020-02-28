@@ -1,6 +1,6 @@
 ﻿using DualWield.Stances;
 using DualWield.Storage;
-using HarmonyLib;
+using Harmony;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using Verse;
 
 namespace DualWield.Harmony
 {
-    [HarmonyPatch(typeof(Verb),"TryStartCastOn", new Type[] { typeof(LocalTargetInfo), typeof(LocalTargetInfo), typeof(bool), typeof(bool) })]
+    [HarmonyPatch(typeof(Verb),"TryStartCastOn")]
     public class Verb_TryStartCastOn {
         static void Postfix(Verb __instance, LocalTargetInfo castTarg, ref bool __result)
         {

@@ -36,7 +36,7 @@ namespace DualWield
             {
                 return;
             }
-            if (__instance.story != null && __instance.story.DisabledWorkTagsBackstoryAndTraits.HasFlag(WorkTags.Violent))
+            if (__instance.story != null && __instance.story.WorkTagIsDisabled(WorkTags.Violent))
             {
                 return;
             }

@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+﻿using Harmony;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -44,7 +44,7 @@ namespace DualWield.Harmony
             }
             else if (verb.CasterIsPawn)
             {
-                if (verb.CasterPawn.story.DisabledWorkTagsBackstoryAndTraits.HasFlag(WorkTags.Violent))
+                if (verb.CasterPawn.story.WorkTagIsDisabled(WorkTags.Violent))
                 {
                     command_VerbTarget.Disable("IsIncapableOfViolence".Translate(verb.CasterPawn.LabelShort, verb.CasterPawn));
                 }

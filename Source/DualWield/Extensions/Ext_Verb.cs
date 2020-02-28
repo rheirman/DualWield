@@ -1,5 +1,5 @@
 ﻿using DualWield.Stances;
-using HarmonyLib;
+using Harmony;
 using RimWorld;
 using System;
 using System.Collections.Generic;

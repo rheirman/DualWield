@@ -1,5 +1,5 @@
 ﻿using DualWield.Storage;
-using HarmonyLib;
+using Harmony;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -36,8 +36,7 @@ namespace DualWield
             ExtendedDataStorage store = Base.Instance.GetExtendedDataStorage();
             foreach (ThingWithComps twc in instance.AllEquipmentListForReading)
             {
-                if (store.TryGetExtendedDataFor(twc, out ExtendedThingWithCompsData ext) && ext.isOffHand)
-                {
+                if(store.TryGetExtendedDataFor(twc, out ExtendedThingWithCompsData ext) && ext.isOffHand){
                     result = twc;
                     return true;
                 }
