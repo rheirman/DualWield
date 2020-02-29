@@ -16,12 +16,7 @@ namespace DualWield.Settings
         public Dictionary<String, Record> inner = new Dictionary<String, Record>();
         public Dictionary<String, Record> InnerList { get { return inner; } set { inner = value; } }
         private XmlSerializer serializer = new XmlSerializer(typeof(Record));
-        XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
 
-        public DictRecordHandler()
-        {
-            ns.Add("", "");
-        }
         public override void FromString(string settingValue)
         {
             inner = new Dictionary<String, Record>();
@@ -57,13 +52,26 @@ namespace DualWield.Settings
                     childXml = xmlDoc.CreateElement(XmlConvert.EncodeName(child.Key));
                     //Log.Warning("Couldn't create Dual Wield settings for: " + child.Key + ", because this defname isn't suitable for XML storage");
                 }
-                StringWriter writer = new StringWriter();
-                serializer.Serialize(writer, child.Value, ns);
-                childXml.InnerXml = writer.ToString();
+                childXml.InnerXml = SerializeToString(child.Value);
                 root.AppendChild(childXml);
             }
-
             return xmlDoc.OuterXml;
+        }
+        // To Clean XML
+        private string SerializeToString<T>(T value)
+        {
+            var emptyNamespaces = new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty });
+            var serializer = new XmlSerializer(value.GetType());
+            var settings = new XmlWriterSettings();
+            settings.Indent = true;
+            settings.OmitXmlDeclaration = true;
+
+            using (var stream = new StringWriter())
+            using (var writer = XmlWriter.Create(stream, settings))
+            {
+                serializer.Serialize(writer, value, emptyNamespaces);
+                return stream.ToString();
+            }
         }
     }
 

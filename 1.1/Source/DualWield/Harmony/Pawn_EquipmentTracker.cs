@@ -70,10 +70,23 @@ namespace DualWield.Harmony
             {
                 if (eq.def.IsTwoHand() && offHandEquipped)
                 {
+                    DropOffHand(__instance, eq, offHand);
                     string herHis = __instance.pawn.story.bodyType == BodyTypeDefOf.Male ? "DW_HerHis_Male".Translate() : "DW_HerHis_Female".Translate();
                     Messages.Message("DW_Message_UnequippedOffHand".Translate(new object[] { __instance.pawn.Name.ToStringShort, herHis }), new LookTargets(__instance.pawn), MessageTypeDefOf.CautionInput);
                 }
                 return true;
+            }
+        }
+
+        private static void DropOffHand(Pawn_EquipmentTracker __instance, ThingWithComps eq, ThingWithComps offHand)
+        {
+            if (__instance.TryDropEquipment(offHand, out ThingWithComps resultingEq, __instance.pawn.Position))
+            {
+                resultingEq?.SetForbidden(value: false);
+            }
+            else
+            {
+                Log.Error(__instance.pawn + " couldn't make room for equipment " + eq);
             }
         }
     }

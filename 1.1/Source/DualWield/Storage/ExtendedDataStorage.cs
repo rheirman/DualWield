@@ -1,4 +1,5 @@
 ﻿using HugsLib.Utils;
+using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace DualWield.Storage
     /**
      * Storage used to extend existing Rimworld objects with additional data. Caution should be taken when assigning the IDs. 
      **/
-    public class ExtendedDataStorage : UtilityWorldObject, IExposable
+    public class ExtendedDataStorage : WorldComponent, IExposable
     {
         private Dictionary<int, IExposable> _store =
             new Dictionary<int, IExposable>();
@@ -21,6 +22,9 @@ namespace DualWield.Storage
         internal int lastEmergencySignalDelay = 0;
         internal int lastEmergencySignalCooldown = 0;
 
+        public ExtendedDataStorage(World world) : base(world)
+        {
+        }
         public override void ExposeData()
         {
             base.ExposeData();
