@@ -31,16 +31,15 @@ namespace DualWield.Harmony
             }
         }
         //Make sure offhand weapons are never stored first in the list. 
-        static void Postfix(Pawn_EquipmentTracker __instance, ThingWithComps newEq)
+        static void Postfix(Pawn_EquipmentTracker __instance, ThingWithComps newEq, ref ThingOwner<ThingWithComps> ___equipment)
         {
             ExtendedDataStorage store = Base.Instance.GetExtendedDataStorage();
             ThingWithComps primary = __instance.Primary;
             if (primary != null && store != null &&  store.TryGetExtendedDataFor(primary, out ExtendedThingWithCompsData twcData) && twcData.isOffHand)
             {
-                ThingOwner<ThingWithComps> equipment = Traverse.Create(__instance).Field("equipment").GetValue<ThingOwner<ThingWithComps>>();
-                if(equipment != null)
+                if(___equipment != null)
                 {
-                    equipment.Remove(primary);
+                    ___equipment.Remove(primary);
                     __instance.AddOffHandEquipment(primary);
                 }
             }

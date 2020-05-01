@@ -33,22 +33,21 @@ namespace DualWield.Harmony
     [HarmonyPatch(typeof(Pawn_MeleeVerbs),"TryMeleeAttack")]
     class Pawn_MeleeVerbs_TryMeleeAttack
     {
-        static void Postfix(Pawn_MeleeVerbs __instance, Thing target, Verb verbToUse, bool surpriseAttack, ref bool __result)
+        static void Postfix(Pawn_MeleeVerbs __instance, Thing target, Verb verbToUse, bool surpriseAttack, ref bool __result, ref Pawn ___pawn)
         {
-            Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
-            if (pawn.GetStancesOffHand() == null || pawn.GetStancesOffHand().curStance is Stance_Warmup_DW || pawn.GetStancesOffHand().curStance is Stance_Cooldown)
+            if (___pawn.GetStancesOffHand() == null || ___pawn.GetStancesOffHand().curStance is Stance_Warmup_DW || ___pawn.GetStancesOffHand().curStance is Stance_Cooldown)
             {
                 return;
             }
-            if (pawn.equipment == null || !pawn.equipment.TryGetOffHandEquipment(out ThingWithComps offHandEquip))
+            if (___pawn.equipment == null || !___pawn.equipment.TryGetOffHandEquipment(out ThingWithComps offHandEquip))
             {
                 return;
             }
-            if(offHandEquip == pawn.equipment.Primary)
+            if(offHandEquip == ___pawn.equipment.Primary)
             {
                 return;
             }
-            if (pawn.InMentalState)
+            if (___pawn.InMentalState)
             {
                 return;
             }

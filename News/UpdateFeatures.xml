@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<HugsLib.UpdateFeatureDef Abstract="true" Name="UpdateFeatureBase_DualWield">
+		<modNameReadable>Dual Wield</modNameReadable>
+		<modIdentifier>Roolo.DualWield</modIdentifier>
+		<linkUrl>https://ludeon.com/forums/index.php?topic=47809.0</linkUrl>
+	</HugsLib.UpdateFeatureDef>
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_DualWield">
+		<defName>DualWield</defName>
+		<assemblyVersion>1.1.0</assemblyVersion>
+		<content>
+Dual Wield has been updated to support Rimworld version 1.1 (including the expansion). Credits for this update go to Ogliss, who helped out with the update. This version also supports Rimworld 1.0, so no need to worry if you're still using that version. 
+		</content>
+	</HugsLib.UpdateFeatureDef>
+</Defs>

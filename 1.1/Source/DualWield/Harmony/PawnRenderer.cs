@@ -14,12 +14,11 @@ namespace DualWield.Harmony
     [HarmonyPatch(new Type[]{typeof(Vector3), typeof(RotDrawMode), typeof(bool), typeof(bool) })]
     class PawnRenderer_RenderPawnAt
     {
-        static void Postfix(PawnRenderer __instance)
+        static void Postfix(PawnRenderer __instance, ref Pawn ___pawn)
         {
-            Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
-            if (pawn.Spawned && !pawn.Dead)
+            if (___pawn.Spawned && !___pawn.Dead)
             {
-                pawn.GetStancesOffHand().StanceTrackerDraw();
+                ___pawn.GetStancesOffHand().StanceTrackerDraw();
             }
         }
 
@@ -44,15 +43,14 @@ namespace DualWield.Harmony
             }
         }
         */
-        static bool Prefix(PawnRenderer __instance, Thing eq, ref Vector3 drawLoc, ref float aimAngle)
+        static bool Prefix(PawnRenderer __instance, Thing eq, ref Vector3 drawLoc, ref float aimAngle, ref Pawn ___pawn)
         {
             ThingWithComps offHandEquip = null;
-            Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
-            if (pawn.equipment == null)
+            if (___pawn.equipment == null)
             {
                 return true;
             }
-            if (pawn.equipment.TryGetOffHandEquipment(out ThingWithComps result))
+            if (___pawn.equipment.TryGetOffHandEquipment(out ThingWithComps result))
             {
                 offHandEquip = result;
             }
@@ -62,11 +60,11 @@ namespace DualWield.Harmony
             }
             float mainHandAngle = aimAngle;
             float offHandAngle = aimAngle;
-            Stance_Busy mainStance = pawn.stances.curStance as Stance_Busy;
+            Stance_Busy mainStance = ___pawn.stances.curStance as Stance_Busy;
             Stance_Busy offHandStance = null;
-            if (pawn.GetStancesOffHand() != null)
+            if (___pawn.GetStancesOffHand() != null)
             {
-                offHandStance = pawn.GetStancesOffHand().curStance as Stance_Busy;
+                offHandStance = ___pawn.GetStancesOffHand().curStance as Stance_Busy;
             }
             LocalTargetInfo focusTarg = null;
             if (mainStance != null && !mainStance.neverAimWeapon)
@@ -86,9 +84,9 @@ namespace DualWield.Harmony
             //bool currentlyAiming = (mainStance != null && !mainStance.neverAimWeapon && mainStance.focusTarg.IsValid) || stancesOffHand.curStance is Stance_Busy ohs && !ohs.neverAimWeapon && ohs.focusTarg.IsValid;
             //When wielding offhand weapon, facing south, and not aiming, draw differently 
 
-            SetAnglesAndOffsets(eq, offHandEquip, aimAngle, pawn, ref offsetMainHand, ref offsetOffHand, ref mainHandAngle, ref offHandAngle, mainHandAiming, offHandAiming);
+            SetAnglesAndOffsets(eq, offHandEquip, aimAngle, ___pawn, ref offsetMainHand, ref offsetOffHand, ref mainHandAngle, ref offHandAngle, mainHandAiming, offHandAiming);
 
-            if (offHandEquip != pawn.equipment.Primary)
+            if (offHandEquip != ___pawn.equipment.Primary)
             {
                 //drawLoc += offsetMainHand;
                 //aimAngle = mainHandAngle;
@@ -97,9 +95,9 @@ namespace DualWield.Harmony
             }
             if ((offHandAiming || mainHandAiming) && focusTarg != null)
             {
-                offHandAngle = GetAimingRotation(pawn, focusTarg);
+                offHandAngle = GetAimingRotation(___pawn, focusTarg);
                 offsetOffHand.y += 0.1f;
-                Vector3 adjustedDrawPos = pawn.DrawPos + new Vector3(0f, 0f, 0.4f).RotatedBy(offHandAngle) + offsetOffHand;
+                Vector3 adjustedDrawPos = ___pawn.DrawPos + new Vector3(0f, 0f, 0.4f).RotatedBy(offHandAngle) + offsetOffHand;
                 DrawEquipmentAimingOverride(offHandEquip, adjustedDrawPos, offHandAngle);
             }
             else
