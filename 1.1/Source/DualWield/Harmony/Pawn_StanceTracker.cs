@@ -40,9 +40,9 @@ namespace DualWield.Harmony
             bool runAndGunEnabled = false;
             if (pawn.AllComps.FirstOrDefault((ThingComp tc) => tc.GetType().Name == "CompRunAndGun") is ThingComp comp)
             {
-                if (comp.CompInspectStringExtra() != "")//Try to get value of isEnabled by abusing compInspectString. Only works with newer versions of RunAndGun. 
+                if (comp.GetDescriptionPart() != "")//Try to get value of isEnabled by abusing compInspectString. Only works with newer versions of RunAndGun. 
                 {
-                    runAndGunEnabled = Convert.ToBoolean(comp.CompInspectStringExtra());
+                    runAndGunEnabled = Convert.ToBoolean(comp.GetDescriptionPart());
                 }
                 else //Otherwise use reflections, which is much more expensive in terms of execution time. 
                 {
