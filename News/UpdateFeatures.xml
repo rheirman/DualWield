@@ -12,4 +12,19 @@
 Dual Wield has been updated to support Rimworld version 1.1 (including the expansion). Credits for this update go to Ogliss, who helped out with the update. This version also supports Rimworld 1.0, so no need to worry if you're still using that version. 
 		</content>
 	</HugsLib.UpdateFeatureDef>
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_DualWield">
+		<defName>DualWield_1.1.0</defName>
+		<assemblyVersion>1.3.0</assemblyVersion>
+		<content>
+Dual Wield has been updated to support Rimworld version 1.3 (including the expansion). Credits for this update go to Ogliss, who helped out with the update. 
+Changes: 
+- Better compatibility with other mods in general
+- Selection of weapons now also includes weapons without weapon tags, like thrumbo horns, elephant thusks, and many modded weapons. 
+
+As you might know I'm not really active as modder anymore, but I do intend to keep all my mods alive. The reason I'm no longer active is because I'm working on my own game: &lt;color=orange&gt;&lt;b&gt;Cursed Crew&lt;/b&gt;&lt;/color&gt;. If you like my work, be sure to check it out! You can find a link to Cursed Crew the mod page of every mod I created. 
+
+Enjoy the update!
+
+		</content>
+	</HugsLib.UpdateFeatureDef>
 </Defs>
