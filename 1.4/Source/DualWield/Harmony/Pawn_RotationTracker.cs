@@ -12,7 +12,7 @@ namespace DualWield.Harmony
     {
         static void Postfix(Pawn_RotationTracker __instance, ref Pawn ___pawn)
         {
-            Stance_Busy stance_Busy = ___pawn.GetStancesOffHand().curStance as Stance_Busy;
+            Stance_Busy stance_Busy = ___pawn.GetStancesOffHand()?.curStance as Stance_Busy;
             if (stance_Busy != null && stance_Busy.focusTarg.IsValid && !___pawn.pather.Moving)
             {
                 if (stance_Busy.focusTarg.HasThing)
