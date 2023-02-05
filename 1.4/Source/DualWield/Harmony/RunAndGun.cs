@@ -15,37 +15,36 @@ namespace DualWield.Harmony
     [HarmonyPatch]
     public class RunAndGun
     {
-        static MethodBase TargetMethod()
+        static IEnumerable<MethodBase> TargetMethods()
         {
             Assembly ass = GetAssemblyByName("RunAndGun");
             if(ass != null)
             {
-                Type predicateClass = GetAssemblyByName("RunAndGun").GetTypes().FirstOrDefault((Type type) => type.Name == "Verb_TryCastNextBurstShot");
+                Type predicateClass = ass.GetTypes().FirstOrDefault((Type type) => type.Name == "Verb_TryCastNextBurstShot");
                 if(predicateClass != null)
                 {
                     MethodInfo minfo = predicateClass.GetMethods(AccessTools.all).FirstOrDefault(m => m.Name.Contains("SetStanceRunAndGun"));
                     if (minfo != null)
                     {
-                        return minfo;
+                        yield return minfo;
                     }
                 }
             }
-            return typeof(RunAndGun).GetMethod("Stub");
+        }
+        static void Prepare(MethodBase original)
+        {
+            if (original != null)
+            {
+                Log.Message("patching run and gun");
+            }
         }
         static void Postfix(Pawn_StanceTracker stanceTracker, Stance_Cooldown stance)
         {
             //Make sure this is called when run and gun patches the same line of code as we do in the harmony Patch Verb_TryCastNextBurstShot. 
             //SetStanceOffHand(stanceTracker, stance);
-            Log.Message("patching run and gun");
             Verb_TryCastNextBurstShot.SetStanceOffHand(stanceTracker, stance);
         }
 
-        //When Run and Gun or the to be patched method isn't found, patch this stub method so no error is thrown. 
-        public static void Stub(Pawn_StanceTracker stanceTracker, Stance_Cooldown stance)
-        {
-            //Do nothing
-        }
-       
         static Assembly GetAssemblyByName(string name)
         {
             return AppDomain.CurrentDomain.GetAssemblies().
